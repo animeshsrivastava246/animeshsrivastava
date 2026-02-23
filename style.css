@@ -1,0 +1,310 @@
+:root {
+  --neon-cyan: #C5A059;
+  --neon-pink: #5B7C99;
+  --neon-purple: #111111;
+  --neon-red: #8A0303;
+  --bg-dark: #020202;
+  /* Depth like the Batcave */
+  --bat-gold: #ffcf00;
+  /* Subtle accent */
+  --grid-color: rgba(197, 160, 89, 0.05);
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  user-select: none;
+  -webkit-user-select: none;
+  /* Prevent tap highlight on mobile */
+  -webkit-tap-highlight-color: transparent;
+}
+
+body,
+html {
+  width: 100%;
+  height: 100%;
+  background-color: var(--bg-dark);
+  font-family: 'Orbitron', sans-serif;
+  overflow: hidden;
+  /* Prevent scrolling */
+  touch-action: none;
+  /* Prevent browser handling of gestures like pinch/zoom/swipe */
+}
+
+#game-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+canvas {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+#ui-layer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+  /* Let clicks pass through to canvas when appropriate */
+}
+
+/* Screen States */
+.screen {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  pointer-events: auto;
+}
+
+.screen.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+#hud {
+  pointer-events: none;
+  /* Never block touches while playing */
+  justify-content: space-between;
+  padding: 20px;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+/* Typography & Glitch Effects */
+.logo-container {
+  text-align: center;
+  margin-bottom: 20px;
+  perspective: 1000px;
+}
+
+h1 {
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 900;
+  line-height: 1;
+  color: #fff;
+  text-shadow: 0 0 10px var(--neon-cyan);
+  margin: 0;
+  letter-spacing: 12px;
+  text-transform: uppercase;
+}
+
+h1.cyber-text {
+  color: #fff;
+  text-shadow: 0 0 20px var(--neon-cyan), 0 0 40px var(--neon-cyan);
+  border-bottom: 4px solid var(--neon-cyan);
+  display: inline-block;
+}
+
+.subtitle {
+  color: #666;
+  font-size: 1rem;
+  letter-spacing: 8px;
+  margin-top: 15px;
+  margin-bottom: 40px;
+  text-transform: uppercase;
+  font-weight: 400;
+}
+
+.instructions {
+  margin-top: 40px;
+  text-align: center;
+  color: #888;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  letter-spacing: 1px;
+  background: rgba(0, 0, 0, 0.6);
+  padding: 15px 25px;
+  border: 1px solid rgba(0, 255, 255, 0.2);
+  border-radius: 8px;
+  backdrop-filter: blur(5px);
+}
+
+.instructions h3 {
+  color: var(--neon-cyan);
+  margin-bottom: 15px;
+  font-size: 1.1rem;
+  letter-spacing: 3px;
+  text-shadow: 0 0 5px var(--neon-cyan);
+}
+
+.controls-list {
+  list-style: none;
+  margin-bottom: 20px;
+  padding: 0;
+  text-align: left;
+}
+
+.controls-list li {
+  color: #ddd;
+  margin: 5px 0;
+}
+
+.rules-box {
+  background: rgba(0, 0, 0, 0.5);
+  padding: 12px;
+  border-radius: 5px;
+  border-left: 3px solid var(--neon-cyan);
+  text-align: left;
+}
+
+.rules-box p {
+  margin: 8px 0;
+  font-size: 0.85rem;
+  color: #ccc;
+}
+
+.highlight {
+  font-weight: 700;
+  color: #fff;
+}
+
+.text-red {
+  color: var(--neon-red);
+  text-shadow: 0 0 5px var(--neon-red);
+}
+
+.text-cyan {
+  color: var(--neon-cyan);
+  text-shadow: 0 0 5px var(--neon-cyan);
+}
+
+.text-pink {
+  color: var(--neon-pink);
+  text-shadow: 0 0 5px var(--neon-pink);
+}
+
+/* Buttons */
+.cyber-btn {
+  background: transparent;
+  color: white;
+  font-family: 'Orbitron', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  padding: 15px 40px;
+  border: 2px solid var(--neon-cyan);
+  border-radius: 4px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.2s;
+  box-shadow: 0 0 10px inset rgba(0, 255, 255, 0.2), 0 0 10px rgba(0, 255, 255, 0.2);
+  text-transform: uppercase;
+}
+
+.cyber-btn:hover,
+.cyber-btn:active {
+  background: var(--neon-cyan);
+  color: #000;
+  box-shadow: 0 0 20px var(--neon-cyan), 0 0 40px var(--neon-cyan);
+}
+
+#game-over h2 {
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  color: var(--neon-red);
+  text-shadow: 0 0 10px var(--neon-red), 0 0 30px var(--neon-red);
+  margin-bottom: 20px;
+  animation: pulse-red 2s infinite;
+}
+
+#game-over .final-stats {
+  color: #fff;
+  font-size: 1.5rem;
+  text-align: center;
+  margin-bottom: 40px;
+  line-height: 2;
+  text-shadow: 0 0 5px var(--neon-cyan);
+}
+
+/* HUD */
+.score-container {
+  font-size: 1.5rem;
+  color: #fff;
+  text-shadow: 0 0 10px var(--neon-pink);
+  display: flex;
+  gap: 10px;
+  background: rgba(0, 0, 0, 0.5);
+  padding: 10px 20px;
+  border-bottom: 2px solid var(--neon-pink);
+  border-radius: 0 0 10px 0;
+}
+
+.multiplier-container {
+  font-size: 2rem;
+  color: var(--neon-cyan);
+  font-weight: 900;
+  text-shadow: 0 0 10px var(--neon-cyan), 0 0 20px var(--neon-cyan);
+  animation: pulse-cyan 1s infinite alternate;
+}
+
+.energy-bar {
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  max-width: 400px;
+  height: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid var(--neon-cyan);
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+#energy-fill {
+  width: 100%;
+  height: 100%;
+  background: var(--neon-cyan);
+  box-shadow: 0 0 10px var(--neon-cyan);
+  transition: width 0.1s linear, background-color 0.3s;
+}
+
+@keyframes pulse-red {
+  0% {
+    transform: scale(1);
+    text-shadow: 0 0 10px var(--neon-red), 0 0 20px var(--neon-red);
+  }
+
+  50% {
+    transform: scale(1.05);
+    text-shadow: 0 0 20px var(--neon-red), 0 0 40px var(--neon-red);
+  }
+
+  100% {
+    transform: scale(1);
+    text-shadow: 0 0 10px var(--neon-red), 0 0 20px var(--neon-red);
+  }
+}
+
+@keyframes pulse-cyan {
+  0% {
+    transform: scale(1);
+  }
+
+  100% {
+    transform: scale(1.1);
+    text-shadow: 0 0 15px var(--neon-cyan), 0 0 30px var(--neon-cyan);
+  }
+}
