@@ -1,8 +1,9 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { FaGithub, FaLinkedinIn, FaWhatsapp } from "react-icons/fa";
+import { FaGithub, FaLinkedinIn, FaWhatsapp, FaYoutube, FaDiscord } from "react-icons/fa";
 import { HiOutlineMail } from "react-icons/hi";
+import { SiZoho } from "react-icons/si";
 
 const navItems = [
   {
@@ -33,6 +34,28 @@ const navItems = [
     bg: "bg-muted/50",
     link: "mailto:animeshsrivastava246246@gmail.com",
   },
+  {
+    icon: <SiZoho size={22} />,
+    label: "Zoho",
+    color: "text-[#089949]",
+    bg: "bg-muted/50",
+    link: "mailto:animeshsrivastava246@zohomail.in",
+  },
+  
+  {
+    icon: <FaYoutube size={22} />,
+    label: "YouTube",
+    color: "text-[#FF0000]",
+    bg: "bg-muted/50",
+    link: "https://www.youtube.com/@animesh246",
+  },
+  {
+    icon: <FaDiscord size={22} />,
+    label: "Discord",
+    color: "text-violet-500",
+    bg: "bg-white",
+    link: "https://discord.com/users/757601167776677962",
+  }
 ];
 
 export default function SocialMedia() {

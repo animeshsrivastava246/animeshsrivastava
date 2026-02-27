@@ -83,8 +83,8 @@ bun run start
 Feel free to reach out if you're looking to collaborate, have a question, or just want to connect!
 
 - **Email:** animeshsrivastava246246@gmail.com
-- **LinkedIn:** [Animesh Srivastava](https://www.linkedin.com/in/animesh-srivastava-154a48202/)
-- **GitHub:** [@animesh251001](https://github.com/animesh251001)
+- **LinkedIn:** [Animesh Srivastava](https://www.linkedin.com/in/animesh246/)
+- **GitHub:** [@animeshsrivastava246](https://github.com/animeshsrivastava246)
 
 ---
 
