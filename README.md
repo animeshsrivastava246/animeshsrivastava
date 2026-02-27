@@ -1,50 +1,91 @@
-# 🌌 Neon Nexus
+# Animesh Srivastava | Portfolio
 
-**Neon Nexus** is a highly interactive, futuristic browser game designed for casual gaming. It features a lush, glowing cyber-punk aesthetic with smooth 60fps rendering, optimized for both **Desktop** and **Mobile** browsers.
+Modern, interactive, and highly animated personal portfolio built with cutting-edge web technologies. It is designed to be fully responsive, accessible, and performant—featuring a futuristic glassmorphic UI, physics-based animations, and real-time statistics.
 
-![Neon Nexus Background](https://img.shields.io/badge/Status-Fully_Operational-cyan?style=for-the-badge&logoColor=white)
-![Tech](https://img.shields.io/badge/Tech-HTML5_Canvas-purple?style=for-the-badge)
-
----
-
-## 🕹️ Gameplay
-You are the pilot of a data-stream survival ship. Navigate through the high-speed cyber tunnel, avoid system failures, and maximize your energy cores.
-
-### How to Play
-- **Desktop:** Use your mouse to steer the ship.
-- **Mobile:** Touch and drag anywhere on the screen.
-
-### Entity Guide
-| Entity | Effect |
-| :--- | :--- |
-| **🟥 Red Hexagons** | **Avoid.** Collision causes immediate system failure. |
-| **🟦 Cyan Nodes** | **Collect.** Restores Energy and adds to your Score. |
-| **🟪 Pink Cores** | **Boost.** Increases your Score Multiplier Combo. |
-
----
+![Portfolio Preview](./public/og-image.png)
 
 ## ✨ Features
-- **Deterministic Engine:** Custom `requestAnimationFrame` loop ensures smooth gameplay across all refresh rates.
-- **Dynamic Visuals:** Deep use of `globalCompositeOperation` and `shadowBlur` for high-fidelity neon glow effects.
-- **Responsive Design:** Fluid canvas resizing adapts to any device orientation or screen size.
-- **Personalized:** Features a signature background watermark for **Animesh Srivastava**.
-- **Performance First:** No frameworks, no external dependencies, no build steps. 100% Vanilla modern stack.
 
----
+- **Next.js 15 & React 19:** Utilizing the App Router for optimal performance, fast compilation (Turbopack), and SSR/SSG.
+- **Futuristic UI:** Liquid glassmorphism, dynamic gradients, and modern layout structures tailored with **Tailwind CSS v4**.
+- **High-End Animations:** Engaging interactions powered by **Framer Motion** and **Lottie**, including scroll-driven animations, spring physics, and animated text tracking (Variable Proximity).
+- **TypeScript:** 100% type-safe architecture ensuring fewer runtime bugs and improved developer experience.
+- **Dynamic Projects Showcase:** Dedicated custom detail pages for projects with advanced presentation layouts.
+- **Live Stats Integration:** Real-time fetching of DSA progress (LeetCode) built natively into the frontend.
+- **Functional Contact Form:** Fully working contact system processing emails through server actions (`Resend`).
+
+## 🛠️ Tech Stack
+
+- **Framework:** [Next.js 15](https://nextjs.org/) (App Router)
+- **Library:** [React 19](https://react.dev/)
+- **Styling:** [Tailwind CSS v4](https://tailwindcss.com/)
+- **Language:** [TypeScript](https://www.typescriptlang.org/)
+- **Animations:** [Framer Motion](https://www.framer.com/motion/) & [Lottie React](https://lottiereact.com/)
+- **Icons:** [Lucide React](https://lucide.dev/) & [React Icons](https://react-icons.github.io/react-icons/)
+- **Toasts:** [Sonner](https://sonner.emilkowal.ski/)
+- **Package Manager:** [Bun](https://bun.sh/)
 
 ## 🚀 Getting Started
-1. Clone this repository.
-2. Open `index.html` in any modern web browser (Chrome, Firefox, Safari, Edge).
-3. Click **INITIALIZE** and survive the data stream.
+
+### Prerequisites
+
+You need to have [Bun](https://bun.sh/) installed on your local machine to build and run this project rapidly.
+
+### Installation
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/animesh251001/portfolio.git
+   cd portfolio
+   ```
+
+2. Install dependencies via Bun:
+   ```bash
+   bun install
+   ```
+
+3. Set up environment variables:
+   Create a `.env` file in the root of the project and ensure you have the required variables (e.g., your Resend API key for the contact form).
+   ```env
+   RESEND_API_KEY=your_api_key_here
+   ```
+
+4. Run the development server:
+   ```bash
+   bun run dev
+   ```
+   Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+## 📦 Build for Production
+
+To create an optimized production build:
+```bash
+bun run build
+```
+To start the production server:
+```bash
+bun run start
+```
+
+## 📂 Project Structure
+
+- `src/app`: Next.js 15 App Router pages and global layouts.
+- `src/components`: Reusable UI components.
+  - `/animations`: Framer Motion and custom animation wrappers.
+  - `/common`: Shared elements like Navbar, BackgroundGlow, ThemeToggle.
+  - `/projects`: Individual project showcase components (`DisneyUI`, `NameTheGame`, etc.).
+  - `/sections`: Main landing page sections (`About`, `Experience`, `Skills`, `Contact`).
+- `src/lib`: Helper functions, data structures (`skills.tsx`), and server actions (`actions.ts`).
+- `src/assets`: Images, graphics, and JSON Lottie animations.
+
+## 🤝 Contact
+
+Feel free to reach out if you're looking to collaborate, have a question, or just want to connect!
+
+- **Email:** animeshsrivastava246246@gmail.com
+- **LinkedIn:** [Animesh Srivastava](https://www.linkedin.com/in/animesh-srivastava-154a48202/)
+- **GitHub:** [@animesh251001](https://github.com/animesh251001)
 
 ---
 
-## 🛠️ Built With
-- **HTML5 Canvas** (Rendering)
-- **Vanilla CSS3** (Glassmorphism UI)
-- **Modern JavaScript** (Physics & Logic)
-- **Google Fonts** (Orbitron / Rajdhani)
-
----
-
-Developed with ❤️ by Animesh Srivastava.
+Built with ☕ and ❤️ by Animesh Srivastava.

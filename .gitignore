@@ -1,0 +1,73 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
+package-lock.json
+bun.lock
+bun.lockb
+yarn.lock
+pnpm-lock.yaml
+
+# testing
+/coverage
+
+# next.js
+/.next/
+/out/
+/build
+
+# production
+/dist
+/build
+
+# misc
+.DS_Store
+*.pem
+
+# debug & logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+bun-debug.log*
+*.log
+build_output*.log
+build_output.log
+
+# local env files
+.env*.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env.local
+.env
+!.env.example
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# IDE / Editor / System
+.idea/
+.vscode/
+*.swp
+*.swo
+.vsc/
+.DS_Store
+Thumbs.db
+ehthumbs.db
+.AppleDouble
+.LSOverride
+Icon
+
+# Temporary / Scratch files
+/tmp
+/temp
+Todo.md
+*.bak
+*.orig

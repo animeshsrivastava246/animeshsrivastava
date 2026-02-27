@@ -1,0 +1,166 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Orbitron:wght@400..900&display=swap');
+@import "tailwindcss";
+
+
+
+
+@layer base {
+  :root {
+    --background: #ffffffd0;
+    --foreground: #09090b;
+    --primary: #101010;
+    --primary-foreground: #fafafa;
+    --muted: #f4f4f5;
+    --muted-foreground: #71717a;
+    --accent: #f4f4f5;
+    --accent-foreground: #18181b;
+    --border: #e4e4e7;
+    --card: #ffffffd0;
+    --card-foreground: #09090b;
+    --radius: 0.5rem;
+    --neu-shadow: rgba(0, 0, 0, 0.08);
+    --neu-highlight: rgba(255, 255, 255, 0.8);
+  }
+
+  .dark {
+    --background: #09090b;
+    --foreground: #fafafa;
+    --primary: #fafafae8;
+    --primary-foreground: #18181b;
+    --muted: #27272a;
+    --muted-foreground: #a1a1aa;
+    --accent: #27272a;
+    --accent-foreground: #fafafae8;
+    --border: #27272a;
+    --card: #09090b;
+    --card-foreground: #fafafae8;
+    --neu-shadow: rgba(0, 0, 0, 0.9);
+    --neu-highlight: rgba(255, 255, 255, 0.04);
+  }
+
+  * {
+    border-color: var(--border);
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    background-color: var(--background);
+    background-image:
+      radial-gradient(circle at 15% 50%, color-mix(in srgb, var(--primary) 3%, transparent), transparent 25%),
+      radial-gradient(circle at 85% 30%, color-mix(in srgb, var(--primary) 4%, transparent), transparent 25%);
+    background-attachment: fixed;
+    color: var(--foreground);
+    font-family: var(--font-open-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    cursor: default;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-family: var(--font-open-sans);
+    font-weight: 1000;
+    letter-spacing: -0.02em;
+  }
+
+  /* Squircle Border-Radius Overrides */
+  .rounded-lg {
+    border-radius: 0.5rem / 0.75rem;
+  }
+
+  .rounded-xl {
+    border-radius: 0.75rem / 1rem;
+  }
+
+  .rounded-2xl {
+    border-radius: 1rem / 1.25rem;
+  }
+
+  .rounded-3xl {
+    border-radius: 1.25rem / 1.5rem;
+  }
+
+  .rounded-4xl {
+    border-radius: 2rem / 2.25rem;
+  }
+
+}
+
+/* Neumorphic Shadow Utility */
+.neumorphic {
+  box-shadow:
+    8px 8px 16px var(--neu-shadow),
+    -8px -8px 16px var(--neu-highlight);
+}
+
+.neumorphic-inset {
+  box-shadow:
+    inset 8px 8px 16px var(--neu-shadow),
+    inset -8px -8px 16px var(--neu-highlight);
+}
+
+.hide-scrollbar {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Base Layout Config */
+.container-12 {
+  margin-inline: auto;
+  width: 100%;
+  max-width: 1200px;
+  padding-inline: 1rem;
+}
+
+@media (min-width: 640px) {
+  .container-12 {
+    padding-inline: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .container-12 {
+    padding-inline: 2rem;
+  }
+}
+
+/* Glassmorphism Utilities */
+.glass {
+  background: color-mix(in srgb, var(--background) 25%, transparent);
+  backdrop-filter: blur(8px) saturate(1.2);
+  -webkit-backdrop-filter: blur(8px) saturate(1.2);
+  border: 1px solid color-mix(in srgb, var(--foreground) 8%, transparent);
+  box-shadow:
+    inset 0 1px 1px color-mix(in srgb, var(--foreground) 15%, transparent),
+    inset 0 -1px 1px color-mix(in srgb, var(--background) 20%, transparent),
+    0 4px 16px rgba(0, 0, 0, 0.1);
+}
+
+.glass-island {
+  background: color-mix(in srgb, var(--card) 30%, transparent);
+  backdrop-filter: blur(10px) saturate(1.3);
+  -webkit-backdrop-filter: blur(10px) saturate(1.3);
+  border: 1px solid color-mix(in srgb, var(--foreground) 10%, transparent);
+  box-shadow:
+    8px 8px 16px var(--neu-shadow),
+    -8px -8px 16px var(--neu-highlight),
+    inset 0 1px 2px color-mix(in srgb, var(--foreground) 20%, transparent),
+    inset 0 -1px 2px color-mix(in srgb, var(--background) 20%, transparent);
+  border-radius: 2rem / 1.5rem;
+}
+
+/* @media (min-width: 768px) {
+  body {
+    cursor: none;
+  }
+} */
