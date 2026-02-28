@@ -37,12 +37,12 @@ export default function DeviceNotice() {
           animate={{ opacity: 1, y: 0, x: "-50%" }}
           exit={{ opacity: 0, y: 50, x: "-50%" }}
           transition={{ duration: 0.4, type: "spring", stiffness: 200, damping: 20 }}
-          className="fixed bottom-6 left-1/2 bg-card glass border border-border/50 text-foreground px-4 py-2 rounded-full text-xs shadow-xl z-9999 max-w-xs w-[90%] text-center font-medium font-body flex items-center justify-between gap-3"
+          className="fixed bottom-6 left-1/2 bg-card glass border border-border/50 text-foreground p-2 rounded-full text-xs shadow-xl z-9999 max-w-xs w-78 text-center font-bold font-body flex items-center justify-center gap-2"
         >
           <span className="leading-snug text-left">For the best experience, view on a desktop.</span>
           <button
             onClick={() => setShowNotice(false)}
-            className="text-muted-foreground hover:text-foreground transition-colors p-1 shrink-0"
+            className="text-muted-foreground hover:text-foreground transition-colors p-1 shrink-0 cursor-pointer border-l border-border/50 pl-2"
             aria-label="Close notice"
           >
             ✕
