@@ -10,9 +10,10 @@ import VariableProximity from "../animations/VariableProximity";
 const Hero = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   return (
-    <div
-      className="w-full border-2 border-background rounded-4xl py-2 md:py-6 min-h-[calc(100vh-80px)] flex items-center justify-center relative overflow-hidden"
-      aria-label="Landing page main container"
+    <section
+      className="w-full border-2 border-background rounded-4xl py-4 md:py-6 min-h-[calc(100vh-80px)] flex items-center justify-center relative overflow-hidden scroll-mt-6"
+      aria-label="Hero Section main container"
+      id="home"
     >
       {/* Background Decorative Gradients */}
       <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-blue-500/10 rounded-full blur-[120px] pointer-events-none" />
@@ -128,6 +129,16 @@ const Hero = () => {
               className="object-cover hover:scale-110 transition-transform duration-700 ease-in-out"
               sizes="(max-width: 768px) 280px, (max-width: 1024px) 350px, 400px"
             />
+            {/* Floating Badge */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 1, duration: 0.5 }}
+              className="absolute rounded-4xl bottom-10 left-14 md:left-16 glass p-3 flex items-center gap-1 shadow-xl cursor-pointer hover:scale-110 transition-scale duration-300"
+              onClick={() => document.getElementById("experience")?.scrollIntoView({ behavior: "smooth" })}
+            >
+              <span className="text-sm font-bold text-foreground leading-tight">2+ Years Exp.</span>
+            </motion.div>
           </div>
 
           {/* Abstract floating shapes behind avatar */}
@@ -156,27 +167,10 @@ const Hero = () => {
             }}
             className="absolute -bottom-6 -left-6 w-40 h-40 bg-linear-to-tr from-purple-400 to-pink-500 rounded-full blur-sm opacity-60 dark:opacity-40 -z-10"
           />
-
-          {/* Floating Badge */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 1, duration: 0.5 }}
-            className="absolute bottom-10 right-0 sm:-right-4 glass-island px-4 py-3 flex items-center gap-3 z-30 shadow-xl"
-          >
-            <div className="bg-primary/10 p-2 rounded-full">
-              <span className="text-xl leading-none">🚀</span>
-            </div>
-            <div>
-              <span className="text-sm font-bold text-foreground leading-tight">2+ Years</span>
-              <br />
-              <span className="text-xs text-muted-foreground">Experience</span>
-            </div>
-          </motion.div>
         </motion.div>
 
       </div>
-    </div>
+    </section>
   );
 };
 

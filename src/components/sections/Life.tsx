@@ -11,7 +11,8 @@ const Life = () => {
   return (
     <section
       ref={containerRef}
-      className="w-full py-20"
+      className="w-full py-20 scroll-mt-4"
+      id="life"
       aria-labelledby="contact-heading"
       role="region"
     >

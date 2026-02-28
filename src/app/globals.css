@@ -1,12 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Orbitron:wght@400..900&display=swap');
 @import "tailwindcss";
 
-
-
-
 @layer base {
   :root {
     --background: #ffffffd0;
+    --glass-bg: #ffffff33;
     --foreground: #09090b;
     --primary: #101010;
     --primary-foreground: #fafafa;
@@ -24,6 +22,7 @@
 
   .dark {
     --background: #09090b;
+    --glass-bg: #00000033;
     --foreground: #fafafa;
     --primary: #fafafae8;
     --primary-foreground: #18181b;
@@ -136,9 +135,14 @@
 
 /* Glassmorphism Utilities */
 .glass {
-  background: color-mix(in srgb, var(--background) 25%, transparent);
-  backdrop-filter: blur(8px) saturate(1.2);
-  -webkit-backdrop-filter: blur(8px) saturate(1.2);
+  background: var(--glass-bg);
+  -webkit-backdrop-filter: blur(8px) saturate(120%);
+  backdrop-filter: blur(8px) saturate(120%);
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  will-change: transform, backdrop-filter;
   border: 1px solid color-mix(in srgb, var(--foreground) 8%, transparent);
   box-shadow:
     inset 0 1px 1px color-mix(in srgb, var(--foreground) 15%, transparent),
@@ -147,9 +151,14 @@
 }
 
 .glass-island {
-  background: color-mix(in srgb, var(--card) 30%, transparent);
-  backdrop-filter: blur(10px) saturate(1.3);
-  -webkit-backdrop-filter: blur(10px) saturate(1.3);
+  background: var(--glass-bg);
+  -webkit-backdrop-filter: blur(10px) saturate(130%);
+  backdrop-filter: blur(10px) saturate(130%);
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  will-change: transform, backdrop-filter;
   border: 1px solid color-mix(in srgb, var(--foreground) 10%, transparent);
   box-shadow:
     8px 8px 16px var(--neu-shadow),

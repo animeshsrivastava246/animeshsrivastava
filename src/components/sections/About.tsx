@@ -36,7 +36,7 @@ const About = () => {
     <section
       id="about"
       ref={sectionRef}
-      className="w-full py-20 px-4 md:px-8 flex flex-col items-center"
+      className="w-full py-20 px-4 md:px-8 flex flex-col items-center scroll-mt-4"
       role="region"
       aria-labelledby="about-heading"
     >

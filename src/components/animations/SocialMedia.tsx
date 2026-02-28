@@ -10,76 +10,74 @@ const navItems = [
     icon: <FaGithub size={22} />,
     label: "GitHub",
     color: "text-foreground",
-    bg: "bg-muted/50",
+
     link: "https://github.com/animeshsrivastava246",
   },
   {
     icon: <FaLinkedinIn size={22} />,
     label: "LinkedIn",
     color: "text-[#0A66C2]",
-    bg: "bg-muted/50",
+
     link: "https://www.linkedin.com/in/animesh246",
   },
   {
     icon: <FaWhatsapp size={22} />,
     label: "WhatsApp",
     color: "text-[#25D366]",
-    bg: "bg-muted/50",
+
     link: "https://wa.me/918299224409",
   },
   {
     icon: <HiOutlineMail size={22} />,
     label: "Gmail",
     color: "text-[#EA4335]",
-    bg: "bg-muted/50",
+
     link: "mailto:animeshsrivastava246246@gmail.com",
   },
   {
-    icon: <SiZoho size={22} />,
+    icon: <SiZoho size={32} />,
     label: "Zoho",
     color: "text-[#089949]",
-    bg: "bg-muted/50",
+
     link: "mailto:animeshsrivastava246@zohomail.in",
   },
-  
+
   {
     icon: <FaYoutube size={22} />,
     label: "YouTube",
     color: "text-[#FF0000]",
-    bg: "bg-muted/50",
+
     link: "https://www.youtube.com/@animesh246",
   },
   {
     icon: <FaDiscord size={22} />,
     label: "Discord",
     color: "text-violet-500",
-    bg: "bg-white",
     link: "https://discord.com/users/757601167776677962",
   }
 ];
 
 export default function SocialMedia() {
   return (
-    <div className="w-fit flex items-center flex-wrap justify-center gap-3 px-6 py-3 rounded-full glass border border-border/50 bg-card/40 shadow-xl">
+    <div className="w-fit flex items-center flex-wrap justify-center gap-3 p-3 rounded-full glass border border-border/50 bg-card/40 shadow-xl">
       {navItems.map((item, idx) => (
         <motion.a
           key={idx}
           href={item.link}
           target="_blank"
           rel="noopener noreferrer"
-          whileHover={{ scale: 2, y: -4 }}
+          whileHover={{ scale: 3 }}
           className="group relative"
         >
           {/* Tooltip */}
-          <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 bg-background border border-border/50 text-foreground text-[8px] font-medium p-0.5 rounded-lg opacity-0 group-hover:opacity-100 transition-all pointer-events-none z-20 whitespace-nowrap shadow-lg">
+          <div className="glass absolute -bottom-1 left-1/2 -translate-x-1/2 bg-background border border-border/50 text-foreground text-[8px] font-medium py-0.5 px-1 rounded-lg opacity-0 group-hover:opacity-100 transition-all pointer-events-none z-20 whitespace-nowrap shadow-lg">
             {item.label}
           </div>
 
           <div
-            className={`w-12 h-12 rounded-full flex items-center justify-center transition-colors duration-300 border border-transparent group-hover:border-border/50 ${item.bg || "bg-muted/50"
-              } hover:bg-background/80`}
+            className={`w-12 h-12 rounded-full flex items-center justify-center transition-colors duration-300 border border-transparent group-hover:border-border/50 hover:bg-background/80`}
           >
-            <span className={`${item.color} opacity-80 group-hover:opacity-100 transition-opacity`}>{item.icon}</span>
+            <span className={`${item.color} opacity-75 group-hover:opacity-100 transition-opacity`}>{item.icon}</span>
           </div>
         </motion.a>
       ))}

@@ -1,9 +1,9 @@
 "use client";
 
-import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import coverImage from "../../assets/images/projects/NameTheGame2.png";
+import { MdArrowBackIos } from "react-icons/md"
 
 const NameTheGame = ({ onBack }: { onBack: () => void }) => {
   return (
@@ -12,9 +12,9 @@ const NameTheGame = ({ onBack }: { onBack: () => void }) => {
         initial={{ opacity: 0, x: -20 }}
         animate={{ opacity: 1, x: 0 }}
         onClick={onBack}
-        className="text-sm font-semibold flex items-center gap-2 mb-8 hover:text-primary transition-colors text-muted-foreground"
+        className="opacity-75 text-md font-semibold flex items-center gap-2 m-2 hover:text-primary hover:scale-110 hover:cursor-pointer hover:opacity-100 transition-all duration-300 text-muted-foreground"
       >
-        &larr; Back to Projects
+        <MdArrowBackIos /> Back to Projects
       </motion.button>
 
       {/* Hero Banner animated */}

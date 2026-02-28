@@ -37,7 +37,7 @@ export default function DeviceNotice() {
           animate={{ opacity: 1, y: 0, x: "-50%" }}
           exit={{ opacity: 0, y: 50, x: "-50%" }}
           transition={{ duration: 0.4, type: "spring", stiffness: 200, damping: 20 }}
-          className="fixed bottom-6 left-1/2 bg-card glass border border-border/50 text-foreground p-2 rounded-full text-xs shadow-xl z-9999 max-w-xs w-78 text-center font-bold font-body flex items-center justify-center gap-2"
+          className="fixed bottom-12 left-1/2 bg-card glass border border-border/50 text-foreground p-4 rounded-full text-xs shadow-xl z-9999 w-82 text-center font-bold font-body flex items-center justify-center gap-2"
         >
           <span className="leading-snug text-left">For the best experience, view on a desktop.</span>
           <button

@@ -106,31 +106,20 @@ function HomeContent() {
           >
             {selectedProject === "none" && (
               <>
-                <section id="home" className="scroll-mt-8">
-                  <Hero />
-                </section>
 
-                <section id="experience" className="scroll-mt-8">
-                  <Experience />
-                </section>
+                <Hero />
 
-                <section id="projects" className="scroll-mt-8">{renderProjects()}</section>
+                <Experience />
 
-                <section id="skills" className="scroll-mt-8">
-                  <Skills />
-                </section>
+                {renderProjects()}
 
-                <section id="about" className="scroll-mt-8">
-                  <About />
-                </section>
+                <Skills />
 
-                {/* <section id="life" className="scroll-mt-8">
-                  <Life />
-                </section> */}
+                <About />
 
-                <section id="contact" className="scroll-mt-8 pb-8">
-                  <Contact />
-                </section>
+                {/* <Life /> */}
+
+                <Contact />
               </>
             )}
 

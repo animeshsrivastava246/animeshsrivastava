@@ -110,7 +110,7 @@ const Navbar = ({
       }
     );
 
-    menuItems.forEach((label) => {
+    ["home", ...menuItems].forEach((label) => {
       const el = document.getElementById(
         label.toLowerCase()
       );
@@ -139,16 +139,23 @@ const Navbar = ({
   const handleClick = (label: string) => {
     const id = label.toLowerCase();
 
-    const el = document.getElementById(id);
-
-    if (el)
-      el.scrollIntoView({
+    if (id === "home") {
+      window.scrollTo({
+        top: 0,
         behavior: "smooth",
-        block: "start",
       });
+    } else {
+      const el = document.getElementById(id);
+
+      if (el) {
+        el.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }
+    }
 
     updatePosition(id);
-
     setMenuOpen(false);
   };
 
@@ -157,17 +164,17 @@ const Navbar = ({
       {/* DESKTOP NAV */}
 
       <motion.header
-        initial={{ y: 0, opacity: 1 }}
+        initial={{ top: 24, opacity: 1 }}
         animate={{
-          y: visible ? 0 : -90,
+          top: visible ? 24 : -90,
           opacity: visible ? 1 : 0,
         }}
         transition={{
           type: "spring",
-          stiffness: 350,
-          damping: 28,
+          stiffness: 300,
+          damping: 25,
         }}
-        className="fixed top-6 left-0 right-0 z-50 flex justify-center pointer-events-auto px-2"
+        className="fixed left-0 right-0 z-50 flex justify-center pointer-events-auto px-2"
       >
         <div className="hidden md:flex glass-island border border-border/50 pointer-events-auto items-center justify-between gap-0 p-2 rounded-full max-w-5xl w-full">
 
@@ -213,7 +220,7 @@ const Navbar = ({
                       onClick={() =>
                         handleClick(label)
                       }
-                      className={`p-2 rounded-full text-md font-semibold transition-all duration-200
+                      className={`px-2.5 py-1 rounded-full text-md font-semibold transition-all duration-200
                       
                       ${active
                           ? "text-primary-foreground font-extrabold scale-[1.2]"
@@ -229,8 +236,8 @@ const Navbar = ({
                       {label}
                       <span
                         className={`
-                          absolute left-0 bottom-0.5 h-[2px] w-full bg-current
-                          transition-transform duration-300 origin-left
+                          absolute left-1/2 -translate-x-1/2 bottom-0.5 h-[2px] w-[80%] bg-current
+                          transition-transform duration-300 origin-center
                           ${active ? "scale-x-100" : "scale-x-0"}
                         `}
                       />
@@ -284,10 +291,10 @@ const Navbar = ({
 
       {/* MOBILE FLOATING NAV */}
 
-      <motion.div
-        initial={{ y: 0, opacity: 1 }}
+      <motion.header
+        initial={{ bottom: 24, opacity: 1 }}
         animate={{
-          y: visible ? 0 : 100,
+          bottom: visible ? 24 : -100,
           opacity: visible ? 1 : 0,
         }}
         transition={{
@@ -295,7 +302,7 @@ const Navbar = ({
           stiffness: 300,
           damping: 25,
         }}
-        className="md:hidden fixed bottom-6 left-1/2 -translate-x-1/2 w-[90%] max-w-[400px] z-50"
+        className="md:hidden fixed left-1/2 -translate-x-1/2 w-[90%] max-w-[400px] z-50"
       >
 
         <div className="glass-island flex items-center justify-between w-full px-4 py-2">
@@ -423,7 +430,7 @@ const Navbar = ({
           )}
 
         </AnimatePresence>
-      </motion.div>
+      </motion.header>
 
       <ResumeModal open={resumeOpen} onClose={() => setResumeOpen(false)} />
     </>

@@ -6,7 +6,7 @@ import { useRef } from "react";
 const Skills = () => {
   const containerRef = useRef<HTMLElement>(null);
   return (
-    <section className="w-full py-20 px-4 md:px-8" ref={containerRef}>
+    <section className="w-full py-20 px-4 md:px-8 scroll-mt-4" id="skills" ref={containerRef}>
       <VariableProximity
         label={"What I Use"}
         className={"text-3xl md:text-5xl font-heading font-bold text-foreground text-center"}

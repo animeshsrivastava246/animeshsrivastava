@@ -41,7 +41,7 @@ const Contact = () => {
     <section
       id="contact"
       ref={ref}
-      className="w-full rounded-4xl border-2 border-background py-24 px-4 md:px-8 flex items-center justify-center relative overflow-hidden"
+      className="w-full rounded-4xl border-2 border-background py-24 px-4 md:px-8 flex items-center justify-center relative overflow-hidden scroll-mt-4"
       aria-labelledby="contact-heading"
       role="region"
     >

@@ -71,7 +71,7 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <div className="container-12 min-h-screen flex flex-col md:pt-24 pb-12">
+          <div className="container-12 min-h-screen flex flex-col md:pt-24">
             {children}
           </div>
         </ThemeProvider>

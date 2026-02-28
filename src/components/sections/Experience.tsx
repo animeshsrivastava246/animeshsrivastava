@@ -82,7 +82,7 @@ const ExperienceCard = ({ exp, index }: { exp: Experience; index: number }) => {
 export default function ExperienceSection() {
   const containerRef = useRef<HTMLElement>(null);
   return (
-    <section ref={containerRef} className="py-24 px-4 md:px-8 w-full relative">
+    <section ref={containerRef} className="py-24 px-4 md:px-8 w-full relative scroll-mt-4" id="experience">
       {/* Subtle Grid Background for HUD feel */}
       <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-size-[40px_40px] mask-[radial-gradient(ellipse_50%_50%_at_50%_50%,black_10%,transparent_100%)] pointer-events-none z-[-1]" />
 

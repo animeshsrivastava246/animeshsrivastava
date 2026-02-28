@@ -12,8 +12,8 @@ import { TbLayoutDashboard } from "react-icons/tb";
 import Image, { StaticImageData } from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import skillsData from "../lib/skills";
-import user from "../../public/og-image.png";
-import { FiSearch } from "react-icons/fi";
+import SkillsSidebar from "./SkillsSidebar";
+import SkillsMobileDropdown from "./SkillsMobileDropdown";
 
 interface SkillItem {
   name: string;
@@ -35,9 +35,9 @@ const categories = [
   { icon: <FaCode />, name: "All" },
   { icon: <TbLayoutDashboard />, name: "Frontend" },
   { icon: <FaServer />, name: "Backend" },
+  { icon: <FaMobileAlt />, name: "Mobile Development" },
   { icon: <FaDatabase />, name: "Database" },
   { icon: <FaTools />, name: "Tools" },
-  { icon: <FaMobileAlt />, name: "Mobile Development" },
 ];
 
 export default function SkillsStore() {
@@ -57,62 +57,19 @@ export default function SkillsStore() {
 
   return (
     <div className="flex flex-col md:flex-row glass neumorphic rounded-4xl w-full max-w-6xl h-[700px] overflow-hidden border border-border/50 relative z-0 shadow-2xl">
-      {/* Mobile Dropdown */}
-      <div className="md:hidden w-full p-6 border-b border-border/50 bg-background/50 backdrop-blur-md">
-        <select
-          value={selectedCategory}
-          onChange={(e) => setSelectedCategory(e.target.value)}
-          className="w-full p-3 bg-muted/80 text-foreground font-semibold rounded-xl neumorphic-inset focus:outline-none focus:ring-2 focus:ring-primary/50"
-        >
-          {categories.map(({ name }) => (
-            <option key={name} value={name}>
-              {name}
-            </option>
-          ))}
-        </select>
-      </div>
+      <SkillsMobileDropdown
+        categories={categories}
+        selectedCategory={selectedCategory}
+        setSelectedCategory={setSelectedCategory}
+      />
 
-      {/* Sidebar */}
-      <aside className="hidden md:flex flex-col w-72 bg-card/30 backdrop-blur-lg p-6 gap-4 border-r border-border/50 relative z-10 shadow-xl shadow-black/5">
-        <div className="flex gap-2 mb-6">
-          <div className="w-3.5 h-3.5 rounded-full bg-red-400 shadow-[0_0_10px_rgba(248,113,113,0.5)]" />
-          <div className="w-3.5 h-3.5 rounded-full bg-yellow-400 shadow-[0_0_10px_rgba(250,204,21,0.5)]" />
-          <div className="w-3.5 h-3.5 rounded-full bg-green-400 shadow-[0_0_10px_rgba(74,222,128,0.5)]" />
-        </div>
-        <div className="relative w-full mb-4">
-          <FiSearch className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground w-4 h-4" />
-          <input
-            value={searchTerm}
-            onChange={(e) => setSearchTerm(e.target.value)}
-            placeholder="Search skills..."
-            className="w-full pl-11 pr-4 py-2.5 bg-background/50 border border-border/50 rounded-xl text-sm placeholder-muted-foreground text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all shadow-inner"
-          />
-        </div>
-        <div className="text-muted-foreground text-xs font-bold tracking-widest uppercase mb-2 ml-2">Categories</div>
-        <div className="space-y-1 ">
-          {categories.map(({ icon, name }) => (
-            <div
-              key={name}
-              onClick={() => setSelectedCategory(name)}
-              className={`flex items-center gap-4 px-4 py-3 rounded-2xl cursor-pointer transition-all duration-300 border ${selectedCategory === name
-                ? "bg-primary text-primary-foreground neumorphic-inset border-primary/20 font-extrabold scale-[1.05]"
-                : "bg-card/30 text-muted-foreground font-light hover:text-foreground neumorphic border-border/50 hover:scale-[1.1]"
-                }`}
-            >
-              <div className={`text-xl ${selectedCategory === name ? "text-primary-foreground" : "text-primary"}`}>{icon}</div>
-              <span className="text-sm">{name}</span>
-            </div>
-          ))}
-        </div>
-        <div className="mt-auto text-xs font-semibold text-muted-foreground border-t border-border/50 pt-6 flex items-center gap-3">
-          <Image
-            src={user}
-            alt="user profile image"
-            className="w-10 h-10 rounded-full border-2 border-primary/20 p-0.5 object-cover"
-          />
-          Er. Animesh
-        </div>
-      </aside>
+      <SkillsSidebar
+        categories={categories}
+        selectedCategory={selectedCategory}
+        setSelectedCategory={setSelectedCategory}
+        searchTerm={searchTerm}
+        setSearchTerm={setSearchTerm}
+      />
 
       {/* Main Content */}
       <main className="hide-scrollbar flex-1 p-6 md:p-12 overflow-y-auto space-y-12 bg-background/20 backdrop-blur-sm relative z-0">

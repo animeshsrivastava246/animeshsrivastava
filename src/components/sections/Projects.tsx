@@ -45,7 +45,7 @@ const Cooking = () => {
 const Projects = ({ onSelectProject }: { onSelectProject: (id: string) => void }) => {
   const containerRef = useRef<HTMLElement>(null);
   return (
-    <section ref={containerRef} className="w-full py-20 px-4 md:px-8">
+    <section id="projects" ref={containerRef} className="w-full py-20 px-4 md:px-8 scroll-mt-4">
       <div className="max-w-6xl mx-auto flex flex-col items-center">
         <div className="text-center mb-16 flex flex-col justify-center items-center">
           <VariableProximity
