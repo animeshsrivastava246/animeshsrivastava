@@ -60,7 +60,8 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <title>Animesh Srivastava | Software Developer</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="google-site-verification" content="F-3BijcciQLBcKa0qGz_zjFwsVwM_4D-_KDKrjBrdGE" />
+        <meta name="google-site-verification" content="fBQ2jzQeowY2tp8cTpJDqNKiMOD9mcU6U6UocqXqnHc" />
+        <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" />
       </head>
       <body>
         <BackgroundGlow />
