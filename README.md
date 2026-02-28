@@ -6,7 +6,7 @@ Modern, interactive, and highly animated personal portfolio built with cutting-e
 
 ## ✨ Features
 
-- **Next.js 15 & React 19:** Utilizing the App Router for optimal performance, fast compilation (Turbopack), and SSR/SSG.
+- **Next.js 16 & React 19:** Utilizing the App Router for optimal performance, fast compilation (Turbopack), and SSR/SSG.
 - **Futuristic UI:** Liquid glassmorphism, dynamic gradients, and modern layout structures tailored with **Tailwind CSS v4**.
 - **High-End Animations:** Engaging interactions powered by **Framer Motion** and **Lottie**, including scroll-driven animations, spring physics, and animated text tracking (Variable Proximity).
 - **TypeScript:** 100% type-safe architecture ensuring fewer runtime bugs and improved developer experience.
@@ -35,8 +35,8 @@ You need to have [Bun](https://bun.sh/) installed on your local machine to build
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/animesh251001/portfolio.git
-   cd portfolio
+   git clone https://github.com/animeshsrivastava246/animeshsrivastava.git
+   cd animeshsrivastava
    ```
 
 2. Install dependencies via Bun:
@@ -48,6 +48,7 @@ You need to have [Bun](https://bun.sh/) installed on your local machine to build
    Create a `.env` file in the root of the project and ensure you have the required variables (e.g., your Resend API key for the contact form).
    ```env
    RESEND_API_KEY=your_api_key_here
+   EMAIL_ID=your_email
    ```
 
 4. Run the development server:
