@@ -49,6 +49,18 @@ export const metadata = {
   },
 };
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Animesh Srivastava",
+  url: "https://animeshsrivastava.vercel.app",
+  jobTitle: "Software Developer",
+  sameAs: [
+    "https://github.com/animeshsrivastava246",
+    "https://linkedin.com/in/animesh246"
+  ]
+};
+
 export default function RootLayout({
   children,
 }: {
@@ -62,6 +74,10 @@ export default function RootLayout({
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="google-site-verification" content="fBQ2jzQeowY2tp8cTpJDqNKiMOD9mcU6U6UocqXqnHc" />
         <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
       </head>
       <body>
         <BackgroundGlow />

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://animeshsrivastava.vercel.app/sitemap.xml

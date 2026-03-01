@@ -142,13 +142,13 @@ const Contact = () => {
         >
 
           <VariableProximity
-            label="Initiate Connection"
+            label="Contact Me"
             className="text-3xl sm:text-5xl text-primary"
             fromFontVariationSettings="'wght' 400, 'opsz' 9"
             toFontVariationSettings="'wght' 1000, 'opsz' 40"
             containerRef={ref as React.RefObject<HTMLElement>}
             radius={50}
-            falloff="linear"
+            falloff="exponential"
           />
 
           <form onSubmit={handleSubmit} className="mt-4 md:mt-12 relative z-10 flex flex-col space-y-6 [&_label]:after:content-['*']

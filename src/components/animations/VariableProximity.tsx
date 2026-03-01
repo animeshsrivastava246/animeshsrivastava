@@ -1,9 +1,11 @@
+"use client";
+
 import React, {
   forwardRef,
   useMemo,
   useRef,
   useEffect,
-  MutableRefObject,
+  RefObject,
 } from "react";
 import { motion } from "framer-motion";
 
@@ -36,7 +38,7 @@ function useAnimationFrameActive(active: boolean, callback: () => void) {
 
 function useMousePositionRef(
   containerRef: React.RefObject<HTMLElement>
-): MutableRefObject<{ x: number; y: number }> {
+): RefObject<{ x: number; y: number }> {
   const positionRef = useRef({ x: 0, y: 0 });
 
   useEffect(() => {
@@ -91,6 +93,16 @@ const VariableProximity = forwardRef<HTMLSpanElement, VariableProximityProps>(
       y: null,
     });
     const [active, setActive] = React.useState(false);
+    const [isMobile, setIsMobile] = React.useState(false);
+
+    useEffect(() => {
+      const checkMobile = () => {
+        setIsMobile(window.innerWidth < 768);
+      };
+      checkMobile();
+      window.addEventListener("resize", checkMobile);
+      return () => window.removeEventListener("resize", checkMobile);
+    }, []);
 
     const parsedSettings = useMemo(() => {
       const parseSettings = (settingsStr: string) =>
@@ -144,7 +156,7 @@ const VariableProximity = forwardRef<HTMLSpanElement, VariableProximityProps>(
 
     useEffect(() => {
       const container = containerRef?.current;
-      if (!container) return;
+      if (!container || isMobile) return;
       const handleEnter = () => setActive(true);
       const handleLeave = () => setActive(false);
       container.addEventListener("mouseenter", handleEnter);
@@ -153,10 +165,10 @@ const VariableProximity = forwardRef<HTMLSpanElement, VariableProximityProps>(
         container.removeEventListener("mouseenter", handleEnter);
         container.removeEventListener("mouseleave", handleLeave);
       };
-    }, [containerRef]);
+    }, [containerRef, isMobile]);
 
-    useAnimationFrameActive(active, () => {
-      if (!containerRef?.current) return;
+    useAnimationFrameActive(active && !isMobile, () => {
+      if (!containerRef?.current || isMobile) return;
       const { x, y } = mousePositionRef.current;
       if (lastPositionRef.current.x === x && lastPositionRef.current.y === y) {
         return;

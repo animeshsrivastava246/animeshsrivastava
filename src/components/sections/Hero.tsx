@@ -43,8 +43,24 @@ const Hero = () => {
             </motion.div>
 
             <h1 className="text-4xl/12 sm:text-5xl/14 lg:text-7xl/18 font-bold font-heading leading-tight tracking-tight text-foreground">
-              Hi, I&apos;m <span className="text-transparent bg-clip-text bg-linear-to-r from-blue-600 to-purple-600">Animesh</span>
-              <br />
+              <VariableProximity
+                label={"Hi, I'm"}
+                className="text-wrap"
+                fromFontVariationSettings="'wght' 400, 'opsz' 30"
+                toFontVariationSettings="'wght' 900, 'opsz' 80"
+                containerRef={containerRef as React.RefObject<HTMLDivElement>}
+                radius={50}
+                falloff="gaussian"
+              />
+              <VariableProximity
+                label={"Animesh"}
+                className="block text-transparent bg-clip-text bg-linear-to-r from-purple-700 to-blue-700"
+                fromFontVariationSettings="'wght' 400, 'opsz' 30"
+                toFontVariationSettings="'wght' 900, 'opsz' 80"
+                containerRef={containerRef as React.RefObject<HTMLDivElement>}
+                radius={100}
+                falloff="gaussian"
+              />
               <VariableProximity
                 label={"Full-Stack\nDeveloper."}
                 className="text-wrap"

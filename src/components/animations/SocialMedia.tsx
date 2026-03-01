@@ -35,8 +35,8 @@ const navItems = [
     link: "mailto:animeshsrivastava246246@gmail.com",
   },
   {
-    icon: <SiZoho size={32} />,
-    label: "Zoho",
+    icon: <SiZoho size={26} />,
+    label: "Zoho Mail",
     color: "text-[#089949]",
 
     link: "mailto:animeshsrivastava246@zohomail.in",
@@ -59,7 +59,7 @@ const navItems = [
 
 export default function SocialMedia() {
   return (
-    <div className="w-fit flex items-center flex-wrap justify-center gap-3 p-3 rounded-full glass border border-border/50 bg-card/40 shadow-xl">
+    <div className="w-fit flex items-center flex-wrap justify-center gap-1 p-1 rounded-full glass-island border border-border/50 bg-card/40 shadow-xl">
       {navItems.map((item, idx) => (
         <motion.a
           key={idx}
@@ -70,7 +70,7 @@ export default function SocialMedia() {
           className="group relative"
         >
           {/* Tooltip */}
-          <div className="glass absolute -bottom-1 left-1/2 -translate-x-1/2 bg-background border border-border/50 text-foreground text-[8px] font-medium py-0.5 px-1 rounded-lg opacity-0 group-hover:opacity-100 transition-all pointer-events-none z-20 whitespace-nowrap shadow-lg">
+          <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 bg-background border border-border/50 text-foreground text-[8px] font-medium py-0.5 px-1 rounded-lg opacity-0 group-hover:opacity-100 transition-all pointer-events-none z-20 whitespace-nowrap shadow-lg">
             {item.label}
           </div>
 
