@@ -23,7 +23,6 @@ import {
   SiPostman,
   SiVercel,
   SiExpo,
-  SiRealm,
 } from "react-icons/si";
 import { BsBootstrap } from "react-icons/bs";
 import reactNative from "../assets/images/React_Native.png";
@@ -206,12 +205,6 @@ const skillsData: SkillsData = {
         icon: <SiFirebase className="text-yellow-400" />,
       },
       {
-        name: "RealmDB",
-        desc: "Embedding high-performance, offline-first local databases for mobile architectures.",
-        badge: "OFFLINE STORAGE",
-        icon: <SiRealm className="text-indigo-500" />,
-      },
-      {
         name: "MySQL",
         desc: "Optimizing relational data integrity and complex enterprise query pathways.",
         badge: "RELATIONAL DB",
@@ -226,10 +219,10 @@ const skillsData: SkillsData = {
     ],
     recent: [
       {
-        name: "RealmDB",
-        desc: "Embedding high-performance, offline-first local databases for mobile architectures.",
-        badge: "OFFLINE STORAGE",
-        icon: <SiRealm className="text-indigo-500" />,
+        name: "Expo",
+        desc: "Accelerating mobile iteration cycles with comprehensive, out-of-the-box native module integrations.",
+        badge: "MOBILE TOOLKIT",
+        icon: <SiExpo className="text-black" />,
       },
     ],
     featured: [
@@ -304,12 +297,6 @@ const skillsData: SkillsData = {
         desc: "Accelerating mobile iteration cycles with comprehensive, out-of-the-box native module integrations.",
         badge: "MOBILE TOOLKIT",
         icon: <SiExpo className="text-black" />,
-      },
-      {
-        name: "RealmDB",
-        desc: "Embedding high-performance, offline-first local databases directly into mobile client boundaries.",
-        badge: "LOCAL SYNC",
-        icon: <SiRealm className="text-indigo-500" />,
       },
       {
         name: "NativeWind",
@@ -412,12 +399,6 @@ const skillsData: SkillsData = {
         icon: <SiFirebase className="text-yellow-400" />,
       },
       {
-        name: "RealmDB",
-        desc: "Embedding high-performance, offline-first local databases for mobile architectures.",
-        badge: "OFFLINE STORAGE",
-        icon: <SiRealm className="text-indigo-500" />,
-      },
-      {
         name: "Firebase",
         desc: "Integrating rapid cloud infrastructure, seamless auth, and secure analytics solutions.",
         badge: "BAAS PLATFORM",
@@ -485,12 +466,6 @@ const skillsData: SkillsData = {
         desc: "Engineering high-throughput, non-blocking asynchronous backend services.",
         badge: "RUNTIME ENGINE",
         icon: <FaNodeJs className="text-green-500" />,
-      },
-      {
-        name: "RealmDB",
-        desc: "Embedding high-performance, offline-first local databases for mobile architectures.",
-        badge: "OFFLINE STORAGE",
-        icon: <SiRealm className="text-indigo-500" />,
       },
     ],
 
