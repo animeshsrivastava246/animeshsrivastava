@@ -4,6 +4,8 @@ import { motion } from "framer-motion";
 import { FaGithub, FaLinkedinIn, FaWhatsapp, FaYoutube, FaDiscord } from "react-icons/fa";
 import { HiOutlineMail } from "react-icons/hi";
 import { SiZoho } from "react-icons/si";
+import { SiHashnode } from "react-icons/si";
+import { basicDetails, LeetcodeSvg } from "../../data/basic";
 
 const navItems = [
   {
@@ -11,49 +13,60 @@ const navItems = [
     label: "GitHub",
     color: "text-foreground",
 
-    link: "https://github.com/animeshsrivastava246",
+    link: basicDetails.socials.github,
   },
   {
     icon: <FaLinkedinIn size={22} />,
     label: "LinkedIn",
     color: "text-[#0A66C2]",
 
-    link: "https://www.linkedin.com/in/animesh246",
+    link: basicDetails.socials.linkedin,
   },
   {
     icon: <FaWhatsapp size={22} />,
     label: "WhatsApp",
     color: "text-[#25D366]",
 
-    link: "https://wa.me/918299224409",
+    link: basicDetails.socials.whatsapp,
   },
   {
     icon: <HiOutlineMail size={22} />,
     label: "Gmail",
     color: "text-[#EA4335]",
 
-    link: "mailto:animeshsrivastava246246@gmail.com",
+    link: basicDetails.socials.gmail,
   },
   {
     icon: <SiZoho size={26} />,
     label: "Zoho Mail",
     color: "text-[#089949]",
 
-    link: "mailto:animeshsrivastava246@zohomail.in",
+    link: basicDetails.socials.zoho,
   },
 
   {
     icon: <FaYoutube size={22} />,
     label: "YouTube",
     color: "text-[#FF0000]",
-
-    link: "https://www.youtube.com/@animesh246",
+    link: basicDetails.socials.youtube,
+  },
+  {
+    icon: <LeetcodeSvg />,
+    label: "Leetcode",
+    color: "text-[#F79F1F]",
+    link: basicDetails.socials.leetcode,
+  },
+  {
+    icon: <SiHashnode size={22} />,
+    label: "Hashnode",
+    color: "text-[#2962FF]",
+    link: basicDetails.socials.hashnode,
   },
   {
     icon: <FaDiscord size={22} />,
     label: "Discord",
     color: "text-violet-500",
-    link: "https://discord.com/users/757601167776677962",
+    link: basicDetails.socials.discord,
   }
 ];
 

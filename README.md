@@ -1,92 +1,114 @@
-# Animesh Srivastava | Portfolio
+# 🚀 Animesh Srivastava | Master Portfolio
 
-Modern, interactive, and highly animated personal portfolio built with cutting-edge web technologies. It is designed to be fully responsive, accessible, and performant—featuring a futuristic glassmorphic UI, physics-based animations, and real-time statistics.
+[![Portfolio Preview](./public/og-image.webp)](https://animeshsrivastava.vercel.app)
 
-![Portfolio Preview](./public/og-image.png)
+A high-performance, **futuristic digital ecosystem** built with the latest React 19 and Next.js 16 metadata patterns. This portfolio represents the intersection of robust engineering and avant-garde design, featuring liquid glassmorphism, real-time data integration, and physics-based interactions.
 
-## ✨ Features
+---
 
-- **Next.js 16 & React 19:** Utilizing the App Router for optimal performance, fast compilation (Turbopack), and SSR/SSG.
-- **Futuristic UI:** Liquid glassmorphism, dynamic gradients, and modern layout structures tailored with **Tailwind CSS v4**.
-- **High-End Animations:** Engaging interactions powered by **Framer Motion** and **Lottie**, including scroll-driven animations, spring physics, and animated text tracking (Variable Proximity).
-- **TypeScript:** 100% type-safe architecture ensuring fewer runtime bugs and improved developer experience.
-- **Dynamic Projects Showcase:** Dedicated custom detail pages for projects with advanced presentation layouts.
-- **Live Stats Integration:** Real-time fetching of DSA progress (LeetCode) built natively into the frontend.
-- **Functional Contact Form:** Fully working contact system processing emails through server actions (`Resend`).
+## ✨ Key Features
 
-## 🛠️ Tech Stack
+- **⚛️ Bleeding Edge Stack:** Built with **React 19** and **Next.js 16 (App Router)** for peak performance and instantaneous page transitions using Turbopack.
+- **🎨 Tailwind CSS v4:** Leveraging the latest CSS-first framework for a modern, high-speed design system.
+- **📈 Real-time Analytics:** 
+  - **DSA Progress:** Automated fetching of LeetCode statistics.
+  - **Engagement:** Integrated Vercel Analytics and Google Tag Manager.
+- **🎭 Motion Mastery:** 
+  - Advanced **Framer Motion** orchestrations for layout transitions.
+  - **Matter.js** integration for physics-based interactive elements.
+  - Customizable Lottie animations for high-fidelity micro-interactions.
+- **📩 Enterprise-Grade Contact System:** Server-side email processing via **Resend** with sleek toast notifications by `sonner`.
+- **📱 Fluid Responsiveness:** Optimized for every viewport, from ultra-wide monitors to mobile devices.
+- **🌑 Intelligent Theming:** System-aware Dark/Light mode with seamless transitions.
 
-- **Framework:** [Next.js 15](https://nextjs.org/) (App Router)
-- **Library:** [React 19](https://react.dev/)
-- **Styling:** [Tailwind CSS v4](https://tailwindcss.com/)
-- **Language:** [TypeScript](https://www.typescriptlang.org/)
-- **Animations:** [Framer Motion](https://www.framer.com/motion/) & [Lottie React](https://lottiereact.com/)
-- **Icons:** [Lucide React](https://lucide.dev/) & [React Icons](https://react-icons.github.io/react-icons/)
-- **Toasts:** [Sonner](https://sonner.emilkowal.ski/)
-- **Package Manager:** [Bun](https://bun.sh/)
+---
 
-## 🚀 Getting Started
+## 🛠️ Technology Stack
+
+| Layer | Technologies |
+| :--- | :--- |
+| **Frontend** | React 19, Next.js 16 (App Router), TypeScript |
+| **Styling** | Tailwind CSS v4, Framer Motion, Lucide Icons |
+| **Backend** | Next.js Server Actions, Resend API |
+| **Animation** | Matter.js (Physics), Lottie React, CSS Glassmorphism |
+| **Deployment** | Vercel (CI/CD), Bun (Runtime/Pkg Manager) |
+
+---
+
+## 📂 Architecture
+
+```text
+src/
+├── app/             # Next.js App Router (Layouts, Pages, API)
+├── components/      # Atomic Design structure
+│   ├── animations/  # Physics (Matter.js) & Motion wrappers
+│   ├── common/      # Global Layout UI (Navbar, Glow effects)
+│   ├── projects/    # Feature-specific case studies
+│   └── sections/    # Modular landing page blocks
+├── data/            # Static & dynamic configuration (basicDetails, etc.)
+├── hooks/           # Custom React hooks for glass effects & scroll
+└── lib/             # Server actions & Utility functions
+```
+
+---
+
+## 🚀 Rapid Development
 
 ### Prerequisites
-
-You need to have [Bun](https://bun.sh/) installed on your local machine to build and run this project rapidly.
+- **Bun** (Required for the fastest build times)
 
 ### Installation
 
-1. Clone the repository:
+1. **Clone & Enter:**
    ```bash
    git clone https://github.com/animeshsrivastava246/animeshsrivastava.git
    cd animeshsrivastava
    ```
 
-2. Install dependencies via Bun:
+2. **Zero-Config Install:**
    ```bash
    bun install
    ```
 
-3. Set up environment variables:
-   Create a `.env` file in the root of the project and ensure you have the required variables (e.g., your Resend API key for the contact form).
+3. **Environment Setup:**
+   Create a `.env` file in the root:
    ```env
-   RESEND_API_KEY=your_api_key_here
-   EMAIL_ID=your_email
+   # Email System
+   RESEND_API_KEY="re_..."
+   EMAIL_ID="your@email.com"
+
+   # Analytics
+   NEXT_PUBLIC_GTM_ID="GTM-..."
    ```
 
-4. Run the development server:
+4. **Ignite Development:**
    ```bash
-   bun run dev
+   bun dev
    ```
-   Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-## 📦 Build for Production
-
-To create an optimized production build:
-```bash
-bun run build
-```
-To start the production server:
-```bash
-bun run start
-```
-
-## 📂 Project Structure
-
-- `src/app`: Next.js 15 App Router pages and global layouts.
-- `src/components`: Reusable UI components.
-  - `/animations`: Framer Motion and custom animation wrappers.
-  - `/common`: Shared elements like Navbar, BackgroundGlow, ThemeToggle.
-  - `/projects`: Individual project showcase components (`DisneyUI`, `NameTheGame`, etc.).
-  - `/sections`: Main landing page sections (`About`, `Experience`, `Skills`, `Contact`).
-- `src/lib`: Helper functions, data structures (`skills.tsx`), and server actions (`actions.ts`).
-- `src/assets`: Images, graphics, and JSON Lottie animations.
-
-## 🤝 Contact
-
-Feel free to reach out if you're looking to collaborate, have a question, or just want to connect!
-
-- **Email:** animeshsrivastava246246@gmail.com
-- **LinkedIn:** [Animesh Srivastava](https://www.linkedin.com/in/animesh246/)
-- **GitHub:** [@animeshsrivastava246](https://github.com/animeshsrivastava246)
 
 ---
 
-Built with ☕ and ❤️ by Animesh Srivastava.
+## 📦 Production Ready
+
+| Command | Action |
+| :--- | :--- |
+| `bun run build` | Compiles an optimized production bundle |
+| `bun run start` | Boots the high-performance production server |
+| `bun run lint`  | Executes strict TypeScript & ESLint checks |
+
+---
+
+## 🤝 Let's Connect
+
+Architecting elegance and engineering scale for the modern web.
+
+- **Portfolio:** [animeshsrivastava.vercel.app](https://animeshsrivastava.vercel.app)
+- **LinkedIn:** [Animesh Srivastava](https://www.linkedin.com/in/animesh246/)
+- **GitHub:** [@animeshsrivastava246](https://github.com/animeshsrivastava246)
+- **Email:** [animeshsrivastava246246@gmail.com](mailto:animeshsrivastava246246@gmail.com)
+
+---
+
+<div align="center">
+  <sub>Built with ☕, Matter.js, and plenty of Framer Motion magic. © 2025 Animesh Srivastava</sub>
+</div>

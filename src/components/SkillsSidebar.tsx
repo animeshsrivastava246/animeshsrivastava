@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 import Image from "next/image";
 import { FiSearch } from "react-icons/fi";
-import user from "../../public/og-image.png";
+import user from "../../public/og-image.webp";
 import { FiMinus, FiSquare, FiX } from "react-icons/fi";
 
 const windowControls = [
@@ -54,7 +54,7 @@ export default function SkillsSidebar({
         />
       </div>
       <div className="text-muted-foreground text-xs font-bold tracking-widest uppercase mb-2 ml-2">Categories</div>
-      <div className="space-y-1 ">
+      <div className="space-y-1">
         {categories.map(({ icon, name }) => (
           <div
             key={name}
@@ -69,16 +69,16 @@ export default function SkillsSidebar({
           </div>
         ))}
       </div>
-      <div
-        onClick={() => document.getElementById("about")?.scrollIntoView({ behavior: "smooth" })}
-        className="mt-auto text-lg font-bold text-foreground border-t border-border/50 pt-4 flex items-center gap-3 cursor-pointer"
-      >
-        <Image
-          src={user}
-          alt="user profile image"
-          className="w-12 h-12 rounded-full border-2 border-primary/20 p-0.5 object-cover"
-        />
-        Er. Animesh
+      <div className="mt-auto border-t border-border/50">
+        <div onClick={() => document.getElementById("about")?.scrollIntoView({ behavior: "smooth" })}
+          className="pt-4 flex items-center gap-2 cursor-pointer opacity-75 hover:opacity-100 hover:scale-[1.05] transition-all duration-300">
+          <Image
+            src={user}
+            alt="user profile image"
+            className="w-12 h-12 rounded-full border-2 border-primary/20 p-0.5 object-cover"
+          />
+          <span className="text-xl font-bold text-foreground ">Er. Animesh</span>
+        </div>
       </div>
     </aside>
   );

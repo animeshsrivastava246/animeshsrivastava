@@ -2,21 +2,22 @@ import "./globals.css";
 import { Open_Sans } from "next/font/google";
 import { Analytics } from '@vercel/analytics/next';
 import { ThemeProvider } from "../components/ThemeProvider";
-// import { CustomCursor } from "../components/common/CustomCursor";
+import { GoogleTagManager } from '@next/third-parties/google';
 import { BackgroundGlow } from "../components/common/BackgroundGlow";
 import { Toaster } from "sonner";
+import { basicDetails } from "../data/basic";
 
 const openSans = Open_Sans({ subsets: ["latin"], variable: "--font-sans" });
 
 export const metadata = {
-  title: "Animesh Srivastava | Software Developer",
-  description: "Portfolio of Animesh Srivastava – Software Developer. Explore projects, experience, and contact details.",
-  keywords: "Animesh Srivastava, portfolio, Software Developer, Mobile Developer, TypeScript, JavaScript, software engineer",
-  authors: [{ name: "Animesh Srivastava" }],
-  creator: "Animesh Srivastava",
+  title: `${basicDetails.name} | ${basicDetails.role}`,
+  description: `Portfolio of ${basicDetails.name} – ${basicDetails.role}. Explore projects, experience, and contact details.`,
+  keywords: `${basicDetails.name}, portfolio, Software Developer, Mobile Developer, TypeScript, JavaScript, software engineer`,
+  authors: [{ name: basicDetails.name }],
+  creator: basicDetails.name,
   metadataBase: new URL("https://animeshsrivastava.vercel.app"),
   openGraph: {
-    title: "Animesh Srivastava | Software Developer",
+    title: `${basicDetails.name} | ${basicDetails.role}`,
     description: "Showcasing mobile applications, skills, and achievements of a modern software engineer focused on building impactful cross-platform experiences.",
     url: "https://animeshsrivastava.vercel.app",
     siteName: "Animesh Srivastava Portfolio",
@@ -24,7 +25,7 @@ export const metadata = {
     locale: "en_US",
     images: [
       {
-        url: "https://animeshsrivastava.vercel.app/og-image.png",
+        url: "https://animeshsrivastava.vercel.app/og-image.webp",
         width: 1200,
         height: 630,
         alt: "Animesh Srivastava Developer Portfolio",
@@ -33,10 +34,10 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Animesh Srivastava | Developer Portfolio",
-    description: "Explore the developer portfolio of Animesh Srivastava, a passionate Software Developer.",
+    title: `${basicDetails.name} | Developer Portfolio`,
+    description: `Explore the developer portfolio of ${basicDetails.name}, a passionate ${basicDetails.role}.`,
     creator: "@animeshsrivastava246",
-    images: ["https://animeshsrivastava.vercel.app/og-image.png"],
+    images: ["https://animeshsrivastava.vercel.app/og-image.webp"],
   },
   robots: {
     index: true,
@@ -52,12 +53,13 @@ export const metadata = {
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
-  name: "Animesh Srivastava",
+  name: basicDetails.name,
   url: "https://animeshsrivastava.vercel.app",
-  jobTitle: "Software Developer",
+  jobTitle: basicDetails.role,
   sameAs: [
-    "https://github.com/animeshsrivastava246",
-    "https://linkedin.com/in/animesh246"
+    basicDetails.socials.github,
+    basicDetails.socials.linkedin,
+    "https://hashnode.com/@animesh246"
   ]
 };
 
@@ -70,7 +72,10 @@ export default function RootLayout({
     <html lang="en" className={`${openSans.variable}`} suppressHydrationWarning>
       <head>
         <link rel="icon" href="/favicon.ico" sizes="any" />
-        <title>Animesh Srivastava | Software Developer</title>
+        <link rel="icon" href="/icon0.svg" type="image/svg+xml" sizes="any" />
+        <link rel="apple-touch-icon" href="/apple-icon.png" />
+        <link rel="manifest" href="/manifest.json" />
+        <title>{`${basicDetails.name} | ${basicDetails.role}`}</title>
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="google-site-verification" content="fBQ2jzQeowY2tp8cTpJDqNKiMOD9mcU6U6UocqXqnHc" />
         <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" />
@@ -80,6 +85,12 @@ export default function RootLayout({
         />
       </head>
       <body>
+        {/* Google Tag Manager */}
+        <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTM_ID || ""} />
+
+        {/* Vercel Analytics */}
+        <Analytics />
+
         <BackgroundGlow />
         {/* <CustomCursor /> */}
         <ThemeProvider
@@ -93,7 +104,6 @@ export default function RootLayout({
           </div>
         </ThemeProvider>
         <Toaster position="bottom-center" toastOptions={{ className: 'glass' }} />
-        <Analytics />
       </body>
     </html>
   );

@@ -4,8 +4,9 @@ import { motion } from "framer-motion";
 import React, { useRef } from "react";
 import Image from "next/image";
 import { ArrowRight, Mail } from "lucide-react";
-import myPic from "../../../public/og-image.png";
+import myPic from "../../../public/og-image.webp";
 import VariableProximity from "../animations/VariableProximity";
+import { basicDetails } from "../../data/basic";
 
 const Hero = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -15,6 +16,9 @@ const Hero = () => {
       aria-label="Hero Section main container"
       id="home"
     >
+      <h1 className="sr-only">
+        Animesh Srivastava – Full-Stack Developer Portfolio
+      </h1>
       {/* Background Decorative Gradients */}
       <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-blue-500/10 rounded-full blur-[120px] pointer-events-none" />
       <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-purple-500/10 rounded-full blur-[120px] pointer-events-none" />
@@ -53,7 +57,7 @@ const Hero = () => {
                 falloff="gaussian"
               />
               <VariableProximity
-                label={"Animesh"}
+                label={basicDetails.firstName}
                 className="block text-transparent bg-clip-text bg-linear-to-r from-purple-700 to-blue-700"
                 fromFontVariationSettings="'wght' 400, 'opsz' 30"
                 toFontVariationSettings="'wght' 900, 'opsz' 80"
@@ -73,7 +77,7 @@ const Hero = () => {
             </h1>
 
             <p className="max-w-xl text-lg sm:text-xl/7 text-muted-foreground font-body leading-relaxed">
-              Software Developer with 2+ years of experience building and maintaining high-quality web and mobile applications for web, iOS and Android platforms. Proficient in MERN, Java, Python, and modern tech paradigms.
+              {basicDetails.longDescription}
             </p>
           </div>
 
@@ -139,10 +143,10 @@ const Hero = () => {
           <div className="relative w-[280px] h-[280px] sm:w-[350px] sm:h-[350px] md:w-[400px] md:h-[400px] rounded-full overflow-hidden border-4 border-background shadow-2xl z-20 bg-muted">
             <Image
               src={myPic}
-              alt="Animesh Srivastava Portrait"
+              alt={basicDetails.name}
               fill
               priority
-              className="object-cover hover:scale-110 transition-transform duration-700 ease-in-out"
+              className="object-cover hover:scale-101 transition-transform duration-700 ease-in-out"
               sizes="(max-width: 768px) 280px, (max-width: 1024px) 350px, 400px"
             />
             {/* Floating Badge */}
@@ -153,7 +157,7 @@ const Hero = () => {
               className="absolute rounded-4xl bottom-10 left-14 md:left-16 glass p-3 flex items-center gap-1 shadow-xl cursor-pointer hover:scale-110 transition-scale duration-300"
               onClick={() => document.getElementById("experience")?.scrollIntoView({ behavior: "smooth" })}
             >
-              <span className="text-sm font-bold text-foreground leading-tight">2+ Years Exp.</span>
+              <span className="text-sm font-bold text-foreground leading-tight">{basicDetails.experienceYears} Years Exp.</span>
             </motion.div>
           </div>
 

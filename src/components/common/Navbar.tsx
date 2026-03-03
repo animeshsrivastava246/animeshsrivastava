@@ -11,8 +11,10 @@ import { AnimatePresence, motion } from "framer-motion";
 import Image from "next/image";
 import { ThemeToggle } from "./ThemeToggle";
 import ResumeModal from "./ResumeModal";
-import user from "../../../public/og-image.png";
+import BlogsModal from "./BlogsModal";
+import user from "../../app/icon0.svg";
 import { Menu, X } from "lucide-react";
+import { basicDetails } from "../../data/basic";
 
 const Navbar = ({
   isProjectOpen,
@@ -29,8 +31,9 @@ const Navbar = ({
   const prevScroll = useRef(0);
 
   const [visible, setVisible] = useState(true);
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [resumeOpen, setResumeOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isResumeModalOpen, setIsResumeModalOpen] = useState(false);
+  const [isBlogsModalOpen, setIsBlogsModalOpen] = useState(false);
   const [activeSection, setActiveSection] = useState("home");
 
   const [position, setPosition] = useState({
@@ -156,7 +159,7 @@ const Navbar = ({
     }
 
     updatePosition(id);
-    setMenuOpen(false);
+    setIsMenuOpen(false);
   };
 
   return (
@@ -180,18 +183,18 @@ const Navbar = ({
 
           {/* PROFILE */}
 
-          <motion.button className={`flex items-center gap-2 transition-all duration-300 ${activeSection === "home" ? "scale-[1.1]" : "hover:scale-[1.05]"}`} onClick={() =>
+          <motion.button className={`flex items-center gap-2 transition-all duration-300 ${activeSection === "home" ? "scale-[1.1] translate-x-2" : "hover:scale-[1.05] hover:translate-x-1"}`} onClick={() =>
             handleClick("home")
           }>
 
             <Image
               src={user}
-              alt="profile"
+              alt={basicDetails.name}
               className="w-8 h-8 rounded-full"
             />
 
             <span className={`text-sm ${activeSection === "home" ? "font-extrabold" : "font-bold"}`}>
-              Animesh <br /> Srivastava
+              {basicDetails.firstName} <br /> {basicDetails.lastName}
             </span>
           </motion.button>
 
@@ -267,12 +270,23 @@ const Navbar = ({
           {/* RIGHT */}
 
           <div className="hidden md:flex items-center gap-3">
-
             <ThemeToggle />
+
+            <button
+              onClick={() => setIsBlogsModalOpen(true)}
+              className="hidden md:flex items-center gap-2 px-6 py-2.5
+            bg-foreground border border-border/50
+            text-background font-semibold tracking-wide rounded-full
+            shadow-lg hover:shadow-primary/20
+            transition-all duration-300 hover:scale-[1.02] active:scale-95
+            hover:bg-foreground/90 custom-cursor"
+            >
+              Blogs
+            </button>
 
             <motion.button
               whileHover={{ scale: 1.05 }}
-              onClick={() => setResumeOpen(true)}
+              onClick={() => setIsResumeModalOpen(true)}
               className="group relative overflow-hidden w-full sm:w-auto p-2 rounded-4xl 
     bg-linear-to-r from-blue-600 to-purple-600 
     text-white font-semibold tracking-wide
@@ -309,17 +323,23 @@ const Navbar = ({
 
           <Image
             src={user}
-            alt="Animesh Srivastava"
+            alt={basicDetails.name}
             className={`w-8 h-8 rounded-full transition-all duration-300 cursor-pointer ${activeSection === "home" ? "scale-[1.15] ring-2 ring-primary" : "hover:scale-[1.05]"}`}
             onClick={() =>
               handleClick("home")
             }
           />
 
+          <button
+            onClick={() => setIsBlogsModalOpen(true)}
+            className="px-2 py-1 rounded-full bg-foreground text-background font-semibold tracking-wide shadow-lg hover:shadow-primary/20 transition-all duration-300 hover:scale-[1.02] active:scale-95 hover:bg-foreground/90 custom-cursor"
+          >
+            Blogs
+          </button>
 
           <motion.button
             whileHover={{ scale: 1.05 }}
-            onClick={() => setResumeOpen(true)}
+            onClick={() => setIsResumeModalOpen(true)}
             className="group relative overflow-hidden px-2 py-1 rounded-full 
     bg-linear-to-r from-blue-600 to-purple-600 
     text-white font-semibold tracking-wide
@@ -337,14 +357,14 @@ const Navbar = ({
           {/* MENU BUTTON */}
 
           <motion.button
-            animate={{ rotate: menuOpen ? 90 : 0 }}
+            animate={{ rotate: isMenuOpen ? 90 : 0 }}
             onClick={() =>
-              setMenuOpen(!menuOpen)
+              setIsMenuOpen(!isMenuOpen)
             }
             className="rounded-full bg-muted flex items-center justify-center"
           >
             <AnimatePresence mode="wait">
-              {menuOpen ? (
+              {isMenuOpen ? (
                 <motion.div
                   key="x"
                   initial={{ scale: 0 }}
@@ -372,7 +392,7 @@ const Navbar = ({
 
         <AnimatePresence>
 
-          {menuOpen && (
+          {isMenuOpen && (
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
@@ -432,7 +452,15 @@ const Navbar = ({
         </AnimatePresence>
       </motion.header>
 
-      <ResumeModal open={resumeOpen} onClose={() => setResumeOpen(false)} />
+      <BlogsModal
+        isOpen={isBlogsModalOpen}
+        closeModal={() => setIsBlogsModalOpen(false)}
+      />
+
+      <ResumeModal
+        open={isResumeModalOpen}
+        onClose={() => setIsResumeModalOpen(false)}
+      />
     </>
   );
 };

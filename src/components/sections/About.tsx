@@ -2,11 +2,11 @@
 import React, { useRef } from "react";
 import { motion, useInView, Variants } from "framer-motion";
 import Lottie from "lottie-react";
-import educationAnimation from "../../assets/animations/Education.json";
 import skillsAnimation from "../../assets/animations/Skills.json";
 import VariableProximity from "../animations/VariableProximity";
 import { MapPin, BriefcaseBusiness, Code2, GraduationCap, Search, TrendingUp } from "lucide-react";
 import StatsSection from "../StatsSection";
+import { basicDetails } from "../../data/basic";
 
 const About = () => {
   const sectionRef = useRef<HTMLElement | null>(null);
@@ -54,12 +54,12 @@ const About = () => {
         variants={containerVariants}
         initial="hidden"
         animate={inView ? "visible" : "hidden"}
-        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 lg:grid-rows-4 gap-4 grow max-w-6xl w-full"
+        className="columns-1 sm:columns-2 lg:columns-3 gap-6 space-y-6 grow max-w-6xl w-full"
       >
         {/* Main Hero Bento */}
         <motion.div
           variants={itemVariants}
-          className="col-span-1 sm:col-span-2 lg:col-span-4 lg:row-span-2 rounded-3xl p-8 flex flex-col justify-between glass border border-border/50 bg-card/40 relative overflow-hidden group"
+          className="break-inside-avoid rounded-3xl p-8 flex flex-col justify-between glass border border-border/50 bg-card/40 relative overflow-hidden group"
         >
           <div className="absolute inset-0 bg-linear-to-br from-primary/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 z-0" />
 
@@ -79,7 +79,7 @@ const About = () => {
 
           <div className="w-full relative z-10" ref={containerRef}>
             <VariableProximity
-              label={"Architecting elegance. \nEngineering scale."}
+              label={basicDetails.heroDescription}
               className="text-3xl/10 md:text-5xl/14 text-foreground tracking-tight mb-4"
               fromFontVariationSettings="'wght' 400, 'opsz' 30"
               toFontVariationSettings="'wght' 900, 'opsz' 80"
@@ -89,7 +89,7 @@ const About = () => {
             />
 
             <p className="text-lg md:text-xl text-muted-foreground mt-6 max-w-2xl font-body leading-relaxed">
-              I craft high-performance digital ecosystems where robust engineering meets intuitive design, transforming complex problems into seamless user experiences.
+              {basicDetails.aboutDescription}
             </p>
           </div>
 
@@ -100,14 +100,14 @@ const About = () => {
             >
               <MapPin className="text-red-500 w-5 h-5" />
             </motion.div>
-            <span>Lucknow, India</span>
+            <span>{basicDetails.location}</span>
           </div>
         </motion.div>
 
         {/* Free Time Highlights */}
         <motion.div
           variants={itemVariants}
-          className="col-span-1 sm:col-span-1 lg:col-span-2 lg:row-span-1 rounded-3xl p-6 flex flex-col items-center justify-center glass border border-border/50 bg-card/40 relative overflow-hidden"
+          className="break-inside-avoid rounded-3xl p-6 flex flex-col items-center justify-center glass border border-border/50 bg-card/40 relative overflow-hidden"
         >
           <h3 className="font-bold font-heading text-xl text-foreground mb-4 w-full text-center flex items-center justify-center gap-2">
             <TrendingUp className="w-5 h-5 text-orange-400" />
@@ -121,7 +121,7 @@ const About = () => {
         {/* Journey Quick View */}
         <motion.div
           variants={itemVariants}
-          className="col-span-1 sm:col-span-2 lg:row-span-2 lg:col-span-2 rounded-3xl p-6 lg:p-8 flex flex-col justify-center glass border border-border/50 bg-card/40 relative group"
+          className="break-inside-avoid rounded-3xl p-6 lg:p-8 flex flex-col justify-center glass border border-border/50 bg-card/40 relative group"
         >
           <div className="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-bl-[100px] z-0 group-hover:bg-primary/10 transition-colors duration-500" />
 
@@ -143,18 +143,7 @@ const About = () => {
             Journey So Far
           </h3>
           <ul className="space-y-4 font-body relative z-10">
-            {[
-              {
-                role: "React Native Developer",
-                company: "VicDigit",
-                duration: "Jan 2024 – Present",
-              },
-              {
-                role: "React Developer",
-                company: "UnOrg",
-                duration: "Feb 2023 – April 2023",
-              },
-            ].map((exp, idx) => (
+            {basicDetails.experience.map((exp, idx) => (
               <li key={idx} className="bg-background/40 backdrop-blur-sm border border-border/50 p-4 rounded-2xl hover:bg-background/60 transition-colors">
                 <p className="text-base font-bold text-foreground">{exp.role}</p>
                 <div className="flex items-center justify-between mt-1 text-xs text-muted-foreground w-full">
@@ -169,19 +158,19 @@ const About = () => {
         {/* Education */}
         <motion.div
           variants={itemVariants}
-          className="col-span-1 sm:col-span-1 lg:row-span-1 lg:col-span-2 rounded-3xl p-6 lg:p-8 flex flex-col justify-between glass border border-border/50 bg-card/40 relative overflow-hidden group"
+          className="break-inside-avoid rounded-3xl p-6 lg:p-8 flex flex-col justify-between glass border border-border/50 bg-card/40 relative overflow-hidden group"
         >
           <div className="relative z-10">
             <h3 className="font-bold font-heading text-xl mb-2 text-foreground flex items-center gap-2">
               <GraduationCap className="text-primary w-6 h-6" />
               Education
             </h3>
-            <p className="text-base font-medium text-foreground">Bachelor of Technology</p>
-            <p className="text-base font-bold text-foreground">MMMUT</p>
-            <p className="text-sm text-muted-foreground mt-1">2020 – 2024</p>
+            <p className="text-base font-medium text-foreground">{basicDetails.education.degree}</p>
+            <p className="text-base font-bold text-foreground">{basicDetails.education.university}</p>
+            <p className="text-sm text-muted-foreground mt-1">{basicDetails.education.duration}</p>
           </div>
           <div className="absolute -right-4 -bottom-4 opacity-50 group-hover:opacity-80 transition-opacity duration-300 w-32 h-32 pointer-events-none z-10">
-            <Lottie animationData={educationAnimation} loop={false} />
+            <motion.video src={"/assets/animations/Development.webm"} autoPlay loop muted />
           </div>
 
           <motion.div
@@ -198,7 +187,7 @@ const About = () => {
         {/* What I Do */}
         <motion.div
           variants={itemVariants}
-          className="col-span-1 sm:col-span-2 lg:row-span-2 lg:col-span-2 rounded-3xl p-6 lg:p-8 flex flex-col justify-center items-center text-center glass border border-border/50 bg-card/40 relative group"
+          className="break-inside-avoid rounded-3xl p-6 lg:p-8 flex flex-col justify-center items-center text-center glass border border-border/50 bg-card/40 relative group"
         >
           <div className="relative z-10 w-full flex flex-col items-center">
             <h3 className="font-bold font-heading text-xl mb-4 text-foreground flex items-center justify-center gap-2">
@@ -206,7 +195,7 @@ const About = () => {
               What I Do
             </h3>
             <p className="text-sm text-muted-foreground font-body leading-relaxed mb-6 max-w-[250px]">
-              Delivering pixel-perfect, scalable architectures using React, React Native & modern serverless paradigms.
+              {basicDetails.shortDescription}
             </p>
             <div className="w-3/4 max-w-[150px] opacity-80 group-hover:scale-105 transition-transform duration-500">
               <Lottie animationData={skillsAnimation} />
@@ -217,27 +206,25 @@ const About = () => {
         {/* My Life */}
         <motion.div
           variants={itemVariants}
-          className="col-span-1 sm:col-span-1 lg:row-span-1 lg:col-span-2 rounded-3xl p-6 glass border border-border/50 bg-card/40 flex flex-col justify-center group"
+          className="break-inside-avoid rounded-3xl p-6 glass border border-border/50 bg-card/40 flex flex-col justify-center group"
         >
           <h3 className="font-bold font-heading text-lg mb-4 text-foreground flex items-center gap-2 relative">
-            <span role="img" aria-label="sparkles">☕</span> My Life
+            <span role="img" aria-label="sparkles">{basicDetails.interests[0].icon}</span> {basicDetails.interests[0].title}
           </h3>
           <ul className="space-y-2 text-sm text-muted-foreground font-body relative z-10">
-            <li className="flex items-center gap-2">
-              <div className="w-1.5 h-1.5 rounded-full bg-primary/50" />
-              <span className="text-foreground font-medium">Travel</span> Love my भारत
-            </li>
-            <li className="flex items-center gap-2">
-              <div className="w-1.5 h-1.5 rounded-full bg-primary/50" />
-              <span className="text-foreground font-medium">Music</span> new tracks
-            </li>
+            {basicDetails.interests[0].items.map((item, idx) => (
+              <li key={idx} className="flex items-center gap-2">
+                <div className="w-1.5 h-1.5 rounded-full bg-primary/50" />
+                <span className="text-foreground font-medium">{item.label}</span> {item.desc}
+              </li>
+            ))}
           </ul>
         </motion.div>
 
         {/* Currently Learning */}
         <motion.div
           variants={itemVariants}
-          className="col-span-1 sm:col-span-1 lg:col-span-2 rounded-3xl p-2 glass border border-border/50 bg-card/40 flex flex-col items-center justify-center font-heading"
+          className="break-inside-avoid rounded-3xl p-2 glass border border-border/50 bg-card/40 flex flex-col items-center justify-center font-heading"
         >
           <div className="w-full flex flex-col items-center">
             <h3 className="text-lg font-bold text-foreground mb-4 flex items-center gap-2">
@@ -252,9 +239,9 @@ const About = () => {
                 transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
               >
                 <div className="flex flex-col gap-4 py-1">
-                  <span>Rust</span>
-                  <span>System Design</span>
-                  <span>WebGL</span>
+                  {basicDetails.learning.map((item, idx) => (
+                    <span key={idx}>{item}</span>
+                  ))}
                 </div>
               </motion.div>
             </div>

@@ -1,6 +1,7 @@
 'use client';
 import { motion } from 'framer-motion';
 import { SiNextdotjs, SiTailwindcss, SiFramer } from 'react-icons/si';
+import { basicDetails } from "../../data/basic";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -32,7 +33,7 @@ const Footer = () => {
       </div>
 
       <div className="mt-4 text-muted-foreground text-center font-heading text-xs tracking-wider uppercase flex flex-col items-center gap-1">
-        <span>&copy; {currentYear} Animesh Srivastava. All rights reserved.</span>
+        <span>&copy; {currentYear} {basicDetails.name}. All rights reserved.</span>
         <span className="md:hidden text-[10px] text-yellow-600/60 dark:text-yellow-400/60 font-semibold mt-2">
           Note: For best experience, view on desktop.
         </span>
