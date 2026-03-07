@@ -41,8 +41,8 @@ const NameTheGame = ({ onBack }: { onBack: () => void }) => {
             <h1 className="text-4xl md:text-6xl font-heading font-black text-transparent bg-clip-text bg-linear-to-r from-purple-400 via-pink-400 to-red-400 mb-4 drop-shadow-[0_0_10px_rgba(168,85,247,0.8)]">
               NameTheGame
             </h1>
-            <p className="text-lg md:text-xl text-foreground font-medium max-w-2xl bg-black/20 p-2 rounded-xl backdrop-blur-md inline-block shadow-lg">
-              An interactive, multiplayer web gaming trivia platform to test your knowledge against friends.
+            <p className="text-white text-lg md:text-xl font-medium max-w-2xl bg-black/40 p-2 rounded-2xl backdrop-blur-md inline-block shadow-lg">
+              Find out what is stuck in your head through a gamer community!
             </p>
           </motion.div>
         </div>
@@ -62,7 +62,7 @@ const NameTheGame = ({ onBack }: { onBack: () => void }) => {
             <ul className="space-y-3 text-sm text-muted-foreground">
               <li className="flex justify-between border-b border-white/5 pb-2">
                 <span>Tech Stack</span>
-                <span className="text-foreground font-semibold">Next.js, WebSockets</span>
+                <span className="text-foreground font-semibold">Next.js, MaterialUI</span>
               </li>
               <li className="flex justify-between border-b border-white/5 pb-2">
                 <span>Timeline</span>
@@ -70,7 +70,7 @@ const NameTheGame = ({ onBack }: { onBack: () => void }) => {
               </li>
               <li className="flex justify-between pt-2">
                 <span>Live View</span>
-                <a href="#" className="font-bold text-purple-400 hover:text-purple-300 transition-colors">Play Now &rarr;</a>
+                <a href="https://name-the-game.vercel.app/" target="_blank" className="font-bold text-purple-400 hover:text-purple-300 transition-colors">Explore Now &rarr;</a>
               </li>
             </ul>
           </div>
@@ -84,18 +84,24 @@ const NameTheGame = ({ onBack }: { onBack: () => void }) => {
           className="lg:col-span-8 space-y-8"
         >
           <div className="glass p-8 rounded-3xl border border-white/10 neumorphic-inset">
-            <h2 className="text-2xl font-heading font-bold mb-4 text-purple-400">The Problem</h2>
-            <p className="text-muted-foreground leading-relaxed text-lg">
-              Traditional trivia games are slow and unengaging. The objective was to create a highly real-time, competitive environment with minimal latency and engaging feedback loops mimicking modern arcade games.
+            <div className="flex items-center gap-4 mb-6">
+              <div className="w-1.5 h-8 bg-purple-500 rounded-full" />
+              <h2 className="text-3xl font-heading font-black text-purple-400 tracking-wide">The Problem</h2>
+            </div>
+            <p className="text-foreground/90 leading-relaxed text-xl">
+              Ever stuck about recalling the name of a game that you remember vaguely or have only some video or image, but cannot find it through simple search?
             </p>
           </div>
 
           <div className="glass p-8 rounded-3xl border border-white/10 neumorphic relative overflow-hidden">
             <div className="absolute top-0 right-0 w-32 h-32 bg-red-500/10 rounded-full blur-3xl z-0" />
             <div className="absolute bottom-0 left-0 w-32 h-32 bg-purple-500/10 rounded-full blur-3xl z-0" />
-            <h2 className="text-2xl font-heading font-bold mb-4 text-pink-400 relative z-10">The Solution</h2>
-            <p className="text-muted-foreground leading-relaxed text-lg relative z-10">
-              Designed a robust WebSocket architecture paired with a Next.js frontend to instantly propagate game state. The result is a seamless multiplayer experience where events register sequentially with deep state sync.
+            <div className="flex items-center gap-4 mb-6 relative z-10">
+              <div className="w-1.5 h-8 bg-pink-500 rounded-full" />
+              <h2 className="text-3xl font-heading font-black text-pink-400 tracking-wide">The Solution</h2>
+            </div>
+            <p className="text-foreground/90 leading-relaxed text-xl relative z-10">
+              This project helps you find out the name of a game you cannot think of with the help of a community. Help and answer others also if you can. The purpose of this project is to help all the gaming audience out there to find out what is on their mind. 
             </p>
           </div>
         </motion.div>

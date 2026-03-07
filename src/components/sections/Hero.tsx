@@ -46,7 +46,7 @@ const Hero = () => {
               Available for new opportunities
             </motion.div>
 
-            <h1 className="text-4xl/12 sm:text-5xl/14 lg:text-7xl/18 font-bold font-heading leading-tight tracking-tight text-foreground">
+            <h2  className="text-4xl/12 sm:text-5xl/14 lg:text-7xl/18 font-bold font-heading leading-tight tracking-tight text-foreground">
               <VariableProximity
                 label={"Hi, I'm"}
                 className="text-wrap"
@@ -74,7 +74,7 @@ const Hero = () => {
                 radius={50}
                 falloff="gaussian"
               />
-            </h1>
+            </h2>
 
             <p className="max-w-xl text-lg sm:text-xl/7 text-muted-foreground font-body leading-relaxed">
               {basicDetails.longDescription}
@@ -88,10 +88,12 @@ const Hero = () => {
             className="flex flex-col sm:flex-row items-center gap-5 w-full sm:w-auto"
           >
             {/* Primary CTA - View Projects */}
-            <motion.button
+            <motion.a
+              href="#projects"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              onClick={() => {
+              onClick={(e) => {
+                e.preventDefault();
                 const target = document.getElementById("projects");
                 target?.scrollIntoView({ behavior: "smooth" });
               }}
@@ -107,13 +109,15 @@ const Hero = () => {
               <span className="relative z-10">View My Work</span>
 
               <ArrowRight className="relative z-10 w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
-            </motion.button>
+            </motion.a>
 
             {/* Secondary CTA - Contact */}
-            <motion.button
+            <motion.a
+              href="#contact"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              onClick={() => {
+              onClick={(e) => {
+                e.preventDefault();
                 const target = document.getElementById("contact");
                 target?.scrollIntoView({ behavior: "smooth" });
               }}
@@ -128,7 +132,7 @@ const Hero = () => {
               <div className="absolute inset-0 ring-1 ring-inset ring-foreground/10 group-hover:ring-blue-500/50 rounded-full transition-all duration-300" />
               <Mail className="w-5 h-5 relative z-10 transition-transform duration-300 group-hover:-rotate-12 group-hover:text-blue-500" />
               <span className="relative z-10 group-hover:text-blue-500 transition-colors duration-300">Let&apos;s Connect</span>
-            </motion.button>
+            </motion.a>
           </motion.div>
         </motion.div>
 

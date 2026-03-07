@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useRef } from "react";
 import { motion } from "framer-motion";
-import { SiLeetcode, SiHashnode } from "react-icons/si";
+import { SiHashnode } from "react-icons/si";
 import { basicDetails, LeetcodeSvg } from "../data/basic";
 
 function Counter({ target, duration = 1.5, start = false }: { target: number; duration?: number; start?: boolean }) {

@@ -16,7 +16,6 @@ A high-performance, **futuristic digital ecosystem** built with the latest React
 - **🎭 Motion Mastery:** 
   - Advanced **Framer Motion** orchestrations for layout transitions.
   - **Matter.js** integration for physics-based interactive elements.
-  - Customizable Lottie animations for high-fidelity micro-interactions.
 - **📩 Enterprise-Grade Contact System:** Server-side email processing via **Resend** with sleek toast notifications by `sonner`.
 - **📱 Fluid Responsiveness:** Optimized for every viewport, from ultra-wide monitors to mobile devices.
 - **🌑 Intelligent Theming:** System-aware Dark/Light mode with seamless transitions.

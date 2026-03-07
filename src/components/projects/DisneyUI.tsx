@@ -41,7 +41,7 @@ const DisneyUI = ({ onBack }: { onBack: () => void }) => {
             <h1 className="text-4xl md:text-6xl font-heading font-black text-transparent bg-clip-text bg-linear-to-r from-blue-400 via-indigo-400 to-purple-400 mb-4 drop-shadow-[0_0_10px_rgba(59,130,246,0.8)]">
               DisneyUI Clone
             </h1>
-            <p className="text-lg md:text-xl text-foreground font-medium max-w-2xl bg-black/20 p-2 rounded-xl backdrop-blur-md inline-block shadow-lg">
+            <p className="text-white text-lg md:text-xl font-medium max-w-2xl bg-black/20 p-2 rounded-2xl backdrop-blur-md inline-block shadow-lg">
               A pixel-perfect, highly animated replica of the Disney+ mobile/TV interface.
             </p>
           </motion.div>
@@ -70,7 +70,7 @@ const DisneyUI = ({ onBack }: { onBack: () => void }) => {
               </li>
               <li className="flex justify-between pt-2">
                 <span>Live View</span>
-                <a href="#" className="font-bold text-blue-400 hover:text-blue-300 transition-colors">View Site &rarr;</a>
+                <a href="https://disney-clone-animesh246.vercel.app/" target="_blank" className="font-bold text-blue-400 hover:text-blue-300 transition-colors">View Site &rarr;</a>
               </li>
             </ul>
           </div>
@@ -84,8 +84,11 @@ const DisneyUI = ({ onBack }: { onBack: () => void }) => {
           className="lg:col-span-8 space-y-8"
         >
           <div className="glass p-8 rounded-3xl border border-white/10 neumorphic-inset">
-            <h2 className="text-2xl font-heading font-bold mb-4 text-blue-400">The Challenge</h2>
-            <p className="text-muted-foreground leading-relaxed text-lg">
+            <div className="flex items-center gap-4 mb-6">
+              <div className="w-1.5 h-8 bg-blue-500 rounded-full" />
+              <h2 className="text-3xl font-heading font-black text-blue-400 tracking-wide">The Challenge</h2>
+            </div>
+            <p className="text-foreground/90 leading-relaxed text-xl">
               Recreating the Disney+ interface is a challenge in fluid animation, video rendering, and carousel performance. The goal was to build a UI that feels entirely native and performant while running in a standard web browser.
             </p>
           </div>
@@ -93,9 +96,12 @@ const DisneyUI = ({ onBack }: { onBack: () => void }) => {
           <div className="glass p-8 rounded-3xl border border-white/10 neumorphic relative overflow-hidden">
             <div className="absolute top-0 right-0 w-32 h-32 bg-purple-500/10 rounded-full blur-3xl" />
             <div className="absolute bottom-0 left-0 w-32 h-32 bg-blue-500/10 rounded-full blur-3xl" />
-            <h2 className="text-2xl font-heading font-bold mb-4 text-purple-400 relative z-10">Implementation</h2>
-            <p className="text-muted-foreground leading-relaxed text-lg relative z-10">
-              Leveraged Framer Motion for high-framerate spring animations. Tailwind CSS was utilized to manage the complex, nested flex layouts and absolute positioning required by the TV-style overlapping panels.
+            <div className="flex items-center gap-4 mb-6 relative z-10">
+              <div className="w-1.5 h-8 bg-purple-500 rounded-full" />
+              <h2 className="text-3xl font-heading font-black text-purple-400 tracking-wide">Implementation</h2>
+            </div>
+            <p className="text-foreground/90 leading-relaxed text-xl relative z-10">
+              Leveraged Tailwind CSS to manage the complex, nested flex layouts and absolute positioning required by the TV-style overlapping panels.
             </p>
           </div>
         </motion.div>

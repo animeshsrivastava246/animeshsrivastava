@@ -50,14 +50,20 @@ function HomeContent() {
       window.scrollTo(0, 0);
       setTimeout(() => {
         const targetSection = scrollToParam || "projects";
-        const section = document.getElementById(targetSection);
-        if (section) {
-          section.scrollIntoView({ behavior: "smooth", block: "start" });
+
+        if (targetSection === "home") {
+          window.scrollTo({ behavior: "smooth", top: 0 });
+        } else {
+          const section = document.getElementById(targetSection);
+          if (section) {
+            section.scrollIntoView({ behavior: "smooth", block: "start" });
+          }
         }
+
         if (prevProject) {
           setPrevProject(null);
         }
-      }, 300);
+      }, 500); // Increased from 300 to 500 to guarantee AnimatePresence (400ms duration) has completely unmounted the exiting component and mounted HomeContent
     }
   }, [selectedProject, scrollToParam, prevProject]);
 
@@ -73,7 +79,8 @@ function HomeContent() {
   };
 
   const closeProject = () => {
-    router.push("/", { scroll: false });
+    // Use scrollTo=home to instruct the layout to scroll to the top instead of falling back to 'projects'
+    router.push("/?scrollTo=home", { scroll: false });
   };
 
   const renderProjects = () => {

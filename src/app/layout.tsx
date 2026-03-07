@@ -11,14 +11,17 @@ const openSans = Open_Sans({ subsets: ["latin"], variable: "--font-sans" });
 
 export const metadata = {
   title: `${basicDetails.name} | ${basicDetails.role}`,
-  description: `Portfolio of ${basicDetails.name} – ${basicDetails.role}. Explore projects, experience, and contact details.`,
-  keywords: `${basicDetails.name}, portfolio, Software Developer, Mobile Developer, TypeScript, JavaScript, software engineer`,
+  description: "Explore the professional portfolio of Animesh Srivastava, a passionate Software Developer specializing in building high-performance cross-platform applications.",
+  keywords: `${basicDetails.name}, portfolio, Software Developer, Mobile Developer, Web Developer, TypeScript, JavaScript, React, Next.js, React Native, Full Stack Engineer`,
   authors: [{ name: basicDetails.name }],
   creator: basicDetails.name,
   metadataBase: new URL("https://animeshsrivastava.vercel.app"),
+  alternates: {
+    canonical: "/",
+  },
   openGraph: {
     title: `${basicDetails.name} | ${basicDetails.role}`,
-    description: "Showcasing mobile applications, skills, and achievements of a modern software engineer focused on building impactful cross-platform experiences.",
+    description: "Explore the professional portfolio of Animesh Srivastava, a passionate Software Developer specializing in building high-performance cross-platform applications.",
     url: "https://animeshsrivastava.vercel.app",
     siteName: "Animesh Srivastava Portfolio",
     type: "website",
@@ -34,8 +37,8 @@ export const metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: `${basicDetails.name} | Developer Portfolio`,
-    description: `Explore the developer portfolio of ${basicDetails.name}, a passionate ${basicDetails.role}.`,
+    title: `${basicDetails.name} | ${basicDetails.role}`,
+    description: "Explore the professional portfolio of Animesh Srivastava, a passionate Software Developer specializing in building high-performance cross-platform applications.",
     creator: "@animeshsrivastava246",
     images: ["https://animeshsrivastava.vercel.app/og-image.webp"],
   },

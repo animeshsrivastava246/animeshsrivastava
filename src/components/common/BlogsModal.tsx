@@ -83,14 +83,14 @@ export default function BlogsModal({ isOpen, closeModal }: BlogsModalProps) {
               leaveFrom="opacity-100 scale-100"
               leaveTo="opacity-0 scale-95"
             >
-              <DialogPanel className="w-full max-w-4xl transform overflow-hidden rounded-3xl bg-background/90 text-foreground border border-border/50 p-6 text-left align-middle shadow-2xl transition-all glass-island">
+              <DialogPanel className="w-full max-w-3xl transform overflow-hidden rounded-3xl bg-background/90 text-foreground border border-border/50 p-6 text-left align-middle shadow-2xl transition-all glass-island">
                 <div className="flex justify-between items-center mb-6 pb-4 border-b border-border/50">
-                  <DialogTitle as="h3" className="text-2xl font-bold font-heading">
+                  <DialogTitle as="h3" className="text-4xl font-bold font-heading">
                     My Writings
                   </DialogTitle>
                   <button
                     onClick={closeModal}
-                    className="p-2 rounded-full hover:bg-muted/80 transition-colors"
+                    className="p-2 rounded-full hover:scale-[90%] transition-all duration-200 cursor-pointer"
                   >
                     <X className="w-6 h-6" />
                   </button>
@@ -118,8 +118,13 @@ export default function BlogsModal({ isOpen, closeModal }: BlogsModalProps) {
                           href={`https://aiunderthehood.hashnode.dev/${blog.slug}`}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="group flex flex-col bg-card/40 border border-border/50 rounded-2xl overflow-hidden hover:border-primary/50 transition-colors shadow-sm cursor-pointer"
+                          className="group relative flex flex-col bg-card/40 border border-border/50 rounded-2xl overflow-hidden hover:border-primary/50 transition-colors shadow-sm cursor-pointer"
                         >
+                          {/* External link icon */}
+                          <div className="absolute top-3 right-3 z-20 bg-background/70 backdrop-blur-sm p-1.5 rounded-full border border-border/50">
+                            <ExternalLink className="w-3.5 h-3.5 text-foreground group-hover:text-primary transition-colors" />
+                          </div>
+
                           {blog.coverImage?.url && (
                             <div className="relative w-full h-40 overflow-hidden">
                               <Image
@@ -128,23 +133,23 @@ export default function BlogsModal({ isOpen, closeModal }: BlogsModalProps) {
                                 fill
                                 className="object-cover group-hover:scale-105 transition-transform duration-500"
                               />
+
                             </div>
                           )}
-                          <div className="p-5 flex flex-col grow">
-                            <h4 className="text-lg font-bold font-heading text-foreground group-hover:text-primary transition-colors line-clamp-2 mb-2">
+
+                          <div className="p-5 flex flex-col grow relative pb-12">
+                            <h4 className="text-lg font-extrabold font-heading text-foreground group-hover:text-primary transition-colors line-clamp-2 mb-2 pr-2">
                               {blog.title}
                             </h4>
-                            <p className="text-sm text-muted-foreground line-clamp-3 mb-4 grow">
+
+                            <p className="text-sm text-muted-foreground line-clamp-3">
                               {blog.brief}
                             </p>
-                            <div className="flex items-center justify-between text-xs text-muted-foreground font-medium mt-auto pt-4 border-t border-border/30">
-                              <span className="flex items-center gap-1.5">
-                                <Calendar className="w-3.5 h-3.5" />
-                                {formatDate(blog.publishedAt)}
-                              </span>
-                              <span className="flex items-center gap-1 group-hover:text-primary transition-colors">
-                                Read Article <ExternalLink className="w-3.5 h-3.5" />
-                              </span>
+                            
+                            {/* Date badge floating at the bottom right of the card */}
+                            <div className="absolute bottom-4 right-4 z-20 bg-muted/90 text-foreground backdrop-blur-md px-2.5 py-1.5 rounded-md text-xs flex items-center gap-1.5 border border-border/50 shadow-sm transition-transform group-hover:-translate-y-1">
+                              <Calendar className="w-3.5 h-3.5" />
+                              <span className="font-medium">{formatDate(blog.publishedAt)}</span>
                             </div>
                           </div>
                         </a>

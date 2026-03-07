@@ -2,7 +2,7 @@ export const basicDetails = {
   name: "Animesh Srivastava",
   firstName: "Animesh",
   lastName: "Srivastava",
-  role: "Software Developer",
+  role: "Cross-Platform Software Developer",
   shortDescription: "Delivering pixel-perfect, scalable architectures using React, React Native & modern serverless paradigms.",
   longDescription: "Software Developer with 2+ years of experience building and maintaining high-quality web and mobile applications for web, iOS and Android platforms. Proficient in MERN, Java, Python, and modern tech paradigms.",
   heroDescription: "Architecting elegance. \nEngineering scale.",
@@ -42,11 +42,47 @@ export const basicDetails = {
   ],
   interests: [
     {
-      icon: "☕", title: "My Life", items: [
-        { label: "Travel", desc: "Love my भारत" },
-        { label: "Music", desc: "new tracks" }
+      "icon": "Coffee",
+      "title": "Lifestyle",
+      "items": [
+        {
+          "label": "Travel",
+          "icon": "Palmtree",
+          "desc": "Exploring the diverse landscapes and vibrant cultures of India."
+        },
+        {
+          "label": "Music",
+          "icon": "Music",
+          "desc": "Constantly hunting for fresh sounds across global genres."
+        },
+        {
+          "label": "Photography",
+          "icon": "Camera",
+          "desc": "Capturing urban stories and architectural symmetry."
+        }
       ]
     },
+    {
+      "icon": "Sparkles",
+      "title": "Intellectual",
+      "items": [
+        {
+          "label": "Open Source",
+          "icon": "Github",
+          "desc": "Contributing to libraries and tools for the developer community."
+        },
+        {
+          "label": "Reading",
+          "icon": "BookOpen",
+          "desc": "Diving deep into non-fiction, system design, and tech philosophy."
+        },
+        {
+          "label": "Gaming",
+          "icon": "Gamepad2",
+          "desc": "Exploring immersive worlds and innovative game mechanics."
+        }
+      ]
+    }
   ],
   learning: ["Rust", "System Design", "WebGL"]
 };

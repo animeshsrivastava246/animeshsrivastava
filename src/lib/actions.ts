@@ -1,9 +1,9 @@
 "use server";
 
 import { Resend } from "resend";
+import { basicDetails } from "../data/basic";
 
-// Initialize Resend with the API key or a fallback during development.
-const resend = new Resend(process.env.RESEND_API_KEY || "re_123456789");
+const resend = new Resend(process.env.RESEND_API_KEY);
 
 export const sendEmail = async (formData: FormData) => {
   const senderEmail = formData.get("senderEmail");
@@ -38,7 +38,7 @@ export const sendEmail = async (formData: FormData) => {
   try {
     data = await resend.emails.send({
       from: "Portfolio Contact Form <onboarding@resend.dev>",
-      to: `${process.env.EMAIL_TO}`, // Replace with your actual email if needed
+      to: `${basicDetails.email}`,
       subject: `[Portfolio] New Message from ${name}`,
       replyTo: senderEmail as string,
       text: `Name: ${name}\nEmail: ${senderEmail}\n\nMessage:\n${message}`,

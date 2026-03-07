@@ -18,6 +18,7 @@ import { basicDetails } from "../../data/basic";
 
 const Navbar = ({
   isProjectOpen,
+  onCloseProject,
 }: {
   isProjectOpen: boolean;
   onCloseProject?: () => void;
@@ -100,47 +101,103 @@ const Navbar = ({
   useEffect(() => {
     if (isProjectOpen) return;
 
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting)
-            updatePosition(entry.target.id);
-        });
-      },
-      {
-        rootMargin: "-20% 0px -60% 0px",
-        threshold: 0.1,
-      }
-    );
+    let observer: IntersectionObserver;
 
-    ["home", ...menuItems].forEach((label) => {
-      const el = document.getElementById(
-        label.toLowerCase()
+    // Delay the observer instantiation to allow AnimatePresence to finish rendering sections
+    const timeout = setTimeout(() => {
+      observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              updatePosition(entry.target.id);
+            }
+          });
+        },
+        {
+          rootMargin: "-20% 0px -60% 0px",
+          threshold: 0.1,
+        }
       );
-      if (el) observer.observe(el);
-    });
 
-    return () => observer.disconnect();
+      ["home", ...menuItems].forEach((label) => {
+        const el = document.getElementById(label.toLowerCase());
+        if (el) observer.observe(el);
+      });
+    }, 600); // Wait for AnimatePresence transitions (typically 300-500ms)
+
+    return () => {
+      clearTimeout(timeout);
+      if (observer) observer.disconnect();
+    };
   }, [menuItems, isProjectOpen]);
 
   /* ---------------- SCREEN SIZE ---------------- */
 
   useEffect(() => {
-    const resize = () =>
-      setIsDesktop(window.innerWidth >= 768);
-
+    const resize = () => setIsDesktop(window.innerWidth >= 768);
     resize();
-
     window.addEventListener("resize", resize);
-
-    return () =>
-      window.removeEventListener("resize", resize);
+    return () => window.removeEventListener("resize", resize);
   }, []);
+
+  /* ---------------- SYNC ON RETURN ---------------- */
+
+  useEffect(() => {
+    // When returning from a project, wait for the layout to settle, then figure out where we are
+    if (!isProjectOpen) {
+      const syncTimeout = setTimeout(() => {
+        // Fallback: Manually check intersecting section if observer missed it during animation
+        const sections = ["home", ...menuItems].map(label => document.getElementById(label.toLowerCase()));
+
+        // Find the section closest to the top of the viewport
+        let closestSection = "home";
+        let minDistance = Infinity;
+
+        sections.forEach((el) => {
+          if (el) {
+            const rect = el.getBoundingClientRect();
+            // We care about sections near the top third of the viewport
+            const distance = Math.abs(rect.top);
+            if (distance < minDistance) {
+              minDistance = distance;
+              closestSection = el.id;
+            }
+          }
+        });
+
+        // Only update if we're not already there, to avoid jitter
+        if (activeSection !== closestSection) {
+          updatePosition(closestSection);
+        } else {
+          // Even if it's correct, re-fire the position update just in case refs have moved
+          updatePosition(activeSection);
+        }
+
+      }, 1200); // Wait for AnimatePresence (400ms) + page.tsx scrollTo trigger (500ms) + smooth scroll duration (~300ms) = 1200ms
+
+      return () => clearTimeout(syncTimeout);
+    }
+  }, [isProjectOpen, menuItems]);
 
   /* ---------------- CLICK ---------------- */
 
   const handleClick = (label: string) => {
     const id = label.toLowerCase();
+
+    // Always close mobile menu on selection
+    setIsMenuOpen(false);
+
+    // If a project is open, any navigation just forces a return home (with deferral logic relying on page.tsx)
+    if (isProjectOpen) {
+      if (id === "home") {
+        onCloseProject?.();
+      } else {
+        // If they clicked "Experience" while in project, we could set url params, 
+        // but for simplicity currently onCloseProject just goes to home top.
+        onCloseProject?.();
+      }
+      return;
+    }
 
     if (id === "home") {
       window.scrollTo({
@@ -159,7 +216,6 @@ const Navbar = ({
     }
 
     updatePosition(id);
-    setIsMenuOpen(false);
   };
 
   return (
@@ -183,9 +239,10 @@ const Navbar = ({
 
           {/* PROFILE */}
 
-          <motion.button className={`flex items-center gap-2 transition-all duration-300 ${activeSection === "home" ? "scale-[1.1] translate-x-2" : "hover:scale-[1.05] hover:translate-x-1"}`} onClick={() =>
-            handleClick("home")
-          }>
+          <motion.a href="#home" className={`flex items-center gap-2 transition-all duration-300 ${activeSection === "home" ? "scale-[1.1] translate-x-2" : "hover:scale-[1.05] hover:translate-x-1"}`} onClick={(e) => {
+            e.preventDefault();
+            handleClick("home");
+          }}>
 
             <Image
               src={user}
@@ -196,59 +253,63 @@ const Navbar = ({
             <span className={`text-sm ${activeSection === "home" ? "font-extrabold" : "font-bold"}`}>
               {basicDetails.firstName} <br /> {basicDetails.lastName}
             </span>
-          </motion.button>
+          </motion.a>
 
           {/* MENU */}
 
           <nav className="flex relative">
 
-            <ul className="flex">
+            <div className={`flex ${isProjectOpen ? "opacity-0 pointer-events-none absolute hidden md:flex" : ""}`}>
+              <ul className="flex">
 
-              {menuItems.map((label) => {
+                {menuItems.map((label) => {
 
-                const key = label.toLowerCase();
+                  const key = label.toLowerCase();
 
-                const active =
-                  activeSection === key;
+                  const active =
+                    activeSection === key;
 
-                return (
-                  <motion.li
-                    key={key}
-                    className="relative z-10"
-                    ref={(el: HTMLLIElement | null) => {
-                      itemRefs.current[key] = el;
-                    }}
-                  >
-                    <button
-                      onClick={() =>
-                        handleClick(label)
-                      }
-                      className={`px-2.5 py-1 rounded-full text-md font-semibold transition-all duration-200
-                      
-                      ${active
-                          ? "text-primary-foreground font-extrabold scale-[1.2]"
-                          : "text-muted-foreground"
-                        }
-
-                      hover:bg-muted/70
-                      hover:text-foreground
-                      hover:scale-[1.05]
-                      
-                      `}
+                  return (
+                    <motion.li
+                      key={key}
+                      className="relative z-10"
+                      ref={(el: HTMLLIElement | null) => {
+                        itemRefs.current[key] = el;
+                      }}
                     >
-                      {label}
-                      <span
-                        className={`
-                          absolute left-1/2 -translate-x-1/2 bottom-0.5 h-[2px] w-[80%] bg-current
-                          transition-transform duration-300 origin-center
-                          ${active ? "scale-x-100" : "scale-x-0"}
-                        `}
-                      />
-                    </button>
-                  </motion.li>
-                );
-              })}
-            </ul>
+                      <a
+                        href={`#${key}`}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          handleClick(label);
+                        }}
+                        className={`px-2.5 py-1 rounded-full text-md font-semibold transition-all duration-200
+                         
+                         ${active
+                            ? "text-primary-foreground font-extrabold scale-[1.2]"
+                            : "text-muted-foreground"
+                          }
+
+                         hover:bg-muted/70
+                         hover:text-foreground
+                         hover:scale-[1.05]
+                         
+                         `}
+                      >
+                        {label}
+                        <span
+                          className={`
+                             absolute left-1/2 -translate-x-1/2 bottom-0.5 h-[2px] w-[80%] bg-current
+                             transition-transform duration-300 origin-center
+                             ${active ? "scale-x-100" : "scale-x-0"}
+                           `}
+                        />
+                      </a>
+                    </motion.li>
+                  );
+                })}
+              </ul>
+            </div>
 
             {isDesktop &&
               position.opacity === 1 && (
@@ -279,7 +340,7 @@ const Navbar = ({
             text-background font-semibold tracking-wide rounded-full
             shadow-lg hover:shadow-primary/20
             transition-all duration-300 hover:scale-[1.02] active:scale-95
-            hover:bg-foreground/90 custom-cursor"
+            cursor-pointer"
             >
               Blogs
             </button>
@@ -321,36 +382,42 @@ const Navbar = ({
 
         <div className="glass-island flex items-center justify-between w-full px-4 py-2">
 
-          <Image
-            src={user}
-            alt={basicDetails.name}
-            className={`w-8 h-8 rounded-full transition-all duration-300 cursor-pointer ${activeSection === "home" ? "scale-[1.15] ring-2 ring-primary" : "hover:scale-[1.05]"}`}
-            onClick={() =>
-              handleClick("home")
-            }
-          />
+          <a href="#home" onClick={(e) => {
+            e.preventDefault();
+            handleClick("home");
+          }} className="flex items-center">
+            <Image
+              src={user}
+              alt={basicDetails.name}
+              className={`w-8 h-8 rounded-full transition-all duration-300 cursor-pointer ${activeSection === "home" ? "scale-[1.15] ring-2 ring-primary" : "hover:scale-[1.05]"}`}
+            />
+          </a>
 
-          <button
-            onClick={() => setIsBlogsModalOpen(true)}
-            className="px-2 py-1 rounded-full bg-foreground text-background font-semibold tracking-wide shadow-lg hover:shadow-primary/20 transition-all duration-300 hover:scale-[1.02] active:scale-95 hover:bg-foreground/90 custom-cursor"
-          >
-            Blogs
-          </button>
+          {!isProjectOpen && (
+            <button
+              onClick={() => setIsBlogsModalOpen(true)}
+              className="px-2 py-1 rounded-full bg-foreground text-background font-semibold tracking-wide shadow-lg hover:shadow-primary/20 transition-all duration-300 hover:scale-[1.02] active:scale-95 hover:bg-foreground/90 custom-cursor"
+            >
+              Blogs
+            </button>
+          )}
 
-          <motion.button
-            whileHover={{ scale: 1.05 }}
-            onClick={() => setIsResumeModalOpen(true)}
-            className="group relative overflow-hidden px-2 py-1 rounded-full 
-    bg-linear-to-r from-blue-600 to-purple-600 
-    text-white font-semibold tracking-wide
-    shadow-lg hover:shadow-blue-500/30 
-    transition-all duration-300 flex items-center justify-center gap-3 cursor-pointer"
-          >
-            {/* Shine effect */}
-            <span className="absolute inset-0 bg-white/20 -translate-x-full group-hover:translate-x-full transition-transform duration-700 skew-x-12" />
+          {!isProjectOpen && (
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              onClick={() => setIsResumeModalOpen(true)}
+              className="group relative overflow-hidden px-2 py-1 rounded-full 
+      bg-linear-to-r from-blue-600 to-purple-600 
+      text-white font-semibold tracking-wide
+      shadow-lg hover:shadow-blue-500/30 
+      transition-all duration-300 flex items-center justify-center gap-3 cursor-pointer"
+            >
+              {/* Shine effect */}
+              <span className="absolute inset-0 bg-white/20 -translate-x-full group-hover:translate-x-full transition-transform duration-700 skew-x-12" />
 
-            <span className="relative z-10">Resume</span>
-          </motion.button>
+              <span className="relative z-10">Resume</span>
+            </motion.button>
+          )}
 
           <ThemeToggle />
 
@@ -361,7 +428,7 @@ const Navbar = ({
             onClick={() =>
               setIsMenuOpen(!isMenuOpen)
             }
-            className="rounded-full bg-muted flex items-center justify-center"
+            className={`rounded-full flex items-center justify-center ${isProjectOpen ? "opacity-0 pointer-events-none" : "bg-muted"}`}
           >
             <AnimatePresence mode="wait">
               {isMenuOpen ? (
@@ -398,7 +465,7 @@ const Navbar = ({
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: -10 }}
               exit={{ opacity: 0, y: 20 }}
-              className="absolute bottom-16 left-0 right-0 glass-island rounded-2xl p-6 w-full max-h-[50vh] overflow-y-auto hide-scrollbar"
+              className={`absolute bottom-16 left-0 right-0 glass-island rounded-2xl p-6 w-full max-h-[50vh] overflow-y-auto hide-scrollbar ${isProjectOpen ? "opacity-0 pointer-events-none hidden" : ""}`}
             >
               <ul className="flex flex-col gap-2 w-full">
 
@@ -414,8 +481,12 @@ const Navbar = ({
                         itemRefs.current[key] = el;
                       }}
                     >
-                      <button
-                        onClick={() => handleClick(label)}
+                      <a
+                        href={`#${id}`}
+                        onClick={(e) => {
+                          e.preventDefault();
+                          handleClick(label);
+                        }}
                         className={`
       relative inline-flex flex-col items-center
       p-2 text-md font-medium
@@ -441,7 +512,7 @@ const Navbar = ({
         `}
                           />
                         </span>
-                      </button>
+                      </a>
                     </motion.li>
                   )
                 })}
