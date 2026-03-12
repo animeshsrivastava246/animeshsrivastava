@@ -15,20 +15,20 @@ export const metadata = {
   keywords: `${basicDetails.name}, portfolio, Software Developer, Mobile Developer, Web Developer, TypeScript, JavaScript, React, Next.js, React Native, Full Stack Engineer`,
   authors: [{ name: basicDetails.name }],
   creator: basicDetails.name,
-  metadataBase: new URL("https://animeshsrivastava.vercel.app"),
+  metadataBase: new URL(basicDetails.url),
   alternates: {
     canonical: "/",
   },
   openGraph: {
     title: `${basicDetails.name} | ${basicDetails.role}`,
     description: "Explore the professional portfolio of Animesh Srivastava, a passionate Software Developer specializing in building high-performance cross-platform applications.",
-    url: "https://animeshsrivastava.vercel.app",
+    url: basicDetails.url,
     siteName: "Animesh Srivastava Portfolio",
     type: "website",
     locale: "en_US",
     images: [
       {
-        url: "https://animeshsrivastava.vercel.app/og-image.webp",
+        url: `${basicDetails.url}/og-image.webp`,
         width: 1200,
         height: 630,
         alt: "Animesh Srivastava Developer Portfolio",
@@ -40,7 +40,7 @@ export const metadata = {
     title: `${basicDetails.name} | ${basicDetails.role}`,
     description: "Explore the professional portfolio of Animesh Srivastava, a passionate Software Developer specializing in building high-performance cross-platform applications.",
     creator: "@animeshsrivastava246",
-    images: ["https://animeshsrivastava.vercel.app/og-image.webp"],
+    images: [`${basicDetails.url}/og-image.webp`],
   },
   robots: {
     index: true,
@@ -57,7 +57,7 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
   name: basicDetails.name,
-  url: "https://animeshsrivastava.vercel.app",
+  url: basicDetails.url,
   jobTitle: basicDetails.role,
   sameAs: [
     basicDetails.socials.github,
