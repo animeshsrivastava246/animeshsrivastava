@@ -11,7 +11,7 @@ const Footer = () => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.5 }}
-      className="w-full text-foreground pt-12 flex flex-col items-center text-sm px-4 border-t border-border/50"
+      className="w-full text-foreground pt-6 flex flex-col items-center text-sm px-4"
     >
       <div className="flex items-center flex-wrap justify-center gap-2 text-muted-foreground w-full max-w-4xl">
         <p>Built using</p>

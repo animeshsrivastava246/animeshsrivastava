@@ -2,10 +2,6 @@ import { MetadataRoute } from 'next'
 import { projects } from "../components/projects";
 import { basicDetails } from "../data/basic";
 
-/**
- * Professional sitemap generation for Next.js 15+ App Router.
- * This dynamically generates the sitemap based on the available projects.
- */
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = basicDetails.url;
   const lastModified = new Date().toISOString().split('T')[0];
