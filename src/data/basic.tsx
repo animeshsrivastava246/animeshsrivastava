@@ -27,7 +27,8 @@ export const basicDetails = {
     youtube: "https://www.youtube.com/@animesh246",
     discord: "https://discord.com/users/757601167776677962",
     leetcode: "https://leetcode.com/u/animesh251001/",
-    hashnode: "https://hashnode.com/@animesh246"
+    hashnode: "https://hashnode.com/@animesh246",
+    reddit: "https://www.reddit.com/user/Longjumping-Rain-210/",
   },
   experience: [
     {

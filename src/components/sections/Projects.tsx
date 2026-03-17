@@ -22,9 +22,9 @@ const Cooking = () => {
   return (
     <div
       ref={ref}
-      className="flex justify-between items-center h-full p-8 text-center gap-10"
+      className="flex flex-col md:flex-row justify-between items-center h-full p-6 md:p-8 text-center gap-6 md:gap-8"
     >
-      <div className="w-64 md:w-72 blur-[1px] mb-6 drop-shadow-2xl">
+      <div className="w-full max-w-[200px] md:max-w-72 blur-[1px] drop-shadow-2xl">
         <video
           ref={videoRef}
           src="/about-developer.webm"
@@ -36,8 +36,8 @@ const Cooking = () => {
         />
       </div>
       <div className="flex-col">
-        <h3 className="font-heading font-bold text-4xl text-foreground mb-2">Building something new</h3>
-        <p className="text-muted-foreground font-body text-2xl">
+        <h3 className="font-heading font-bold text-md md:text-4xl text-foreground mb-1">Building something new</h3>
+        <p className="text-muted-foreground font-body text-sm md:text-2xl">
           Experimenting with a few new tools for an upcoming project. Stay tuned!
         </p>
       </div>
@@ -210,9 +210,7 @@ const Projects = ({ onSelectProject }: { onSelectProject: (id: string) => void }
               }}
               className="absolute -bottom-12 -left-12 w-40 h-40 bg-linear-to-tr from-pink-500/10 to-orange-500/10 rounded-full blur-2xl pointer-events-none z-[-1]"
             />
-            <div className="relative z-10 w-full h-full flex flex-col justify-center">
-              <Cooking />
-            </div>
+            <Cooking />
           </motion.div>
         </div>
       </div>

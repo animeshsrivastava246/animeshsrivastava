@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { FaGithub, FaLinkedinIn, FaWhatsapp, FaYoutube, FaDiscord } from "react-icons/fa";
+import { FaGithub, FaLinkedinIn, FaWhatsapp, FaYoutube, FaDiscord, FaRedditAlien } from "react-icons/fa";
 import { HiOutlineMail } from "react-icons/hi";
 import { SiZoho } from "react-icons/si";
 import { SiHashnode } from "react-icons/si";
@@ -65,8 +65,15 @@ const navItems = [
   {
     icon: <FaDiscord size={22} />,
     label: "Discord",
-    color: "text-violet-500",
+    color: "text-[#7289DA]",
     link: basicDetails.socials.discord,
+  },
+  {
+    icon: <FaRedditAlien size={22} />,
+    label: "Reddit",
+    color: "text-[#FF4500]",
+    link: basicDetails.socials.reddit,
+
   }
 ];
 
