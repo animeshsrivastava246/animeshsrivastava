@@ -1,6 +1,6 @@
 import { Dialog, DialogTitle, DialogPanel, Transition, TransitionChild } from "@headlessui/react";
 import { Fragment, useEffect, useState } from "react";
-import { X, ExternalLink, Calendar, Loader2 } from "lucide-react";
+import { X, Calendar, Loader2 } from "lucide-react";
 import Image from "next/image";
 
 interface BlogPost {
@@ -120,18 +120,20 @@ export default function BlogsModal({ isOpen, closeModal }: BlogsModalProps) {
                           rel="noopener noreferrer"
                           className="group relative flex flex-col bg-card/40 border border-border/50 rounded-2xl overflow-hidden hover:border-primary/50 transition-colors shadow-sm cursor-pointer"
                         >
-                          {/* External link icon */}
-                          <div className="absolute top-3 right-3 z-20 bg-background/70 backdrop-blur-sm p-1.5 rounded-full border border-border/50">
-                            <ExternalLink className="w-3.5 h-3.5 text-foreground group-hover:text-primary transition-colors" />
+                          {/* Date badge floating at the top left of the card */}
+                          <div className="absolute flex items-center gap-1 top-3 left-3 z-20 bg-background/70 backdrop-blur-sm p-2 rounded-full border border-border/50">
+                            <Calendar className="w-3 h-3" />
+                            <span className="font-medium text-xs">{formatDate(blog.publishedAt)}</span>
                           </div>
 
                           {blog.coverImage?.url && (
-                            <div className="relative w-full h-40 overflow-hidden">
+                            <div className="relative w-full aspect-1200/630 overflow-hidden">
                               <Image
                                 src={blog.coverImage.url}
                                 alt={blog.title}
                                 fill
                                 className="object-cover group-hover:scale-105 transition-transform duration-500"
+                                sizes="(max-width: 768px) 100vw, 400px"
                               />
 
                             </div>
@@ -145,12 +147,6 @@ export default function BlogsModal({ isOpen, closeModal }: BlogsModalProps) {
                             <p className="text-sm text-muted-foreground line-clamp-3">
                               {blog.brief}
                             </p>
-                            
-                            {/* Date badge floating at the bottom right of the card */}
-                            <div className="absolute bottom-4 right-4 z-20 bg-muted/90 text-foreground backdrop-blur-md px-2.5 py-1.5 rounded-md text-xs flex items-center gap-1.5 border border-border/50 shadow-sm transition-transform group-hover:-translate-y-1">
-                              <Calendar className="w-3.5 h-3.5" />
-                              <span className="font-medium">{formatDate(blog.publishedAt)}</span>
-                            </div>
                           </div>
                         </a>
                       ))}

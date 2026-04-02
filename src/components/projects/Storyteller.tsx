@@ -54,6 +54,7 @@ const Storyteller = ({ onBack }: { onBack: () => void }) => {
               layout="fill"
               objectFit="contain"
               className="group-hover:scale-105 transition-transform duration-700 drop-shadow-2xl"
+              sizes="(max-width: 768px) 100vw, 400px"
             />
           </div>
         </motion.div>
@@ -85,17 +86,17 @@ const Storyteller = ({ onBack }: { onBack: () => void }) => {
               </li>
             </ul>
           </div>
-          
+
           <div className="glass-island p-6 rounded-3xl border border-white/5 relative overflow-hidden group">
-           <h3 className="font-heading font-bold text-xl text-foreground mb-4">Screenshots</h3>
-           <div className="grid grid-cols-2 gap-4">
+            <h3 className="font-heading font-bold text-xl text-foreground mb-4">Screenshots</h3>
+            <div className="grid grid-cols-2 gap-4">
               <div className="relative w-full aspect-9/19 rounded-xl overflow-hidden glass border border-white/5 bg-background shadow-inner">
                 <Image src={storyImage} alt="Story view" layout="fill" objectFit="cover" />
               </div>
               <div className="relative w-full aspect-9/19 rounded-xl overflow-hidden glass border border-white/5 bg-background shadow-inner">
                 <Image src={historyImage} alt="History view" layout="fill" objectFit="cover" />
               </div>
-           </div>
+            </div>
           </div>
         </motion.div>
 

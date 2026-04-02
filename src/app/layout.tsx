@@ -6,6 +6,7 @@ import { GoogleTagManager } from '@next/third-parties/google';
 import { BackgroundGlow } from "../components/common/BackgroundGlow";
 import { Toaster } from "sonner";
 import { basicDetails } from "../data/basic";
+import CustomCursor from "../components/common/CustomCursor";
 
 const openSans = Open_Sans({ subsets: ["latin"], variable: "--font-sans" });
 
@@ -95,7 +96,7 @@ export default function RootLayout({
         <Analytics />
 
         <BackgroundGlow />
-        {/* <CustomCursor /> */}
+        <CustomCursor />
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

@@ -112,6 +112,7 @@ const Projects = ({ onSelectProject }: { onSelectProject: (id: string) => void }
                       alt={project.title}
                       fill
                       className="object-cover object-top transition-transform duration-700 group-hover:scale-105 opacity-90"
+                      sizes="(max-width: 768px) 100vw, 400px"
                     />
                     <div className="absolute inset-0 bg-linear-to-t from-background via-background/60 to-transparent group-hover:via-background/50 transition-colors duration-500" />
 
@@ -154,6 +155,7 @@ const Projects = ({ onSelectProject }: { onSelectProject: (id: string) => void }
                         alt={project.title}
                         fill
                         className="object-cover transition-transform duration-700 group-hover:scale-105"
+                        sizes="(max-width: 768px) 100vw, 400px"
                       />
                       <div className="absolute inset-0 bg-background/0 group-hover:bg-background/10 transition-colors duration-500" />
 

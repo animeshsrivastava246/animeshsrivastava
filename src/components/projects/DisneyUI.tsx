@@ -30,6 +30,7 @@ const DisneyUI = ({ onBack }: { onBack: () => void }) => {
           layout="fill"
           objectFit="cover"
           className="group-hover:scale-105 transition-transform duration-700 opacity-60"
+          sizes="(max-width: 768px) 100vw, 400px"
         />
         <div className="absolute inset-0 bg-linear-to-t from-background via-background/40 to-transparent" />
         <div className="absolute inset-0 p-8 md:p-12 flex flex-col justify-end">

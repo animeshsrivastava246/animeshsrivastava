@@ -1,87 +1,106 @@
 "use client";
 
-import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
+import { motion, useMotionValue, useSpring } from "framer-motion";
 
-export function CustomCursor() {
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+/**
+ * Premium magnetic custom cursor.
+ * – Outer ring: slow spring, mix-blend-difference, scales on hover
+ * – Inner dot: fast spring, always centered on pointer
+ * – Text mode: when hovering [data-cursor="text"], shows a label
+ */
+export default function CustomCursor() {
+  const [mounted, setMounted] = useState(false);
   const [isHovering, setIsHovering] = useState(false);
-  const [isVisible, setIsVisible] = useState(false);
+  const [cursorLabel, setCursorLabel] = useState("");
+
+  // Raw position (updated on every mousemove)
+  const rawX = useMotionValue(-200);
+  const rawY = useMotionValue(-200);
+
+  // Outer ring — slow, laggy, mix-blend-difference
+  const ringX = useSpring(rawX, { damping: 28, stiffness: 250, mass: 0.6 });
+  const ringY = useSpring(rawY, { damping: 28, stiffness: 250, mass: 0.6 });
+
+  // Inner dot — snappy, almost instant
+  const dotX = useSpring(rawX, { damping: 60, stiffness: 800, mass: 0.2 });
+  const dotY = useSpring(rawY, { damping: 60, stiffness: 800, mass: 0.2 });
+
+  const observerRef = useRef<MutationObserver | null>(null);
 
   useEffect(() => {
-    // Only render cursor on desktop
-    if (window.innerWidth < 768) return;
+    setMounted(true);
 
-    setIsVisible(true);
-
-    const updateMousePosition = (e: MouseEvent) => {
-      setMousePosition({ x: e.clientX, y: e.clientY });
+    const onMove = (e: MouseEvent) => {
+      rawX.set(e.clientX);
+      rawY.set(e.clientY);
     };
 
-    const handleMouseOver = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
-      // Triggers for buttons, links, or specific interactive elements
-      if (
-        window.getComputedStyle(target).cursor === "pointer" ||
-        target.tagName.toLowerCase() === "button" ||
-        target.tagName.toLowerCase() === "a" ||
-        target.tagName.toLowerCase() === "input" ||
-        target.tagName.toLowerCase() === "textarea" ||
-        target.closest("button") ||
-        target.closest("a")
-      ) {
-        setIsHovering(true);
-      } else {
-        setIsHovering(false);
-      }
+    const attachHoverListeners = () => {
+      document.querySelectorAll<HTMLElement>("a, button, [data-cursor]").forEach((el) => {
+        el.addEventListener("mouseenter", () => {
+          setIsHovering(true);
+          setCursorLabel(el.dataset.cursor ?? "");
+        });
+        el.addEventListener("mouseleave", () => {
+          setIsHovering(false);
+          setCursorLabel("");
+        });
+      });
     };
 
-    window.addEventListener("mousemove", updateMousePosition);
-    window.addEventListener("mouseover", handleMouseOver);
+    attachHoverListeners();
 
+    // Re-attach if DOM changes
+    observerRef.current = new MutationObserver(attachHoverListeners);
+    observerRef.current.observe(document.body, { childList: true, subtree: true });
+
+    window.addEventListener("mousemove", onMove, { passive: true });
     return () => {
-      window.removeEventListener("mousemove", updateMousePosition);
-      window.removeEventListener("mouseover", handleMouseOver);
+      window.removeEventListener("mousemove", onMove);
+      observerRef.current?.disconnect();
     };
-  }, []);
+  }, [rawX, rawY]);
 
-  // Return null on mobile/server to avoid hydration mismatch
-  if (!isVisible || (typeof window !== "undefined" && window.innerWidth < 768)) return null;
+  // Don't render on server or touch devices
+  if (!mounted) return null;
 
   return (
-    <>
-      {/* Inner Dot - Instant Follow */}
+    <div className="hidden md:block" aria-hidden>
+      {/* ── Outer ring (mix-blend-difference = inverts colours behind it) ── */}
       <motion.div
-        className="fixed top-0 left-0 w-2 h-2 rounded-full pointer-events-none z-99999 bg-primary hidden md:block"
+        className="pointer-events-none fixed z-9999 flex items-center justify-center mix-blend-difference"
+        style={{ x: ringX, y: ringY, translateX: "-50%", translateY: "-50%" }}
         animate={{
-          x: mousePosition.x - 4,
-          y: mousePosition.y - 4,
-          scale: isHovering ? 0 : 1,
-          opacity: isHovering ? 0 : 1,
+          width:  isHovering ? 52 : 30,
+          height: isHovering ? 52 : 30,
         }}
-        transition={{
-          type: "tween",
-          ease: "backOut",
-          duration: 0.1,
-        }}
-      />
+        transition={{ type: "spring", damping: 20, stiffness: 300 }}
+      >
+        <div
+          className="w-full h-full rounded-full border border-white transition-all duration-200"
+          style={{ background: isHovering ? "rgba(255,255,255,0.08)" : "transparent" }}
+        />
+        {cursorLabel && (
+          <span className="absolute text-[9px] font-dm font-semibold text-white uppercase tracking-widest whitespace-nowrap">
+            {cursorLabel}
+          </span>
+        )}
+      </motion.div>
 
-      {/* Outer Ring - Trailing Follow */}
+      {/* ── Inner dot ── */}
       <motion.div
-        className="fixed top-0 left-0 w-4 h-4 rounded-full border-2 border-primary pointer-events-none z-99998 hidden md:flex items-center justify-center mix-blend-difference"
+        className="pointer-events-none fixed z-9999"
+        style={{ x: dotX, y: dotY, translateX: "-50%", translateY: "-50%" }}
         animate={{
-          x: mousePosition.x - 8,
-          y: mousePosition.y - 8,
-          scale: isHovering ? 2 : 1,
-          backgroundColor: isHovering ? "var(--primary)" : "transparent",
+          width:   isHovering ? 5 : 7,
+          height:  isHovering ? 5 : 7,
+          opacity: isHovering ? 0.6 : 1,
         }}
-        transition={{
-          type: "spring",
-          stiffness: 150,
-          damping: 15,
-          mass: 0.3,
-        }}
-      />
-    </>
+        transition={{ type: "spring", damping: 40, stiffness: 600 }}
+      >
+        <div className="w-full h-full rounded-full bg-white" />
+      </motion.div>
+    </div>
   );
 }

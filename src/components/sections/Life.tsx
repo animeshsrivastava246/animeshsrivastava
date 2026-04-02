@@ -1,84 +1,116 @@
-import React from "react";
-import ImageSlider from "../animations/ImageGallery";
+import React, { useState, useEffect, useMemo } from "react";
 import VariableProximity from "../animations/VariableProximity";
 import { motion } from "framer-motion";
-import bgImage from "../../assets/images/BeachViewBackground.jpg";
-import { colors } from "@/src/lib/colors";
-import { BookOpen, Landmark } from "lucide-react";
+import MasonryScroller from "./Life/MasonryScroller";
+
+// Import images from centralized index
+import { lifeImages } from "../../assets/images/life";
+import { ImageItem } from "./Life/types";
+
+// Utility to shuffle array
+const shuffle = <T,>(array: T[]): T[] => {
+  const newArray = [...array];
+  for (let i = newArray.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+  }
+  return newArray;
+};
+
+const GlassmorphicBackground = () => {
+  return (
+    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      {/* Large radial gradients for "base" vibes */}
+      <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] rounded-full bg-blue-600/10 blur-[120px]" />
+      <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] rounded-full bg-indigo-600/10 blur-[120px]" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[60%] h-[60%] rounded-full bg-purple-600/5 blur-[150px]" />
+      
+      {/* Intentional floating glassmorphic shapes */}
+      {[...Array(5)].map((_, i) => (
+        <motion.div
+          key={i}
+          className="absolute bg-white/5 border border-white/10 backdrop-blur-3xl rounded-full"
+          initial={{ 
+            x: `${15 + i * 20}%`, 
+            y: `${20 + (i % 3) * 25}%`,
+            rotate: 0,
+            scale: 0.8 + Math.random() * 0.4
+          }}
+          animate={{ 
+            y: ["0%", "5%", "0%"],
+            rotate: [0, 5, -5, 0],
+            scale: [1, 1.05, 1],
+          }}
+          transition={{ 
+            duration: 10 + i * 2, 
+            repeat: Infinity, 
+            ease: "easeInOut" 
+          }}
+          style={{
+            width: `${100 + i * 40}px`,
+            height: `${100 + i * 40}px`,
+          }}
+        />
+      ))}
+    </div>
+  );
+};
 
 const Life = () => {
   const containerRef = React.useRef<HTMLElement>(null);
+  const [isMounted, setIsMounted] = useState(false);
+  
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  const galleryImages: ImageItem[] = useMemo(() => {
+    if (!isMounted) return [];
+    return shuffle(lifeImages).map((img, idx) => ({
+      id: idx + 1,
+      url: img.url,
+      title: img.title
+    }));
+  }, [isMounted]);
+  
   return (
     <section
       ref={containerRef}
-      className="w-full py-20 scroll-mt-4"
+      className="w-full min-h-screen py-16 flex flex-col justify-center scroll-mt-4 relative overflow-hidden"
       id="life"
-      aria-labelledby="contact-heading"
+      aria-labelledby="life-heading"
       role="region"
     >
-      <div className="rounded-4xl py-20 w-full flex flex-col items-center text-center" style={{ backgroundImage: `url(${bgImage.src})` }}>
-        <div className="flex flex-col justify-center items-center w-full">
+      <GlassmorphicBackground />
+
+      <div className="relative z-10 w-full flex flex-col items-center">
+        <div className="flex flex-col justify-center items-center w-full px-6 mb-16 max-w-5xl mx-auto">
           <VariableProximity
             label={"Beyond debugging and development"}
-            className={"text-3xl sm:text-4xl md:text-5xl mb-8 text-white font-heading font-bold text-center"}
+            className={"text-4xl sm:text-6xl md:text-7xl text-white font-heading font-black text-center leading-tight tracking-tighter"}
             fromFontVariationSettings="'wght' 400, 'opsz' 9"
             toFontVariationSettings="'wght' 1000, 'opsz' 40"
             containerRef={containerRef as React.RefObject<HTMLElement>}
-            radius={100}
+            radius={150}
             falloff="linear"
           />
+          
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="relative mt-8"
+          >
+            <div className="absolute -inset-1 blur-lg bg-linear-to-r from-blue-500 to-indigo-500 opacity-30 animate-pulse" />
+            <p className="relative px-6 py-2 text-sm sm:text-base md:text-lg font-bold tracking-[0.2em] uppercase bg-black/40 backdrop-blur-md border border-white/10 rounded-full text-white/90">
+              Driven by flavors, movement, and journeys with meaning
+            </p>
+          </motion.div>
         </div>
 
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.3 }}
-          className="mt-6 text-md sm:text-xl font-bold"
-          style={{ color: colors.blue.dark }}
-        >
-          Driven by flavors, movement, and journeys with meaning
-        </motion.p>
-
-        <div className="max-w-screen my-6">
-          <ImageSlider />
-        </div>
-
-        {/* Life Interests SVGs */}
-        <div className="flex justify-center gap-12 md:gap-24 flex-wrap pb-12">
-          {/* Books */}
-          <motion.div
-            whileHover={{ scale: 1.1 }}
-            className="flex flex-col items-center gap-4 text-white/80 hover:text-white transition-colors"
-          >
-            <div className="w-20 h-20 md:w-24 md:h-24 rounded-full glass flex items-center justify-center neumorphic shadow-white/10 hover:shadow-white/30 transition-shadow duration-300">
-              <BookOpen className="w-10 h-10 md:w-12 md:h-12" />
-            </div>
-            <span className="font-body font-bold text-sm tracking-widest textShadow">BOOKS</span>
-          </motion.div>
-
-          {/* Indian History & Culture */}
-          <motion.div
-            whileHover={{ scale: 1.1 }}
-            className="flex flex-col items-center gap-4 text-white/80 hover:text-white transition-colors"
-          >
-            <div className="w-20 h-20 md:w-24 md:h-24 rounded-full glass flex items-center justify-center neumorphic shadow-white/10 hover:shadow-white/30 transition-shadow duration-300">
-              <Landmark className="w-10 h-10 md:w-12 md:h-12" />
-            </div>
-            <span className="font-body font-bold text-sm tracking-widest textShadow uppercase text-center">Indian Culture<br />& History</span>
-          </motion.div>
-
-          {/* Batman */}
-          <motion.div
-            whileHover={{ scale: 1.1 }}
-            className="flex flex-col items-center gap-4 text-white/80 hover:text-white transition-colors"
-          >
-            <div className="w-20 h-20 md:w-24 md:h-24 rounded-full glass flex items-center justify-center neumorphic shadow-white/10 hover:shadow-white/30 transition-shadow duration-300">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="currentColor" className="w-10 h-10 md:w-14 md:h-14">
-                <path d="M508.4 207.6c-4.4-4-11.2-5.6-17.6-4.8c-26 3.6-56 12.8-82.4 28.8c-20-13.6-43.6-26.4-69.6-36.8c12.4-23.2 24.8-49.6 36-79.6c2.4-6 0-12.8-5.6-16.4c-5.6-3.6-13.2-3.2-18.4 1.2c-15.2 12.4-30 25.6-44 39.6c-5.6-7.2-11.2-12-16.8-14.8c-7.6-4-15.6-6-23.6-6v38.8c0 2.8-2.4 5.2-5.2 5.2c-2.8 0-5.2-2.4-5.2-5.2V118.8c-8 0-16 2-23.6 6c-5.6 2.8-11.2 7.6-16.8 14.8c-14-14-28.8-27.2-44-39.6c-5.2-4.4-12.8-4.8-18.4-1.2c-5.6 3.6-8 10.4-5.6 16.4c11.2 30 23.6 56.4 36 79.6c-26 10.4-49.6 23.2-69.6 36.8c-26.4-16-56.4-25.2-82.4-28.8c-6.4-.8-13.2.8-17.6 4.8c-4.4 4-6.4 10.8-4.8 17.2C13.6 288 32.8 322 66 348c27.6 21.6 63.2 34 102.8 34c22 0 42.8-5.2 61.6-14c11.6-5.6 22-12.8 30.8-20.8c8.8 8 19.2 15.2 30.8 20.8c18.8 8.8 39.6 14 61.6 14c39.6 0 75.2-12.4 102.8-34c33.2-26 52.4-60 67.2-122.8c1.6-6.4-.4-13.2-4.8-17.2z" />
-              </svg>
-            </div>
-            <span className="font-body font-bold text-sm tracking-widest textShadow uppercase">Batman</span>
-          </motion.div>
+        {/* Masonry Scroller Section */}
+        <div className="w-full">
+          {isMounted && <MasonryScroller images={galleryImages} />}
         </div>
       </div>
     </section>

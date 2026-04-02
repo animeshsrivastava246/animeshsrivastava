@@ -2,7 +2,7 @@
 import React, { useRef, useEffect } from "react";
 import { motion, useInView, Variants, AnimatePresence } from "framer-motion";
 import VariableProximity from "../animations/VariableProximity";
-import { MapPin, BriefcaseBusiness, GraduationCap, Search, TrendingUp, Coffee, Sparkles, Palmtree, Music, Camera, Github, BookOpen, Gamepad2 } from "lucide-react";
+import { MapPin, BriefcaseBusiness, GraduationCap, Search, TrendingUp, Coffee, Sparkles, Palmtree, Music, Camera, BookOpen, Gamepad2 } from "lucide-react";
 
 const IconMap: Record<string, any> = {
   Coffee,
@@ -10,7 +10,6 @@ const IconMap: Record<string, any> = {
   Palmtree,
   Music,
   Camera,
-  Github,
   BookOpen,
   Gamepad2,
 };
