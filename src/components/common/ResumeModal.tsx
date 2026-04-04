@@ -3,6 +3,7 @@
 import { useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { X, ExternalLink } from "lucide-react";
+import { basicDetails } from "@/src/data/basic";
 
 type Props = {
   open: boolean;
@@ -75,31 +76,15 @@ export default function ResumeModal({ open, onClose }: Props) {
             {/* TOP BAR */}
 
             <div className="flex items-center justify-between px-6 py-4 border-b border-border/50 bg-white/5 dark:bg-black/20 backdrop-blur-md relative z-10">
-
-              <span className="font-heading font-bold text-lg bg-clip-text text-transparent bg-linear-to-r from-blue-400 to-purple-400">
-                Resume.pdf
-              </span>
-
-              <div className="flex gap-4">
-
-                <a
-                  href="/resume.pdf"
-                  target="_blank"
-                  className="flex items-center gap-2 text-sm px-3 py-1 rounded-full bg-muted hover:bg-muted/70 transition"
-                >
-                  <ExternalLink size={16} />
-                  Open
-                </a>
-
-                <button
-                  onClick={onClose}
-                  className="w-8 h-8 rounded-full bg-muted hover:bg-muted/70 flex items-center justify-center transition"
-                >
-                  <X size={18} />
-                </button>
-
-              </div>
-
+              <a
+                href="/resume.pdf"
+                target="_blank"
+                className="text-2xl font-bold font-heading flex items-center gap-2"
+                data-cursor="Open Resume"
+              >
+                {basicDetails.name} - Resume <ExternalLink size={24} />
+              </a>
+              <X data-cursor="Close" onClick={onClose} size={24} />
             </div>
 
 

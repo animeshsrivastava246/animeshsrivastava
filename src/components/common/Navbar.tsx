@@ -88,7 +88,7 @@ const Navbar = ({
     });
   };
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     updatePosition("home");
   }, []);
 
@@ -239,7 +239,7 @@ const Navbar = ({
 
           {/* PROFILE */}
 
-          <motion.a href="#home" className={`flex items-center gap-2 transition-all duration-300 ${activeSection === "home" ? "scale-[1.1] translate-x-2" : "hover:scale-[1.05] hover:translate-x-1"}`} onClick={(e) => {
+          <motion.a data-cursor="Home" href="#home" className={`flex items-center gap-2 transition-all duration-300 ${activeSection === "home" ? "scale-[1.1] translate-x-2" : "hover:scale-[1.05] hover:translate-x-1"}`} onClick={(e) => {
             e.preventDefault();
             handleClick("home");
           }}>
@@ -283,6 +283,7 @@ const Navbar = ({
                           e.preventDefault();
                           handleClick(label);
                         }}
+                        data-cursor={label}
                         className={`px-2.5 py-1 rounded-full text-md font-semibold transition-all duration-200
                          
                          ${active
@@ -331,7 +332,7 @@ const Navbar = ({
           {/* RIGHT */}
 
           <div className="hidden md:flex items-center gap-3">
-            <ThemeToggle />
+            <ThemeToggle/>
 
             <button
               onClick={() => setIsBlogsModalOpen(true)}
@@ -341,6 +342,7 @@ const Navbar = ({
             shadow-lg hover:shadow-primary/20
             transition-all duration-300 hover:scale-[1.02] active:scale-95
             cursor-pointer"
+              data-cursor="Read Blogs"
             >
               Blogs
             </button>
@@ -348,6 +350,7 @@ const Navbar = ({
             <motion.button
               whileHover={{ scale: 1.05 }}
               onClick={() => setIsResumeModalOpen(true)}
+              data-cursor="View Resume"
               className="group relative overflow-hidden w-full sm:w-auto p-2 rounded-4xl 
     bg-linear-to-r from-blue-600 to-purple-600 
     text-white font-semibold tracking-wide

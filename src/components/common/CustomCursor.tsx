@@ -72,7 +72,7 @@ export default function CustomCursor() {
         className="pointer-events-none fixed z-9999 flex items-center justify-center mix-blend-difference"
         style={{ x: ringX, y: ringY, translateX: "-50%", translateY: "-50%" }}
         animate={{
-          width:  isHovering ? 52 : 30,
+          width: isHovering ? 52 : 30,
           height: isHovering ? 52 : 30,
         }}
         transition={{ type: "spring", damping: 20, stiffness: 300 }}
@@ -90,16 +90,16 @@ export default function CustomCursor() {
 
       {/* ── Inner dot ── */}
       <motion.div
-        className="pointer-events-none fixed z-9999"
+        className="pointer-events-none fixed z-9999 mix-blend-difference"
         style={{ x: dotX, y: dotY, translateX: "-50%", translateY: "-50%" }}
         animate={{
-          width:   isHovering ? 5 : 7,
-          height:  isHovering ? 5 : 7,
+          width: isHovering ? 5 : 7,
+          height: isHovering ? 5 : 7,
           opacity: isHovering ? 0.6 : 1,
         }}
         transition={{ type: "spring", damping: 40, stiffness: 600 }}
       >
-        <div className="w-full h-full rounded-full bg-white" />
+        <div className="w-full h-full rounded-full border-4 border-white" />
       </motion.div>
     </div>
   );

@@ -162,7 +162,7 @@
   border: 1px solid color-mix(in srgb, var(--foreground) 10%, transparent);
   box-shadow:
     8px 8px 16px var(--neu-shadow),
-    -8px -8px 16px var(--neu-highlight),
+    -4px -4px 8px var(--neu-highlight),
     inset 0 1px 2px color-mix(in srgb, var(--foreground) 20%, transparent),
     inset 0 -1px 2px color-mix(in srgb, var(--background) 20%, transparent);
   border-radius: 2rem / 1.5rem;

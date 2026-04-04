@@ -24,11 +24,7 @@ const ExperienceCard = ({ exp, index }: { exp: Experience; index: number }) => {
       <div className="absolute left-[-8px] top-[20px] w-4 h-4 rounded-sm border border-primary/40 z-0 animate-[spin_4s_linear_infinite] group-hover:border-blue-400" />
 
       {/* Compact HUD Card */}
-      <div className="bg-card/20 border-l-2 border-l-primary/50 border-y border-y-border/20 border-r border-r-border/20 text-card-foreground p-5 rounded-r-2xl backdrop-blur-md shadow-lg hover:shadow-[0_0_20px_rgba(59,130,246,0.15)] hover:-translate-y-1 hover:border-l-blue-500 transition-all duration-300 relative z-0 overflow-hidden group/card glass">
-
-        {/* Scanning Line Effect */}
-        <div className="absolute top-0 left-0 w-full h-px bg-linear-to-r from-transparent via-blue-500/30 to-transparent -translate-y-full group-hover:animate-[scan_2s_ease-in-out_infinite]" />
-
+      <div className="glass p-5 rounded-r-2xl">
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 gap-2 relative z-10">
           <div>
             <div className="flex items-center gap-2 mb-1">
@@ -57,7 +53,7 @@ const ExperienceCard = ({ exp, index }: { exp: Experience; index: number }) => {
 
         <ul className="space-y-2 mb-4 text-muted-foreground text-xs sm:text-sm font-mono text-left relative z-10">
           {exp.description.map((desc, i) => (
-            <li key={i} className="flex gap-2 leading-relaxed group/item">
+            <li key={"Experience" + exp.company + i} className="flex gap-2 leading-relaxed group/item">
               <span className="text-primary/70 mt-0.5 shrink-0 opacity-50 group-hover/item:opacity-100 transition-opacity">{">"}</span>
               <span className="group-hover/item:text-foreground/90 transition-colors">{desc}</span>
             </li>
@@ -83,8 +79,6 @@ export default function ExperienceSection() {
   const containerRef = useRef<HTMLElement>(null);
   return (
     <section ref={containerRef} className="py-24 px-4 md:px-8 w-full relative scroll-mt-4" id="experience">
-      {/* Subtle Grid Background for HUD feel */}
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-size-[40px_40px] mask-[radial-gradient(ellipse_50%_50%_at_50%_50%,black_10%,transparent_100%)] pointer-events-none z-[-1]" />
 
       <div className="max-w-3xl mx-auto">
         <motion.div

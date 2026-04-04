@@ -29,6 +29,7 @@ export function ThemeToggle() {
       onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
       className="p-2 cursor-pointer rounded-full text-foreground hover:bg-black/5 dark:hover:bg-white/10 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-primary"
       aria-label="Toggle theme"
+      data-cursor={resolvedTheme === "dark" ? "Light" : "Dark"}
     >
       <div className="relative w-5 h-5">
         <Sun

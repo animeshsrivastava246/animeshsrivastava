@@ -90,7 +90,7 @@ export default function SkillsStore() {
             >
               {searchFilter(filteredData.featured).map((item, idx) => (
                 <motion.div
-                  key={idx}
+                  key={"Card" + item.name + idx}
                   whileHover={{ y: -5 }}
                   className="flex flex-col justify-between h-full space-y-4 glass neumorphic border border-border rounded-3xl p-6 bg-card/40 shadow-[8px_8px_16px_var(--neu-shadow),-8px_-8px_16px_var(--neu-highlight)] hover:shadow-[12px_12px_24px_var(--neu-shadow),-12px_-12px_24px_var(--neu-highlight)] transition-all duration-300"
                 >
@@ -141,7 +141,7 @@ export default function SkillsStore() {
               {searchFilter(filteredData.skills).map((app, index) => (
                 <motion.div
                   whileHover={{ x: 5 }}
-                  key={index}
+                  key={app.name + index}
                   className="flex items-start gap-4 border-b border-border pb-4 transition-transform duration-300"
                 >
                   <div className="text-3xl font-semibold flex items-center justify-center w-12 h-12 rounded-xl bg-card/50 text-primary neumorphic glass shadow-md border border-border">
@@ -167,7 +167,7 @@ export default function SkillsStore() {
               {searchFilter(filteredData.learning).map((skill, index) => (
                 <motion.div
                   whileHover={{ x: 5 }}
-                  key={index}
+                  key={"Learning" + skill.name + index}
                   className="flex items-start gap-4 border-b border-border pb-4 transition-transform duration-300"
                 >
                   <div className="text-3xl font-semibold flex items-center justify-center w-12 h-12 rounded-xl bg-card/50 text-blue-400 neumorphic glass shadow-md border border-border">
@@ -191,7 +191,7 @@ export default function SkillsStore() {
               {searchFilter(filteredData.recent).map((skill, index) => (
                 <motion.div
                   whileHover={{ x: 5 }}
-                  key={index}
+                  key={"Recent" + skill.name + index}
                   className="flex items-start gap-4 border-b border-border pb-4 transition-transform duration-300"
                 >
                   <div className="text-3xl font-semibold flex items-center justify-center w-12 h-12 rounded-xl bg-card/50 text-purple-400 neumorphic glass shadow-md border border-border">

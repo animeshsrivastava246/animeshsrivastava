@@ -82,7 +82,7 @@ export default function SocialMedia() {
     <div className="w-fit flex items-center flex-wrap justify-center gap-1 p-1 rounded-full glass-island border border-border/50 bg-card/40 shadow-xl">
       {navItems.map((item, idx) => (
         <motion.a
-          key={idx}
+          key={"Social" + item.label + idx}
           href={item.link}
           target="_blank"
           rel="noopener noreferrer"

@@ -12,7 +12,7 @@ const Hero = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   return (
     <section
-      className="w-full border-2 border-background rounded-4xl py-4 md:py-6 min-h-[calc(100vh-80px)] flex items-center justify-center relative overflow-hidden scroll-mt-6"
+      className="w-full glass border-2 border-background rounded-4xl py-4 md:py-6 min-h-[85vh] flex items-center justify-center relative overflow-hidden scroll-mt-6"
       aria-label="Hero Section main container"
       id="home"
     >
@@ -46,7 +46,7 @@ const Hero = () => {
               Available for new opportunities
             </motion.div>
 
-            <h2  className="text-4xl/12 sm:text-5xl/14 lg:text-7xl/18 font-bold font-heading leading-tight tracking-tight text-foreground">
+            <h2 className="text-4xl/12 sm:text-5xl/14 lg:text-7xl/18 font-bold font-heading leading-tight tracking-tight text-foreground">
               <VariableProximity
                 label={"Hi, I'm"}
                 className="text-wrap"
@@ -92,6 +92,7 @@ const Hero = () => {
               href="#projects"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
+              data-cursor="Projects"
               onClick={(e) => {
                 e.preventDefault();
                 const target = document.getElementById("projects");
@@ -116,6 +117,7 @@ const Hero = () => {
               href="#contact"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
+              data-cursor="Contact"
               onClick={(e) => {
                 e.preventDefault();
                 const target = document.getElementById("contact");
@@ -148,6 +150,7 @@ const Hero = () => {
             <Image
               src={myPic}
               alt={basicDetails.name}
+              data-cursor={basicDetails.name}
               fill
               priority
               className="object-cover hover:scale-101 transition-transform duration-700 ease-in-out"
@@ -158,10 +161,10 @@ const Hero = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1, duration: 0.5 }}
-              className="absolute rounded-4xl bottom-10 left-14 md:left-16 glass p-3 flex items-center gap-1 shadow-xl cursor-pointer hover:scale-110 transition-scale duration-300"
+              className="absolute rounded-4xl bottom-10 left-14 md:left-16 glass p-2 flex items-center gap-1 shadow-xl cursor-pointer hover:scale-110 transition-scale duration-300"
               onClick={() => document.getElementById("experience")?.scrollIntoView({ behavior: "smooth" })}
             >
-              <span className="text-sm font-bold text-foreground leading-tight">{basicDetails.experienceYears} Years Exp.</span>
+              <span className="text-sm font-bold text-foreground leading-tight" data-cursor="View Experience">{basicDetails.experienceYears} Years Exp.</span>
             </motion.div>
           </div>
 

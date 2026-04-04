@@ -28,7 +28,7 @@ const GlassmorphicBackground = () => {
       {/* Intentional floating glassmorphic shapes */}
       {[...Array(5)].map((_, i) => (
         <motion.div
-          key={i}
+          key={"Life" + i}
           className="absolute bg-white/5 border border-white/10 backdrop-blur-3xl rounded-full"
           initial={{ 
             x: `${15 + i * 20}%`, 

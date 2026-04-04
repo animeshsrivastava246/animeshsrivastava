@@ -55,7 +55,7 @@ const LearningTicker = ({ items }: { items: string[] }) => {
     <div className="flex-1 h-full flex items-center overflow-hidden ml-2">
       <AnimatePresence mode="wait">
         <motion.span
-          key={index}
+          key={"About" + items[index] + index}
           initial={{ y: 15, opacity: 0, filter: "blur(4px)" }}
           animate={{ y: 0, opacity: 1, filter: "blur(0px)" }}
           exit={{ y: -15, opacity: 0, filter: "blur(4px)" }}
@@ -185,7 +185,7 @@ const About = () => {
           <div className="space-y-5 relative z-10">
             {basicDetails.experience.map((exp, idx) => (
               <motion.div
-                key={idx}
+                key={"Experience" + exp.company + idx}
                 whileHover={{ x: 5 }}
                 className="flex items-start gap-4 group/item"
               >
@@ -224,7 +224,7 @@ const About = () => {
               </div>
             </div>
             <div className="flex gap-1">
-              {[1, 2, 3].map(i => <div key={i} className="w-1.5 h-1.5 rounded-full bg-white/5" />)}
+              {[1, 2, 3].map(i => <div key={"About - Currently Learning" + i} className="w-1.5 h-1.5 rounded-full bg-white/5" />)}
             </div>
           </div>
 
@@ -274,7 +274,7 @@ const About = () => {
               const Icon = IconMap[item.icon as string] || IconMap.Sparkles;
               return (
                 <motion.div
-                  key={idx}
+                  key={"About" + item.label + idx}
                   whileHover={{ scale: 1.02, translateY: -2 }}
                   className="p-4 rounded-4xl glass"
                 >

@@ -23,6 +23,7 @@ const Cooking = () => {
     <div
       ref={ref}
       className="flex flex-col md:flex-row justify-between items-center h-full p-6 md:p-8 text-center gap-6 md:gap-8"
+      data-cursor="Developing"
     >
       <div className="w-full max-w-[200px] md:max-w-72 blur-[1px] drop-shadow-2xl">
         <video
@@ -81,13 +82,14 @@ const Projects = ({ onSelectProject }: { onSelectProject: (id: string) => void }
 
             return (
               <motion.div
-                key={index}
+                key={"Projects" + project.title + index}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ delay: index * 0.1, duration: 0.5 }}
                 className={`group relative flex flex-col glass neumorphic border border-border/50 rounded-3xl overflow-hidden cursor-pointer hover:-translate-y-2 hover:shadow-xl hover:shadow-primary/5 transition-all duration-500 z-0 ${colSpan} ${rowSpan}`}
                 onClick={() => onSelectProject(project.id)}
+                data-cursor={project.title}
               >
                 {/* Animated Glowing Orb Background */}
                 <motion.div
@@ -137,7 +139,7 @@ const Projects = ({ onSelectProject }: { onSelectProject: (id: string) => void }
                       <div className="flex flex-wrap gap-2 relative z-10">
                         {project.tech.map((tag, i) => (
                           <span
-                            key={i}
+                            key={"Projects - Project Tech" + project.title + i}
                             className="text-xs font-semibold font-body rounded-md px-2.5 py-1 border border-white/20 bg-black/40 backdrop-blur-md text-white shadow-sm"
                           >
                             {tag}
@@ -177,7 +179,7 @@ const Projects = ({ onSelectProject }: { onSelectProject: (id: string) => void }
                       <div className="flex flex-wrap gap-2 mt-auto">
                         {project.tech.map((tag, i) => (
                           <span
-                            key={i}
+                            key={"Projects Landscape - Project Tech" + project.title + i}
                             className="text-xs font-medium font-body rounded-md px-2.5 py-1 border border-border/60 bg-muted/50 text-muted-foreground"
                           >
                             {tag}

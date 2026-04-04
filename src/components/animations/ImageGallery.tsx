@@ -46,7 +46,7 @@ export default function ImageSlider() {
       >
         {repeatedImages.map((item, idx) => (
           <motion.div
-            key={idx}
+            key={"Image" + item.title + idx}
             className="min-w-[220px] rounded-2xl shadow-xl cursor-pointer bg-background p-4 flex -rotate-4 flex-col items-center"
             whileHover={{ scale: 1.5, y: -8, rotate: 3 }}
             onHoverStart={() => setSpeed(10)}

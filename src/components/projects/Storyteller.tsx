@@ -10,6 +10,8 @@ import { MdArrowBackIos } from "react-icons/md"
 const Storyteller = ({ onBack }: { onBack: () => void }) => {
   return (
     <div className="w-full font-sans max-w-6xl mx-auto pb-12 pt-6 overflow-hidden">
+      {/* Subtle Grid Background for HUD feel */}
+      <aside className="fixed inset-0 pointer-events-none z-[-1] blur-[0.8px] bg-[linear-gradient(var(--primary)_2px,transparent_2px),linear-gradient(90deg,var(--primary)_2px,transparent_2px)] opacity-[0.2] dark:opacity-[0.2] bg-size-[32px_32px] mask-[radial-gradient(ellipse_50%_50%_at_50%_50%,black_50%,transparent_120%)]" />
       <motion.button
         initial={{ opacity: 0, x: -20 }}
         animate={{ opacity: 1, x: 0 }}
@@ -51,9 +53,9 @@ const Storyteller = ({ onBack }: { onBack: () => void }) => {
             <Image
               src={coverImage}
               alt="Storyteller Banner"
-              layout="fill"
-              objectFit="contain"
-              className="group-hover:scale-105 transition-transform duration-700 drop-shadow-2xl"
+              fill
+              loading="eager"
+              className="object-contain group-hover:scale-105 transition-transform duration-700 drop-shadow-2xl"
               sizes="(max-width: 768px) 100vw, 400px"
             />
           </div>
@@ -91,10 +93,10 @@ const Storyteller = ({ onBack }: { onBack: () => void }) => {
             <h3 className="font-heading font-bold text-xl text-foreground mb-4">Screenshots</h3>
             <div className="grid grid-cols-2 gap-4">
               <div className="relative w-full aspect-9/19 rounded-xl overflow-hidden glass border border-white/5 bg-background shadow-inner">
-                <Image src={storyImage} alt="Story view" layout="fill" objectFit="cover" />
+                <Image src={storyImage} alt="Story view" fill className="object-contain" sizes="(max-width: 768px) 100vw, 400px" />
               </div>
               <div className="relative w-full aspect-9/19 rounded-xl overflow-hidden glass border border-white/5 bg-background shadow-inner">
-                <Image src={historyImage} alt="History view" layout="fill" objectFit="cover" />
+                <Image src={historyImage} alt="History view" fill className="object-contain" sizes="(max-width: 768px) 100vw, 400px" />
               </div>
             </div>
           </div>

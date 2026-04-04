@@ -8,6 +8,8 @@ import { MdArrowBackIos } from "react-icons/md"
 const DisneyUI = ({ onBack }: { onBack: () => void }) => {
   return (
     <div className="w-full font-sans max-w-6xl mx-auto pb-12 pt-6 overflow-hidden">
+      {/* Subtle Grid Background for HUD feel */}
+      <aside className="fixed inset-0 pointer-events-none z-[-1] blur-[0.8px] bg-[linear-gradient(var(--primary)_2px,transparent_2px),linear-gradient(90deg,var(--primary)_2px,transparent_2px)] opacity-[0.2] dark:opacity-[0.2] bg-size-[32px_32px] mask-[radial-gradient(ellipse_50%_50%_at_50%_50%,black_50%,transparent_120%)]" />
       <motion.button
         initial={{ opacity: 0, x: -20 }}
         animate={{ opacity: 1, x: 0 }}
@@ -27,9 +29,9 @@ const DisneyUI = ({ onBack }: { onBack: () => void }) => {
         <Image
           src={coverImage}
           alt="DisneyUI Clone Banner"
-          layout="fill"
-          objectFit="cover"
-          className="group-hover:scale-105 transition-transform duration-700 opacity-60"
+          fill
+          loading="eager"
+          className="object-contain group-hover:scale-105 transition-transform duration-700 opacity-60"
           sizes="(max-width: 768px) 100vw, 400px"
         />
         <div className="absolute inset-0 bg-linear-to-t from-background via-background/40 to-transparent" />

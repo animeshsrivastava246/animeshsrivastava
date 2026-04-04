@@ -3,6 +3,7 @@ import Image from "next/image";
 import { FiSearch } from "react-icons/fi";
 import user from "../../public/og-image.webp";
 import { FiMinus, FiSquare, FiX } from "react-icons/fi";
+import { basicDetails } from "../data/basic";
 
 const windowControls = [
   { color: "bg-red-500", shadow: "shadow-red-500/50", icon: <FiX size={12} /> },
@@ -35,7 +36,7 @@ export default function SkillsSidebar({
       <div className="flex gap-1.5 mb-2">
         {windowControls.map((control, index) => (
           <div
-            key={index}
+            key={control.toString() + index}
             className={`w-4 h-4 rounded-full flex items-center justify-center 
       ${control.color} ${control.shadow} shadow-md cursor-not-allowed
       text-black/70`}
@@ -59,6 +60,7 @@ export default function SkillsSidebar({
           <div
             key={name}
             onClick={() => setSelectedCategory(name)}
+            data-cursor={name}
             className={`flex items-center gap-4 px-4 py-3 rounded-2xl cursor-pointer transition-all duration-300 border ${selectedCategory === name
               ? "bg-primary text-primary-foreground neumorphic-inset border-primary/20 font-extrabold scale-[1.05]"
               : "bg-card/30 text-muted-foreground font-light hover:text-foreground neumorphic border-border/50 hover:scale-[1.1]"
@@ -70,14 +72,14 @@ export default function SkillsSidebar({
         ))}
       </div>
       <div className="mt-auto border-t border-border/50">
-        <div onClick={() => document.getElementById("about")?.scrollIntoView({ behavior: "smooth" })}
+        <div onClick={() => document.getElementById("about")?.scrollIntoView({ behavior: "smooth" })} data-cursor="About Me"
           className="pt-4 flex items-center gap-2 cursor-pointer opacity-75 hover:opacity-100 hover:scale-[1.05] transition-all duration-300">
           <Image
             src={user}
             alt="user profile image"
             className="w-12 h-12 rounded-full border-2 border-primary/20 p-0.5 object-cover"
           />
-          <span className="text-xl font-bold text-foreground ">Er. Animesh</span>
+          <span className="text-xl font-bold text-foreground ">Er. {basicDetails.name.split(" ")[0]}</span>
         </div>
       </div>
     </aside>

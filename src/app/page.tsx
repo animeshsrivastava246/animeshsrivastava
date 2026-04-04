@@ -29,6 +29,11 @@ function HomeContent() {
   );
 
   const [prevProject, setPrevProject] = useState<string | null>(null);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   useEffect(() => {
     if (selectedProject !== "none") {
@@ -92,6 +97,17 @@ function HomeContent() {
     return <ProjectsSection onSelectProject={openProject} />;
   };
 
+  if (!mounted) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-background">
+        <div className="flex flex-col items-center gap-4">
+          <div className="w-12 h-12 border-4 border-primary/30 border-t-primary rounded-full animate-spin" />
+          <p className="text-muted-foreground font-mono text-sm animate-pulse">Initializing HUD...</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <>
       <DeviceNotice />
@@ -113,6 +129,8 @@ function HomeContent() {
           >
             {selectedProject === "none" && (
               <>
+                {/* Subtle Grid Background for HUD feel */}
+                <aside className="fixed inset-0 pointer-events-none z-[-1] blur-[0.8px] bg-[linear-gradient(var(--primary)_2px,transparent_2px),linear-gradient(90deg,var(--primary)_2px,transparent_2px)] opacity-[0.2] dark:opacity-[0.2] bg-size-[32px_32px] mask-[radial-gradient(ellipse_50%_50%_at_50%_50%,black_50%,transparent_120%)]" />
 
                 <Hero />
 
@@ -144,7 +162,14 @@ function HomeContent() {
 
 export default function Home() {
   return (
-    <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Loading...</div>}>
+    <Suspense fallback={
+      <div className="min-h-screen flex items-center justify-center bg-background">
+        <div className="flex flex-col items-center gap-4">
+          <div className="w-12 h-12 border-4 border-primary/30 border-t-primary rounded-full animate-spin" />
+          <p className="text-muted-foreground font-mono text-sm animate-pulse">Initializing HUD...</p>
+        </div>
+      </div>
+    }>
       <HomeContent />
     </Suspense>
   );

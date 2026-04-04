@@ -15,7 +15,7 @@ const Contact = () => {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.SubmitEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
 
@@ -35,6 +35,9 @@ const Contact = () => {
       setStatus("success");
       toast.success("Message sent successfully!");
       (e.target as HTMLFormElement).reset();
+      setTimeout(() => {
+        setStatus("idle");
+      }, 3000);
     }
   };
 
@@ -42,12 +45,11 @@ const Contact = () => {
     <section
       id="contact"
       ref={ref}
-      className="w-full rounded-4xl border-2 border-background py-24 px-4 md:px-8 flex items-center justify-center relative overflow-hidden scroll-mt-4"
+      className="w-full glass rounded-4xl border-2 border-background py-24 px-4 md:px-8 flex items-center justify-center relative overflow-hidden scroll-mt-4"
       aria-labelledby="contact-heading"
       role="region"
     >
-      {/* Background gradients for the final touch */}
-      <div className="absolute top-[20%] right-[-10%] w-[50%] h-[50%] bg-primary/10 rounded-full blur-[120px] pointer-events-none" />
+      {/* Background gradient */}
       <div className="absolute bottom-[-10%] left-[-10%] w-[50%] h-[50%] bg-blue-500/10 rounded-full blur-[120px] pointer-events-none" />
 
       <div className="max-w-6xl w-full grid grid-cols-1 lg:grid-cols-[4fr_3fr] gap-12 lg:gap-16 items-center z-10">
@@ -112,6 +114,7 @@ const Contact = () => {
               <span className="text-sm font-medium text-muted-foreground">Or email me directly at:</span>
               <button
                 type="button"
+                data-cursor="Copy Email"
                 onClick={() => {
                   navigator.clipboard.writeText(basicDetails.email);
                   toast.success("Email copied to clipboard!");
@@ -166,6 +169,7 @@ const Contact = () => {
                   id="name"
                   name="name"
                   type="text"
+                  data-cursor="Your Name"
                   required
                   maxLength={100}
                   placeholder="John Doe"
@@ -178,6 +182,7 @@ const Contact = () => {
                   id="senderEmail"
                   name="senderEmail"
                   type="email"
+                  data-cursor="Your Email"
                   required
                   maxLength={500}
                   placeholder="john@example.com"
@@ -191,9 +196,10 @@ const Contact = () => {
               <textarea
                 id="message"
                 name="message"
+                data-cursor="Your Message"
                 required
                 maxLength={5000}
-                placeholder="Tell me about your project..."
+                placeholder="What are we going to build..."
                 rows={5}
                 className="bg-background/80 border border-border/50 rounded-2xl px-5 py-4 text-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 transition-all font-body resize-none neumorphic-inset"
               />
@@ -206,6 +212,7 @@ const Contact = () => {
                 disabled={status === "loading" || status === "success"}
                 whileHover={{ scale: 0.95 }}
                 whileTap={{ scale: 0.9 }}
+                data-cursor="Send"
                 className="group relative overflow-hidden w-full sm:w-auto px-9 py-4 rounded-full 
     bg-linear-to-r from-blue-600 to-purple-600 
     text-white font-semibold tracking-wide

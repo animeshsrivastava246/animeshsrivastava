@@ -100,10 +100,11 @@ export default function StatsSection() {
             viewport={{ once: true }}
             className="relative flex flex-col items-center group cursor-pointer"
             key={stat.key}
+            data-cursor={stat.tooltip}
           >
             {/* Tooltip */}
             {stat.tooltip && (
-              <div className="absolute -top-10 bg-black text-white text-xs px-2 py-1 rounded-md opacity-0 group-hover:opacity-100 transition-opacity z-20 pointer-events-none whitespace-nowrap">
+              <div className="absolute -top-10 left-1/2 -translate-x-1/2 bg-background border border-border/50 text-foreground text-[8px] font-medium p-2 rounded-lg opacity-0 group-hover:opacity-100 transition-all pointer-events-none z-20 whitespace-nowrap shadow-lg">
                 {stat.tooltip}
               </div>
             )}

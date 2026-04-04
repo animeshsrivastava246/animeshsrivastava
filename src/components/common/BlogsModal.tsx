@@ -139,7 +139,7 @@ export default function BlogsModal({ isOpen, closeModal }: BlogsModalProps) {
                             </div>
                           )}
 
-                          <div className="p-5 flex flex-col grow relative pb-12">
+                          <div className="p-5 flex flex-col grow relative">
                             <h4 className="text-lg font-extrabold font-heading text-foreground group-hover:text-primary transition-colors line-clamp-2 mb-2 pr-2">
                               {blog.title}
                             </h4>
