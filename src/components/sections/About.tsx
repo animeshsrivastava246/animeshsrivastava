@@ -2,7 +2,7 @@
 import React, { useRef, useEffect } from "react";
 import { motion, useInView, Variants, AnimatePresence } from "framer-motion";
 import VariableProximity from "../animations/VariableProximity";
-import { MapPin, BriefcaseBusiness, GraduationCap, Search, TrendingUp, Coffee, Sparkles, Palmtree, Music, Camera, BookOpen, Gamepad2 } from "lucide-react";
+import { MapPin, BriefcaseBusiness, GraduationCap, Search, TrendingUp, CodeXml,  Coffee, Sparkles, Palmtree, Music, Camera, BookOpen, Gamepad2 } from "lucide-react";
 
 const IconMap: Record<string, any> = {
   Coffee,
@@ -12,6 +12,7 @@ const IconMap: Record<string, any> = {
   Camera,
   BookOpen,
   Gamepad2,
+  CodeXml
 };
 import StatsSection from "../StatsSection";
 import { basicDetails } from "../../data/basic";
@@ -290,7 +291,7 @@ const About = () => {
             })}
           </div>
 
-          <p className="mt-8 text-xs italic text-muted-foreground/60 text-center font-body">
+          <p className="pt-6 text-xs italic text-muted-foreground/60 text-center font-body">
             "Software is a tool, but life is the craft."
           </p>
         </motion.div>

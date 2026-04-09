@@ -3,6 +3,7 @@ export const basicDetails = {
   firstName: "Animesh",
   lastName: "Srivastava",
   role: "Cross-Platform Software Developer",
+  metaDescription: "Explore the professional portfolio of Animesh Srivastava, a passionate Software Developer specializing in building high-performance cross-platform applications.",
   shortDescription: "Delivering pixel-perfect, scalable architectures using React, React Native & modern serverless paradigms.",
   longDescription: "Software Developer with 2+ years of experience building and maintaining high-quality web and mobile applications for web, iOS and Android platforms. Proficient in MERN, Java, Python, and modern tech paradigms.",
   heroDescription: "Architecting elegance. \nEngineering scale.",
@@ -56,11 +57,6 @@ export const basicDetails = {
           "label": "Music",
           "icon": "Music",
           "desc": "Constantly hunting for fresh sounds across global genres."
-        },
-        {
-          "label": "Photography",
-          "icon": "Camera",
-          "desc": "Capturing urban stories and architectural symmetry."
         }
       ]
     },
@@ -70,7 +66,7 @@ export const basicDetails = {
       "items": [
         {
           "label": "Open Source",
-          "icon": "Github",
+          "icon": "CodeXml",
           "desc": "Contributing to libraries and tools for the developer community."
         },
         {
@@ -86,7 +82,7 @@ export const basicDetails = {
       ]
     }
   ],
-  learning: ["Rust", "System Design", "WebGL"]
+  learning: ["Rust", "System Design", "Lenis"]
 };
 
 export const LeetcodeSvg = (props: React.SVGProps<SVGSVGElement> & { size?: number | string }) => {

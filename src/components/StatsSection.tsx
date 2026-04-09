@@ -69,19 +69,17 @@ export default function StatsSection() {
   const stats = [
     {
       label: "DSA Problems Solved",
-      key: "leetcode",
+      key: "Leetcode",
       value: statsData.leetcode,
       link: basicDetails.socials.leetcode,
       icon: <LeetcodeSvg size={22} />,
-      tooltip: "Leetcode",
     },
     {
       label: "Blogs Written",
-      key: "blogs",
+      key: "Hashnode",
       value: statsData.blogs,
       link: basicDetails.socials.hashnode,
       icon: <SiHashnode size={22} />,
-      tooltip: "Hashnode",
     },
   ];
 
@@ -99,21 +97,13 @@ export default function StatsSection() {
             transition={{ delay: index * 0.1, duration: 0.5 }}
             viewport={{ once: true }}
             className="relative flex flex-col items-center group cursor-pointer"
-            key={stat.key}
-            data-cursor={stat.tooltip}
+            key={stat.key + stat.icon}
+            data-cursor={stat.key}
           >
-            {/* Tooltip */}
-            {stat.tooltip && (
-              <div className="absolute -top-10 left-1/2 -translate-x-1/2 bg-background border border-border/50 text-foreground text-[8px] font-medium p-2 rounded-lg opacity-0 group-hover:opacity-100 transition-all pointer-events-none z-20 whitespace-nowrap shadow-lg">
-                {stat.tooltip}
-              </div>
-            )}
-
             <div className="text-3xl font-bold flex items-center gap-1.5 tabular-nums">
               <Counter target={stat.value} start={shouldAnimate && dataLoaded} />
               <span className="text-primary/80">{stat.icon}</span>
             </div>
-
             <p className="text-[10px] uppercase tracking-wider font-semibold mt-1 opacity-60">
               {stat.label}
             </p>

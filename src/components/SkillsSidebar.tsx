@@ -78,6 +78,8 @@ export default function SkillsSidebar({
             src={user}
             alt="user profile image"
             className="w-12 h-12 rounded-full border-2 border-primary/20 p-0.5 object-cover"
+            loading="lazy"
+            sizes="96px"
           />
           <span className="text-xl font-bold text-foreground ">Er. {basicDetails.name.split(" ")[0]}</span>
         </div>

@@ -82,11 +82,15 @@
   }
 
   .rounded-3xl {
-    border-radius: 1.25rem / 1.5rem;
+    border-radius: 1.25rem / 1.75rem;
   }
 
   .rounded-4xl {
-    border-radius: 2rem / 2.25rem;
+    border-radius: 2rem / 2.5rem;
+  }
+
+  .rounded-5xl {
+    border-radius: 3rem / 3.5rem;
   }
 
 }

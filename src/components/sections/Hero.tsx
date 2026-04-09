@@ -1,201 +1,123 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
 import React, { useRef } from "react";
 import Image from "next/image";
 import { ArrowRight, Mail } from "lucide-react";
 import myPic from "../../../public/og-image.webp";
 import VariableProximity from "../animations/VariableProximity";
 import { basicDetails } from "../../data/basic";
+import Hero3D from "../animations/Hero3D";
 
 const Hero = () => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"]
+  });
+
+  const opacity = useTransform(scrollYProgress, [0, 0.7], [1, 0.3]);
+  const scale = useTransform(scrollYProgress, [0, 0.7], [1, 0.95]);
+  const y = useTransform(scrollYProgress, [0, 0.7], [0, 60]);
+
   return (
     <section
-      className="w-full glass border-2 border-background rounded-4xl py-4 md:py-6 min-h-[85vh] flex items-center justify-center relative overflow-hidden scroll-mt-6"
-      aria-label="Hero Section main container"
+      ref={sectionRef}
+      className="relative w-full h-dvh overflow-hidden bg-background"
       id="home"
     >
-      <h1 className="sr-only">
-        Animesh Srivastava – Full-Stack Developer Portfolio
-      </h1>
-      {/* Background Decorative Gradients */}
-      <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-blue-500/10 rounded-full blur-[120px] pointer-events-none" />
-      <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-purple-500/10 rounded-full blur-[120px] pointer-events-none" />
+      {/* Background */}
+      <Hero3D />
+      <div className="absolute inset-0 bg-black/30 pointer-events-none z-0" />
+      <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-blue-600/10 rounded-full blur-[60px] pointer-events-none z-0" />
+      <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-indigo-600/10 rounded-full blur-[60px] pointer-events-none z-0" />
+      <div className="relative z-10 w-full h-full flex flex-col justify-center px-4 sm:px-8 md:px-12 lg:px-16 xl:px-24">
 
-      <div className="w-full max-w-7xl px-4 sm:px-6 lg:px-8 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 items-center z-10">
-
-        {/* Left Content Column */}
-        <motion.div
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.8, ease: "easeOut" }}
-          className="flex flex-col justify-center items-start space-y-8"
+        <div
+          ref={containerRef}
+          className="relative w-full h-full flex flex-col justify-center"
         >
-          <div className="space-y-4" ref={containerRef}>
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.2, duration: 0.5 }}
-              className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-green-500/10 text-green-500 text-sm font-semibold border border-green-500/20"
-            >
-              <span className="relative flex h-2 w-2">
-                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-500 opacity-90"></span>
-                <span className="animate-pulse rounded-full h-2 w-2 bg-green-500"></span>
-              </span>
-              Available for new opportunities
-            </motion.div>
+          <motion.div
+            style={
+              typeof window !== "undefined" && window.innerWidth < 768
+                ? { opacity: 1, scale: 1, y: 0 }
+                : { opacity, scale, y }
+            }
+            className="flex flex-col gap-6 will-change-transform"
+          >
+            {/* OG */}
+            <div className="w-40 h-40 rounded-3xl overflow-hidden">
+              <Image
+                src={myPic}
+                alt={basicDetails.name}
+                priority
+                sizes="160px"
+                loading="eager"
+                className="object-cover"
+              />
+            </div>
 
-            <h2 className="text-4xl/12 sm:text-5xl/14 lg:text-7xl/18 font-bold font-heading leading-tight tracking-tight text-foreground">
-              <VariableProximity
-                label={"Hi, I'm"}
-                className="text-wrap"
-                fromFontVariationSettings="'wght' 400, 'opsz' 30"
-                toFontVariationSettings="'wght' 900, 'opsz' 80"
+            {/* Badge */}
+            <div className="flex items-center gap-3 px-5 py-2 glass-island w-fit">
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400" />
+                <span className="relative inline-flex h-2 w-2 rounded-full bg-green-500" />
+              </span>
+              <span className="text-sm font-semibold">
+                Available for Opportunities
+              </span>
+            </div>
+
+            {/* Heading */}
+            <h2 className="text-5xl md:text-8xl font-black leading-[0.9]">
+              <VariableProximity label={"Hi, I'm"}
+                className="block opacity-90 hover:opacity-100 transition-opacity duration-700 text-white"
+                fromFontVariationSettings="'wght' 300, 'opsz' 20"
+                toFontVariationSettings="'wght' 900, 'opsz' 90"
                 containerRef={containerRef as React.RefObject<HTMLDivElement>}
-                radius={50}
-                falloff="gaussian"
-              />
-              <VariableProximity
-                label={basicDetails.firstName}
-                className="block text-transparent bg-clip-text bg-linear-to-r from-purple-700 to-blue-700"
-                fromFontVariationSettings="'wght' 400, 'opsz' 30"
-                toFontVariationSettings="'wght' 900, 'opsz' 80"
+                radius={150}
+                falloff="gaussian" />
+              <VariableProximity label={basicDetails.firstName.toUpperCase()}
+                className="block text-transparent bg-clip-text bg-linear-to-r from-blue-400 via-indigo-400 to-purple-500 pb-2 sm:pb-4 lg:pb-6"
+                fromFontVariationSettings="'wght' 300, 'opsz' 20"
+                toFontVariationSettings="'wght' 900, 'opsz' 90"
                 containerRef={containerRef as React.RefObject<HTMLDivElement>}
-                radius={100}
-                falloff="gaussian"
-              />
-              <VariableProximity
-                label={"Full-Stack\nDeveloper."}
-                className="text-wrap"
-                fromFontVariationSettings="'wght' 400, 'opsz' 30"
-                toFontVariationSettings="'wght' 900, 'opsz' 80"
-                containerRef={containerRef as React.RefObject<HTMLDivElement>}
-                radius={50}
-                falloff="gaussian"
-              />
+                radius={200}
+                falloff="gaussian" />
             </h2>
 
-            <p className="max-w-xl text-lg sm:text-xl/7 text-muted-foreground font-body leading-relaxed">
-              {basicDetails.longDescription}
-            </p>
-          </div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.4, duration: 0.5 }}
-            className="flex flex-col sm:flex-row items-center gap-5 w-full sm:w-auto"
-          >
-            {/* Primary CTA - View Projects */}
-            <motion.a
-              href="#projects"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              data-cursor="Projects"
-              onClick={(e) => {
-                e.preventDefault();
-                const target = document.getElementById("projects");
-                target?.scrollIntoView({ behavior: "smooth" });
-              }}
-              className="group relative overflow-hidden w-full sm:w-auto px-9 py-4 rounded-full 
-    bg-linear-to-r from-blue-600 to-purple-600 
-    text-white font-semibold tracking-wide
-    shadow-lg hover:shadow-blue-500/30 
-    transition-all duration-300 flex items-center justify-center gap-3 cursor-pointer"
-            >
-              {/* Shine effect */}
-              <span className="absolute inset-0 bg-white/20 -translate-x-full group-hover:translate-x-full transition-transform duration-700 skew-x-12" />
-
-              <span className="relative z-10">View My Work</span>
-
-              <ArrowRight className="relative z-10 w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
-            </motion.a>
-
-            {/* Secondary CTA - Contact */}
-            <motion.a
-              href="#contact"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              data-cursor="Contact"
-              onClick={(e) => {
-                e.preventDefault();
-                const target = document.getElementById("contact");
-                target?.scrollIntoView({ behavior: "smooth" });
-              }}
-              className="group relative w-full sm:w-auto px-9 py-4 rounded-full 
-    bg-background border border-border/50
-    text-foreground font-semibold tracking-wide
-    shadow-lg hover:shadow-blue-500/20 
-    transition-all duration-300
-    flex items-center justify-center gap-3 cursor-pointer overflow-hidden"
-            >
-              <span className="absolute inset-0 bg-linear-to-r from-blue-500/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              <div className="absolute inset-0 ring-1 ring-inset ring-foreground/10 group-hover:ring-blue-500/50 rounded-full transition-all duration-300" />
-              <Mail className="w-5 h-5 relative z-10 transition-transform duration-300 group-hover:-rotate-12 group-hover:text-blue-500" />
-              <span className="relative z-10 group-hover:text-blue-500 transition-colors duration-300">Let&apos;s Connect</span>
-            </motion.a>
-          </motion.div>
-        </motion.div>
-
-        {/* Right Image/Mockup Column */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
-          animate={{ opacity: 1, scale: 1, rotate: 0 }}
-          transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-          className="relative flex justify-center items-center lg:justify-end"
-        >
-          {/* Main Avatar Container */}
-          <div className="relative w-[280px] h-[280px] sm:w-[350px] sm:h-[350px] md:w-[400px] md:h-[400px] rounded-full overflow-hidden border-4 border-background shadow-2xl z-20 bg-muted">
-            <Image
-              src={myPic}
-              alt={basicDetails.name}
-              data-cursor={basicDetails.name}
-              fill
-              priority
-              className="object-cover hover:scale-101 transition-transform duration-700 ease-in-out"
-              sizes="(max-width: 768px) 280px, (max-width: 1024px) 350px, 400px"
-            />
-            {/* Floating Badge */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
+            <motion.p initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1, duration: 0.5 }}
-              className="absolute rounded-4xl bottom-10 left-14 md:left-16 glass p-2 flex items-center gap-1 shadow-xl cursor-pointer hover:scale-110 transition-scale duration-300"
-              onClick={() => document.getElementById("experience")?.scrollIntoView({ behavior: "smooth" })}
+              transition={{ delay: 0.6, duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+              className="max-w-2xl text-white sm:text-lg lg:text-xl font-medium tracking-tight leading-relaxed mb-0 sm:mb-10">
+              Crafting high-precision digital ecosystems with scalable architecture and immersive design with
+              {basicDetails.experienceYears} Years of Experience. Focus on performance, aesthetics, and user impact.
+            </motion.p>
+          </motion.div>
+
+          <div className="flex flex-col sm:flex-row gap-4 lg:justify-end lg:items-center mt-15 sm:mt-0">
+            <a
+              href="#contact"
+              className="group relative overflow-hidden px-8 py-4 rounded-4xl bg-linear-to-r from-blue-600 to-purple-600 text-white text-sm font-bold flex items-center justify-center gap-3 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-blue-500/30"
+              data-cursor="Let's Talk"
             >
-              <span className="text-sm font-bold text-foreground leading-tight" data-cursor="View Experience">{basicDetails.experienceYears} Years Exp.</span>
-            </motion.div>
+              <span className="absolute inset-0 bg-white/20 -translate-x-full group-hover:translate-x-full transition-transform duration-700 skew-x-12" />
+              <Mail className="relative z-10 w-4 h-4 group-hover:rotate-12 transition" />
+              <span className="relative z-10">LET'S TALK</span>
+            </a>
+            <a
+              href="#projects"
+              className="group relative overflow-hidden px-8 py-4 rounded-4xl border border-white/40 text-white text-sm font-bold flex items-center justify-center gap-3 transition-all duration-300 hover:bg-white hover:text-black"
+              data-cursor="Explore Work"
+            >
+              <span className="absolute inset-0 bg-white/10 -translate-x-full group-hover:translate-x-full transition-transform duration-700 skew-x-12" />
+              <span className="relative z-10">EXPLORE WORK</span>
+              <ArrowRight className="relative z-10 w-4 h-4 group-hover:translate-x-1 transition" />
+            </a>
           </div>
-
-          {/* Abstract floating shapes behind avatar */}
-          <motion.div
-            animate={{
-              y: [-10, 10, -10],
-              rotate: [0, 5, 0]
-            }}
-            transition={{
-              duration: 6,
-              repeat: Infinity,
-              ease: "easeInOut"
-            }}
-            className="absolute -top-10 -right-4 w-32 h-32 bg-linear-to-br from-blue-400 to-indigo-500 rounded-3xl blur-sm opacity-60 dark:opacity-40 -z-10"
-          />
-          <motion.div
-            animate={{
-              y: [10, -10, 10],
-              rotate: [0, -5, 0]
-            }}
-            transition={{
-              duration: 7,
-              repeat: Infinity,
-              ease: "easeInOut",
-              delay: 1
-            }}
-            className="absolute -bottom-6 -left-6 w-40 h-40 bg-linear-to-tr from-purple-400 to-pink-500 rounded-full blur-sm opacity-60 dark:opacity-40 -z-10"
-          />
-        </motion.div>
-
+        </div>
       </div>
     </section>
   );

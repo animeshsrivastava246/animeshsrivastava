@@ -372,8 +372,8 @@ const Navbar = ({
       <motion.header
         initial={{ bottom: 24, opacity: 1 }}
         animate={{
-          bottom: visible ? 24 : -100,
-          opacity: visible ? 1 : 0,
+          bottom: 24,
+          opacity: 1,
         }}
         transition={{
           type: "spring",

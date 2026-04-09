@@ -134,17 +134,14 @@ function HomeContent() {
 
                 <Hero />
 
-                <Experience />
-
-                {renderProjects()}
-
-                <Skills />
-
-                <About />
-
-                {/* <Life /> */}
-
-                <Contact />
+                <div className="container-12 py-10 sm:py-20 space-y-24">
+                  <Experience />
+                  {renderProjects()}
+                  <Skills />
+                  <About />
+                  {/* <Life /> */}
+                  <Contact />
+                </div>
               </>
             )}
 

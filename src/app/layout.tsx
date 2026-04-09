@@ -12,7 +12,7 @@ const openSans = Open_Sans({ subsets: ["latin"], variable: "--font-sans" });
 
 export const metadata = {
   title: `${basicDetails.name} | ${basicDetails.role}`,
-  description: "Explore the professional portfolio of Animesh Srivastava, a passionate Software Developer specializing in building high-performance cross-platform applications.",
+  description: `${basicDetails.metaDescription}`,
   keywords: `${basicDetails.name}, portfolio, Software Developer, Mobile Developer, Web Developer, TypeScript, JavaScript, React, Next.js, React Native, Full Stack Engineer`,
   authors: [{ name: basicDetails.name }],
   creator: basicDetails.name,
@@ -22,7 +22,7 @@ export const metadata = {
   },
   openGraph: {
     title: `${basicDetails.name} | ${basicDetails.role}`,
-    description: "Explore the professional portfolio of Animesh Srivastava, a passionate Software Developer specializing in building high-performance cross-platform applications.",
+    description: `${basicDetails.metaDescription}`,
     url: basicDetails.url,
     siteName: "Animesh Srivastava Portfolio",
     type: "website",
@@ -39,7 +39,7 @@ export const metadata = {
   twitter: {
     card: "summary_large_image",
     title: `${basicDetails.name} | ${basicDetails.role}`,
-    description: "Explore the professional portfolio of Animesh Srivastava, a passionate Software Developer specializing in building high-performance cross-platform applications.",
+    description: `${basicDetails.metaDescription}`,
     creator: "@animeshsrivastava246",
     images: [`${basicDetails.url}/og-image.webp`],
   },
@@ -88,7 +88,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
       </head>
-      <body>
+      <body className="overflow-x-hidden">
         {/* Google Tag Manager */}
         <GoogleTagManager gtmId={process.env.NEXT_PUBLIC_GTM_ID || ""} />
 
@@ -103,9 +103,9 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
-          <div className="container-12 min-h-screen flex flex-col md:pt-24">
+          <main className="min-h-screen flex flex-col">
             {children}
-          </div>
+          </main>
         </ThemeProvider>
         <Toaster position="bottom-center" toastOptions={{ className: 'glass' }} />
       </body>

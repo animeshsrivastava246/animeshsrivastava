@@ -79,7 +79,7 @@ const navItems = [
 
 export default function SocialMedia() {
   return (
-    <div className="w-fit flex items-center flex-wrap justify-center gap-1 p-1 rounded-full glass-island border border-border/50 bg-card/40 shadow-xl">
+    <div className="grid grid-cols-5 xl:grid-cols-10 gap-1 p-1 rounded-full glass-island border border-border/50 bg-card/40 shadow-xl w-fit">
       {navItems.map((item, idx) => (
         <motion.a
           key={"Social" + item.label + idx}
