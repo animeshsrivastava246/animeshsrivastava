@@ -45,15 +45,14 @@ const Hero = () => {
                 ? { opacity: 1, scale: 1, y: 0 }
                 : { opacity, scale, y }
             }
-            className="flex flex-col gap-6 will-change-transform"
+            className="relative flex flex-col gap-6 will-change-transform"
           >
             {/* OG */}
             <div className="w-40 h-40 rounded-3xl overflow-hidden">
               <Image
                 src={myPic}
                 alt={basicDetails.name}
-                priority
-                sizes="160px"
+                sizes="144px"
                 loading="eager"
                 className="object-cover"
               />
@@ -71,7 +70,7 @@ const Hero = () => {
             </div>
 
             {/* Heading */}
-            <h2 className="text-5xl md:text-8xl font-black leading-[0.9]">
+            <h2 className="relative text-5xl md:text-8xl font-black leading-[0.9]">
               <VariableProximity label={"Hi, I'm"}
                 className="block opacity-90 hover:opacity-100 transition-opacity duration-700 text-white"
                 fromFontVariationSettings="'wght' 300, 'opsz' 20"
