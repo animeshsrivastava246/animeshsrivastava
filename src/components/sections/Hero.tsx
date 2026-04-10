@@ -91,8 +91,7 @@ const Hero = () => {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6, duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
               className="max-w-2xl text-white sm:text-lg lg:text-xl font-medium tracking-tight leading-relaxed mb-0 sm:mb-10">
-              Crafting high-precision digital ecosystems with scalable architecture and immersive design with
-              {basicDetails.experienceYears} Years of Experience. Focus on performance, aesthetics, and user impact.
+              Crafting high-precision digital ecosystems with scalable architecture and immersive design with {basicDetails.experienceYears} Years of Experience. Focus on performance, aesthetics, and user impact.
             </motion.p>
           </motion.div>
 

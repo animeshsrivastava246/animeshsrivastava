@@ -22,9 +22,9 @@ class ErrorBoundary extends Component<{ children: ReactNode }, { hasError: boole
   static getDerivedStateFromError() { return { hasError: true }; }
   render() {
     if (this.state.hasError) return (
-        <div className="absolute inset-0 flex items-center justify-center text-white/20">
-            3D Render Failed
-        </div>
+      <div className="absolute inset-0 flex items-center justify-center text-white/20">
+        3D Render Failed
+      </div>
     );
     return this.props.children;
   }
@@ -38,10 +38,10 @@ const Hero3D = () => {
           <Suspense fallback={<GlobeLoader />}>
             <Canvas
               shadows
-              gl={{ 
-                antialias: true, 
+              gl={{
+                antialias: true,
                 alpha: true,
-                powerPreference: "high-performance" 
+                powerPreference: "high-performance"
               }}
             >
               <Scene />
@@ -51,9 +51,9 @@ const Hero3D = () => {
       </div>
 
       {/* Cinematic Gradient Overlay */}
-      <div 
+      <div
         className="absolute inset-x-0 bottom-0 h-1/3 pointer-events-none"
-        style={{ background: 'linear-gradient(to top, #030712 0%, transparent 100%)' }}
+        style={{ background: 'linear-gradient(to top, #030712 0%, transparent 50%)' }}
       />
     </div>
   );
