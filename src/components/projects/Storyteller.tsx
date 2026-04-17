@@ -2,14 +2,14 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import coverImage from "../../assets/images/projects/storyteller/landingScreen.png";
-import storyImage from "../../assets/images/projects/storyteller/story.png";
-import historyImage from "../../assets/images/projects/storyteller/history.png";
+import coverImage from "../../assets/images/projects/storyteller/landingScreen.webp";
+import storyImage from "../../assets/images/projects/storyteller/story.webp";
+import historyImage from "../../assets/images/projects/storyteller/history.webp";
 import { MdArrowBackIos } from "react-icons/md"
 
 const Storyteller = ({ onBack }: { onBack: () => void }) => {
   return (
-    <div className="w-full font-sans max-w-6xl mx-auto pb-12 pt-6 overflow-hidden">
+    <div className="w-full font-sans max-w-6xl mx-auto md:mt-24 overflow-hidden">
       {/* Subtle Grid Background for HUD feel */}
       <aside className="fixed inset-0 pointer-events-none z-[-1] blur-[0.8px] bg-[linear-gradient(var(--primary)_2px,transparent_2px),linear-gradient(90deg,var(--primary)_2px,transparent_2px)] opacity-[0.2] dark:opacity-[0.2] bg-size-[32px_32px] mask-[radial-gradient(ellipse_50%_50%_at_50%_50%,black_50%,transparent_120%)]" />
       <motion.button

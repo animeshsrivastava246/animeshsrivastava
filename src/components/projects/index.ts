@@ -2,9 +2,9 @@ import { StaticImageData } from "next/image";
 import NameTheGame from "./NameTheGame";
 import DisneyUI from "./DisneyUI";
 import Storyteller from "./Storyteller";
-import NameTheGameCover from "../../assets/images/projects/NameTheGame.png";
-import DisneyUICover from "../../assets/images/projects/DisneyUIclone.png";
-import StorytellerCover from "../../assets/images/projects/storyteller/landingScreen.png";
+import NameTheGameCover from "../../assets/images/projects/NameTheGame.webp";
+import DisneyUICover from "../../assets/images/projects/DisneyUIclone.webp";
+import StorytellerCover from "../../assets/images/projects/storyteller/landingScreen.webp";
 
 export interface ProjectMetadata {
   id: string;

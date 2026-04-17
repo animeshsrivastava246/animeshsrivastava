@@ -1,57 +1,60 @@
-# 🚀 Animesh Srivastava | Master Portfolio
+# Animesh Srivastava | Cross-Platform Software Developer Portfolio
 
 [![Portfolio Preview](./public/og-image.webp)](https://animeshsrivastava.vercel.app)
 
-A high-performance, **futuristic digital ecosystem** built with the latest React 19 and Next.js 16 metadata patterns. This portfolio represents the intersection of robust engineering and avant-garde design, featuring liquid glassmorphism, real-time data integration, and physics-based interactions.
+A high-performance, **futuristic digital ecosystem** built with the latest React 19 and Next.js 16 metadata patterns. This portfolio represents the intersection of robust engineering and avant-garde design, featuring liquid glassmorphism, seamless transitions,real-time data integration, and immersive 3D interactions.
 
 ---
 
-## ✨ Key Features
+## Key Features
 
-- **⚛️ Bleeding Edge Stack:** Built with **React 19** and **Next.js 16 (App Router)** for peak performance and instantaneous page transitions using Turbopack.
-- **🎨 Tailwind CSS v4:** Leveraging the latest CSS-first framework for a modern, high-speed design system.
-- **📈 Real-time Analytics:** 
-  - **DSA Progress:** Automated fetching of LeetCode statistics.
+- **Bleeding Edge Stack:** Built with **React 19** and **Next.js 16 (App Router)** for peak performance and instantaneous page transitions using Turbopack.
+- **Tailwind CSS v4:** Leveraging the latest CSS-first framework for a modern, high-speed design system.
+- **Real-time Analytics:** 
+  - **DSA Progress:** Automated fetching of LeetCode statistics via custom API.
   - **Engagement:** Integrated Vercel Analytics and Google Tag Manager.
-- **🎭 Motion Mastery:** 
+- **Motion & 3D Mastery:** 
   - Advanced **Framer Motion** orchestrations for layout transitions.
-  - **Matter.js** integration for physics-based interactive elements.
-- **📩 Enterprise-Grade Contact System:** Server-side email processing via **Resend** with sleek toast notifications by `sonner`.
-- **📱 Fluid Responsiveness:** Optimized for every viewport, from ultra-wide monitors to mobile devices.
-- **🌑 Intelligent Theming:** System-aware Dark/Light mode with seamless transitions.
+  - **Three.js & React Three Fiber** for immersive 3D hero elements and interactions.
+- **Enterprise-Grade Contact System:** Server-side email processing via **Resend** with sleek toast notifications by `sonner`.
+- **Fluid Responsiveness:** Optimized for every viewport, from ultra-wide monitors to mobile devices.
+- **Intelligent Theming:** System-aware Dark/Light mode with seamless transitions.
 
 ---
 
-## 🛠️ Technology Stack
+## Technology Stack
 
 | Layer | Technologies |
 | :--- | :--- |
 | **Frontend** | React 19, Next.js 16 (App Router), TypeScript |
 | **Styling** | Tailwind CSS v4, Framer Motion, Lucide Icons |
-| **Backend** | Next.js Server Actions, Resend API |
-| **Animation** | Matter.js (Physics), Lottie React, CSS Glassmorphism |
+| **Backend** | Next.js Server Actions, Resend API, API Routes |
+| **3D & Animation** | Three.js, React Three Fiber, R3F Drei, CSS Glassmorphism |
 | **Deployment** | Vercel (CI/CD), Bun (Runtime/Pkg Manager) |
 
 ---
 
-## 📂 Architecture
+## Architecture
 
 ```text
 src/
 ├── app/             # Next.js App Router (Layouts, Pages, API)
+├── assets/          # Static assets (Optimized WebP images)
 ├── components/      # Atomic Design structure
-│   ├── animations/  # Physics (Matter.js) & Motion wrappers
+│   ├── animations/  # 3D (Three.js) & Motion wrappers
 │   ├── common/      # Global Layout UI (Navbar, Glow effects)
 │   ├── projects/    # Feature-specific case studies
-│   └── sections/    # Modular landing page blocks
-├── data/            # Static & dynamic configuration (basicDetails, etc.)
-├── hooks/           # Custom React hooks for glass effects & scroll
-└── lib/             # Server actions & Utility functions
+│   ├── sections/    # Modular landing page blocks
+│   └── ...          # Feature-specific components (SkillsStore, etc.)
+├── data/            # Static & dynamic configuration
+├── hooks/           # Custom React hooks
+├── lib/             # Server actions & Utility functions
+└── types/           # TypeScript definitions
 ```
 
 ---
 
-## 🚀 Rapid Development
+## Rapid Development
 
 ### Prerequisites
 - **Bun** (Required for the fastest build times)
@@ -82,22 +85,22 @@ src/
 
 4. **Ignite Development:**
    ```bash
-   bun dev
+   bun start
    ```
 
 ---
 
-## 📦 Production Ready
+## Production Ready
 
 | Command | Action |
 | :--- | :--- |
 | `bun run build` | Compiles an optimized production bundle |
-| `bun run start` | Boots the high-performance production server |
+| `bun run start2`| Boots the high-performance production server |
 | `bun run lint`  | Executes strict TypeScript & ESLint checks |
 
 ---
 
-## 🤝 Let's Connect
+## Let's Connect
 
 Architecting elegance and engineering scale for the modern web.
 
@@ -109,5 +112,6 @@ Architecting elegance and engineering scale for the modern web.
 ---
 
 <div align="center">
-  <sub>Built with ☕, Matter.js, and plenty of Framer Motion magic. © 2025 Animesh Srivastava</sub>
+  <sub>Built with passion, Three.js, and plenty of Framer Motion magic. © 2026 Animesh Srivastava</sub>
 </div>
+

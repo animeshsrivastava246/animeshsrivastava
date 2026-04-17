@@ -16,7 +16,7 @@ export const basicDetails = {
   experienceYears: "2+",
   education: {
     degree: "Bachelor of Technology",
-    university: "MMMUT",
+    university: "Madan Mohan Malaviya University of Technology, Gorakhpur",
     duration: "2020 – 2024",
   },
   socials: {

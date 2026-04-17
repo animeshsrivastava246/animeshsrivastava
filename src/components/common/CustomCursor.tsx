@@ -27,6 +27,7 @@ export default function CustomCursor() {
   const dotY = useSpring(rawY, { damping: 60, stiffness: 800, mass: 0.2 });
 
   const observerRef = useRef<MutationObserver | null>(null);
+  const hoveredElementRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
     setMounted(true);
@@ -36,28 +37,45 @@ export default function CustomCursor() {
       rawY.set(e.clientY);
     };
 
-    const attachHoverListeners = () => {
-      document.querySelectorAll<HTMLElement>("a, button, [data-cursor]").forEach((el) => {
-        el.addEventListener("mouseenter", () => {
-          setIsHovering(true);
-          setCursorLabel(el.dataset.cursor ?? "");
-        });
-        el.addEventListener("mouseleave", () => {
-          setIsHovering(false);
-          setCursorLabel("");
-        });
-      });
+    const handleOver = (e: MouseEvent) => {
+      const target = (e.target as HTMLElement).closest<HTMLElement>(
+        "a, button, [data-cursor]"
+      );
+      if (target) {
+        hoveredElementRef.current = target;
+        setIsHovering(true);
+        setCursorLabel(target.dataset.cursor ?? "");
+      } else {
+        hoveredElementRef.current = null;
+        setIsHovering(false);
+        setCursorLabel("");
+      }
     };
 
-    attachHoverListeners();
+    // Watch for attribute changes on the currently hovered element
+    observerRef.current = new MutationObserver((mutations) => {
+      for (const mutation of mutations) {
+        if (
+          mutation.type === "attributes" &&
+          mutation.target === hoveredElementRef.current
+        ) {
+          setCursorLabel(hoveredElementRef.current.dataset.cursor ?? "");
+        }
+      }
+    });
 
-    // Re-attach if DOM changes
-    observerRef.current = new MutationObserver(attachHoverListeners);
-    observerRef.current.observe(document.body, { childList: true, subtree: true });
+    observerRef.current.observe(document.body, {
+      subtree: true,
+      attributes: true,
+      attributeFilter: ["data-cursor"],
+    });
 
     window.addEventListener("mousemove", onMove, { passive: true });
+    window.addEventListener("mouseover", handleOver, { passive: true });
+
     return () => {
       window.removeEventListener("mousemove", onMove);
+      window.removeEventListener("mouseover", handleOver);
       observerRef.current?.disconnect();
     };
   }, [rawX, rawY]);

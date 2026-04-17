@@ -22,6 +22,14 @@ const Hero = () => {
   const scale = useTransform(scrollYProgress, [0, 0.7], [1, 0.95]);
   const y = useTransform(scrollYProgress, [0, 0.7], [0, 60]);
 
+  const handleScroll = (e: React.MouseEvent<HTMLAnchorElement>, id: string) => {
+    e.preventDefault();
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
+
   return (
     <section
       ref={sectionRef}
@@ -98,6 +106,7 @@ const Hero = () => {
           <div className="flex flex-col sm:flex-row gap-4 lg:justify-end lg:items-center mt-15 sm:mt-0">
             <a
               href="#contact"
+              onClick={(e) => handleScroll(e, "contact")}
               className="group relative overflow-hidden px-8 py-4 rounded-4xl bg-linear-to-r from-blue-600 to-purple-600 text-white text-sm font-bold flex items-center justify-center gap-3 transition-all duration-300 hover:scale-105 shadow-lg hover:shadow-blue-500/30"
               data-cursor="Let's Talk"
             >
@@ -107,6 +116,7 @@ const Hero = () => {
             </a>
             <a
               href="#projects"
+              onClick={(e) => handleScroll(e, "projects")}
               className="group relative overflow-hidden px-8 py-4 rounded-4xl border border-white/40 text-white text-sm font-bold flex items-center justify-center gap-3 transition-all duration-300 hover:bg-white hover:text-black"
               data-cursor="Explore Work"
             >

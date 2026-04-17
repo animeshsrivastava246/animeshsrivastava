@@ -248,6 +248,7 @@ const Navbar = ({
               src={user}
               alt={basicDetails.name}
               className="w-8 h-8 rounded-full"
+              sizes="96px"
             />
 
             <span className={`text-sm ${activeSection === "home" ? "font-extrabold" : "font-bold"}`}>
@@ -393,6 +394,7 @@ const Navbar = ({
               src={user}
               alt={basicDetails.name}
               className={`w-8 h-8 rounded-full transition-all duration-300 cursor-pointer ${activeSection === "home" ? "scale-[1.15] ring-2 ring-primary" : "hover:scale-[1.05]"}`}
+              sizes="96px"
             />
           </a>
 

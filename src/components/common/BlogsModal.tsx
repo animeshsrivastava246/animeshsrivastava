@@ -69,7 +69,7 @@ export default function BlogsModal({ isOpen, closeModal }: BlogsModalProps) {
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
-          <div className="fixed inset-0 bg-black/60 backdrop-blur-sm" />
+          <div className="fixed inset-0 bg-black/30 backdrop-blur-sm" />
         </TransitionChild>
 
         <div className="fixed inset-0 overflow-y-auto">
@@ -84,13 +84,16 @@ export default function BlogsModal({ isOpen, closeModal }: BlogsModalProps) {
               leaveTo="opacity-0 scale-95"
             >
               <DialogPanel className="w-full max-w-3xl transform overflow-hidden rounded-3xl bg-background/90 text-foreground border border-border/50 p-6 text-left align-middle shadow-2xl transition-all glass-island">
-                <div className="flex justify-between items-center mb-6 pb-4 border-b border-border/50">
+                <div className="flex justify-between items-center mb-6 pb-4 border-b border-border/50" aria-label="Blogs Modal header">
                   <DialogTitle as="h3" className="text-4xl font-bold font-heading">
                     My Writings
                   </DialogTitle>
                   <button
                     onClick={closeModal}
-                    className="p-2 rounded-full hover:scale-[90%] transition-all duration-200 cursor-pointer"
+                    className="p-1 border-2 border-[#888] rounded-full hover:scale-[90%] transition-all duration-200 cursor-pointer"
+                    type="button"
+                    aria-label="Close"
+                    data-cursor="Close"
                   >
                     <X className="w-6 h-6" />
                   </button>

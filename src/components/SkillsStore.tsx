@@ -108,9 +108,10 @@ export default function SkillsStore() {
                       <Image
                         src={item.image}
                         alt={item.name}
-                        width={176}
-                        height={176}
+                        width={512}
+                        height={512}
                         className="object-cover w-full h-full"
+                        sizes="(max-width: 768px) 256px, (max-width: 1200px) 512px, 512px"
                       />
                     </div>
                   ) : (

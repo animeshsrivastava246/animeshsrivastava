@@ -19,28 +19,28 @@ const ScrollingColumn: React.FC<Props> = ({
   return (
     <div className="relative overflow-hidden h-[850px] group/col rounded-2xl bg-white/1 border border-white/10 backdrop-blur-3xl shadow-inner-xl">
       <div
-        className={`flex flex-col gap-6 py-6 animate-infinite-scroll ${
-          direction === "down" ? "animate-infinite-scroll-reverse" : ""
-        } group-hover/col:[animation-play-state:paused]`}
+        className={`flex flex-col gap-6 py-6 animate-infinite-scroll ${direction === "down" ? "animate-infinite-scroll-reverse" : ""
+          } group-hover/col:[animation-play-state:paused]`}
         style={{
           "--animation-duration": `${speed}s`,
         } as React.CSSProperties}
       >
         {loopImages.map((img, idx) => (
-          <motion.div 
-            key={`${img.id}-${idx}`} 
+          <motion.div
+            key={`${img.id}-${idx}`}
             className="relative w-full shrink-0 px-5"
             whileHover={{ y: -8, transition: { duration: 0.4, ease: "easeOut" } }}
           >
             <div className="relative overflow-hidden rounded-2xl group/img border border-white/10 bg-black/40 shadow-[0_15px_35px_rgba(0,0,0,0.4)] transition-all duration-500 hover:shadow-blue-500/10 hover:border-white/20">
               {/* Premium Glare Effect */}
               <div className="absolute inset-0 bg-linear-to-br from-white/15 via-transparent to-transparent opacity-0 group-hover/img:opacity-100 transition-opacity duration-700 z-10 pointer-events-none" />
-              
+
               <Image
                 src={img.url}
                 alt={img.alt || img.title || "Gallery image"}
                 className="w-full h-auto transition-all duration-1000 group-hover/img:scale-110 group-hover/img:brightness-110 group-hover/img:rotate-1"
                 loading="lazy"
+                sizes="512px"
               />
 
               {/* Glassmorphic Caption */}

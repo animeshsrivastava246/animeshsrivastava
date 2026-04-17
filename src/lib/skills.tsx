@@ -25,8 +25,8 @@ import {
   SiExpo,
 } from "react-icons/si";
 import { BsBootstrap } from "react-icons/bs";
-import reactNative from "../assets/images/React_Native.png";
-import mernStack from "../assets/images/MERN_Stack.png";
+import reactNative from "../assets/images/React_Native.webp";
+import mernStack from "../assets/images/MERN_Stack.webp";
 import { StaticImageData } from "next/image";
 
 export type SkillItem = {

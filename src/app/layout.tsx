@@ -13,7 +13,7 @@ const openSans = Open_Sans({ subsets: ["latin"], variable: "--font-sans" });
 export const metadata = {
   title: `${basicDetails.name} | ${basicDetails.role}`,
   description: `${basicDetails.metaDescription}`,
-  keywords: `${basicDetails.name}, portfolio, Software Developer, Mobile Developer, Web Developer, TypeScript, JavaScript, React, Next.js, React Native, Full Stack Engineer`,
+  keywords: [basicDetails.name, basicDetails.role, "portfolio", "Software Developer", "Mobile Developer", "Web Developer", "TypeScript", "JavaScript", "React", "Next.js", "React Native", "Full Stack Engineer"],
   authors: [{ name: basicDetails.name }],
   creator: basicDetails.name,
   metadataBase: new URL(basicDetails.url),
@@ -43,6 +43,11 @@ export const metadata = {
     creator: "@animeshsrivastava246",
     images: [`${basicDetails.url}/og-image.webp`],
   },
+  icons: {
+    icon: "/favicon.ico",
+    apple: "/apple-icon.png",
+  },
+  manifest: "/manifest.json",
   robots: {
     index: true,
     follow: true,
@@ -58,13 +63,38 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",
   name: basicDetails.name,
+  givenName: basicDetails.firstName,
+  familyName: basicDetails.lastName,
   url: basicDetails.url,
   jobTitle: basicDetails.role,
+  description: basicDetails.metaDescription,
+  email: basicDetails.email,
+  telephone: basicDetails.phone,
+  address: {
+    "@type": "PostalAddress",
+    addressLocality: "Lucknow",
+    addressCountry: "India",
+  },
+  alumniOf: {
+    "@type": "CollegeOrUniversity",
+    name: basicDetails.education.university,
+  },
+  knowsAbout: [
+    "React",
+    "React Native",
+    "Next.js",
+    "TypeScript",
+    "MERN Stack",
+    "Cross-platform development",
+  ],
   sameAs: [
     basicDetails.socials.github,
     basicDetails.socials.linkedin,
-    "https://hashnode.com/@animesh246"
-  ]
+    basicDetails.socials.leetcode,
+    basicDetails.socials.hashnode,
+    basicDetails.socials.youtube,
+    basicDetails.socials.reddit,
+  ],
 };
 
 export default function RootLayout({
@@ -75,17 +105,18 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${openSans.variable}`} suppressHydrationWarning>
       <head>
-        <link rel="icon" href="/favicon.ico" sizes="any" />
         <link rel="icon" href="/icon0.svg" type="image/svg+xml" sizes="any" />
-        <link rel="apple-touch-icon" href="/apple-icon.png" />
-        <link rel="manifest" href="/manifest.json" />
-        <title>{`${basicDetails.name} | ${basicDetails.role}`}</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <link rel="alternate icon" href="/favicon.ico" sizes="any" />
         <meta name="google-site-verification" content="fBQ2jzQeowY2tp8cTpJDqNKiMOD9mcU6U6UocqXqnHc" />
         <link rel="sitemap" type="application/xml" title="Sitemap" href="/sitemap.xml" />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `document.addEventListener('contextmenu', (e) => e.preventDefault());`,
+          }}
         />
       </head>
       <body className="overflow-x-hidden">

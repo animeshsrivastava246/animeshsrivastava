@@ -1,47 +1,60 @@
 "use client";
 import Image from "next/image";
-import { useEffect, useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
+import { motion } from "framer-motion";
 import VariableProximity from "../animations/VariableProximity";
 import { ArrowRightIcon } from "lucide-react";
 import { projects } from "../projects";
+import devImg from "../../assets/images/development.webp";
 
 const Cooking = () => {
   const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { margin: "-100px" });
-  const videoRef = useRef<HTMLVideoElement>(null);
-
-  useEffect(() => {
-    if (isInView && videoRef.current) {
-      videoRef.current.play();
-    } else if (!isInView && videoRef.current) {
-      videoRef.current.pause();
-    }
-  }, [isInView]);
 
   return (
     <div
       ref={ref}
-      className="flex flex-col md:flex-row justify-between items-center h-full p-6 md:p-8 text-center gap-6 md:gap-8"
+      className="flex flex-col md:flex-row items-center justify-center h-full p-2 md:p-12 gap-4 md:gap-16"
       data-cursor="Developing"
     >
-      <div className="w-full max-w-[200px] md:max-w-72 blur-[1px] drop-shadow-2xl">
-        <video
-          ref={videoRef}
-          src="/about-developer.webm"
-          loop
-          muted
-          playsInline
-          preload="none"
-          className="w-full h-full object-contain"
+      <motion.div
+        initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
+        whileInView={{ opacity: 1, scale: 1, rotate: 0 }}
+        transition={{
+          type: "spring",
+          stiffness: 100,
+          damping: 15
+        }}
+        className="shrink-0"
+      >
+        <Image
+          src={devImg}
+          alt="Developing"
+          className="w-40 h-32 md:w-96 md:h-80 shrink-0 rounded-4xl"
+          placeholder="blur"
+          sizes="512px"
+          priority
+          unoptimized={true}
         />
-      </div>
-      <div className="flex-col">
-        <h3 className="font-heading font-bold text-md md:text-4xl text-foreground mb-1">Building something new</h3>
-        <p className="text-muted-foreground font-body text-sm md:text-2xl">
+      </motion.div>
+      <aside className="flex flex-col text-center md:text-left">
+        <VariableProximity
+          label="Building something new"
+          className="font-heading font-bold text-xl md:text-5xl text-foreground mb-2 md:mb-4 cursor-default"
+          fromFontVariationSettings="'wght' 400, 'opsz' 9"
+          toFontVariationSettings="'wght' 1000, 'opsz' 40"
+          containerRef={ref as React.RefObject<HTMLElement>}
+          radius={80}
+          falloff="linear"
+        />
+        <motion.p
+          initial={{ opacity: 0, y: 10 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2, duration: 0.5 }}
+          className="text-muted-foreground font-body text-xs md:text-2xl max-w-xl"
+        >
           Experimenting with a few new tools for an upcoming project. Stay tuned!
-        </p>
-      </div>
+        </motion.p>
+      </aside>
     </div>
   );
 };

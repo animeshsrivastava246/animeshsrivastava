@@ -1,8 +1,9 @@
 "use client";
 import React, { useRef, useEffect } from "react";
 import { motion, useInView, Variants, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 import VariableProximity from "../animations/VariableProximity";
-import { MapPin, BriefcaseBusiness, GraduationCap, Search, TrendingUp, CodeXml,  Coffee, Sparkles, Palmtree, Music, Camera, BookOpen, Gamepad2 } from "lucide-react";
+import { MapPin, BriefcaseBusiness, GraduationCap, Search, TrendingUp, CodeXml, Coffee, Sparkles, Palmtree, Music, Camera, BookOpen, Gamepad2 } from "lucide-react";
 
 const IconMap: Record<string, any> = {
   Coffee,
@@ -16,31 +17,8 @@ const IconMap: Record<string, any> = {
 };
 import StatsSection from "../StatsSection";
 import { basicDetails } from "../../data/basic";
+import aboutImg from "../../assets/images/about.webp";
 
-const IntersectionVideo = ({ src, className }: { src: string; className?: string }) => {
-  const videoRef = useRef<HTMLVideoElement>(null);
-  const isInView = useInView(videoRef, { margin: "-50px" });
-
-  useEffect(() => {
-    if (isInView && videoRef.current) {
-      videoRef.current.play();
-    } else if (!isInView && videoRef.current) {
-      videoRef.current.pause();
-    }
-  }, [isInView]);
-
-  return (
-    <video
-      ref={videoRef}
-      src={src}
-      loop
-      muted
-      playsInline
-      preload="none"
-      className={className || "w-full h-full object-contain"}
-    />
-  );
-};
 
 const LearningTicker = ({ items }: { items: string[] }) => {
   const [index, setIndex] = React.useState(0);
@@ -239,8 +217,16 @@ const About = () => {
           variants={itemVariants}
           className="break-inside-avoid rounded-[2.5rem] p-0 glass border border-white/5 bg-card/30 relative overflow-hidden group flex flex-col"
         >
-          <div className="absolute inset-0 z-0 opacity-40 group-hover:opacity-75 transition-opacity duration-500">
-            <IntersectionVideo src="/Development.webm" className="w-full h-full object-cover" />
+          <div className="absolute inset-0 z-0 opacity-40 group-hover:opacity-60 transition-opacity duration-500">
+            <Image
+              src={aboutImg}
+              alt="Development"
+              fill
+              className="object-cover"
+              placeholder="blur"
+              sizes="512px"
+              unoptimized={true}
+            />
           </div>
 
           <div className="relative z-10 p-10 mt-auto">
