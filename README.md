@@ -13,10 +13,11 @@ A high-performance, **futuristic digital ecosystem** built with the latest React
 - **Real-time Analytics:** 
   - **DSA Progress:** Automated fetching of LeetCode statistics via custom API.
   - **Engagement:** Integrated Vercel Analytics and Google Tag Manager.
+- **LLM-First Crawlability:** Built-in Markdown content negotiation for AI chatbots. Crawlers can access a clean, data-rich Markdown representation of the portfolio via `Accept: text/markdown` header, `/llms.txt` path, or `?format=markdown` query parameter.
 - **Motion & 3D Mastery:** 
   - Advanced **Framer Motion** orchestrations for layout transitions.
   - **Three.js & React Three Fiber** for immersive 3D hero elements and interactions.
-- **Enterprise-Grade Contact System:** Server-side email processing via **Resend** with sleek toast notifications by `sonner`.
+- **Enterprise-Grade Contact System:** Secure server-side email processing via **Resend** and **Zod** validation, with sleek toast notifications by `sonner`.
 - **Fluid Responsiveness:** Optimized for every viewport, from ultra-wide monitors to mobile devices.
 - **Intelligent Theming:** System-aware Dark/Light mode with seamless transitions.
 
@@ -28,7 +29,7 @@ A high-performance, **futuristic digital ecosystem** built with the latest React
 | :--- | :--- |
 | **Frontend** | React 19, Next.js 16 (App Router), TypeScript |
 | **Styling** | Tailwind CSS v4, Framer Motion, Lucide Icons |
-| **Backend** | Next.js Server Actions, Resend API, API Routes |
+| **Backend** | Next.js Server Actions, Resend API, API Routes, Markdown Proxy, Zod |
 | **3D & Animation** | Three.js, React Three Fiber, R3F Drei, CSS Glassmorphism |
 | **Deployment** | Vercel (CI/CD), Bun (Runtime/Pkg Manager) |
 
@@ -40,6 +41,7 @@ A high-performance, **futuristic digital ecosystem** built with the latest React
 src/
 ├── app/             # Next.js App Router (Layouts, Pages, API)
 ├── assets/          # Static assets (Optimized WebP images)
+├── proxy.ts         # Markdown Content Negotiation for AI Chatbots
 ├── components/      # Atomic Design structure
 │   ├── animations/  # 3D (Three.js) & Motion wrappers
 │   ├── common/      # Global Layout UI (Navbar, Glow effects)

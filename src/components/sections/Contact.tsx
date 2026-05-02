@@ -120,10 +120,9 @@ const Contact = () => {
                   toast.success("Email copied to clipboard!");
                 }}
                 className="flex items-center gap-2 px-4 py-2 bg-muted/50 border border-border/50 rounded-full hover:bg-muted transition-colors group cursor-pointer"
-                title="Click to copy email"
               >
                 <span className="text-sm font-semibold text-foreground group-hover:text-primary transition-colors">
-                  {basicDetails.email}
+                  Copy Email
                 </span>
                 <svg className="w-4 h-4 text-muted-foreground group-hover:text-primary transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />

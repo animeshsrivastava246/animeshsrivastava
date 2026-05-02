@@ -61,6 +61,9 @@ const Hero = () => {
                 src={myPic}
                 alt={basicDetails.name}
                 sizes="144px"
+                width={400}
+                height={400}
+                priority
                 loading="eager"
                 className="object-cover"
               />
