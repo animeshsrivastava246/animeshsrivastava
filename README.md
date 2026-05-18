@@ -1,3 +1,5 @@
+# Blog Integration needs to be changed!
+
 # Animesh Srivastava | Cross-Platform Software Developer Portfolio
 
 [![Portfolio Preview](./public/og-image.webp)](https://animeshsrivastava.vercel.app)
@@ -116,4 +118,3 @@ Architecting elegance and engineering scale for the modern web.
 <div align="center">
   <sub>Built with passion, Three.js, and plenty of Framer Motion magic. © 2026 Animesh Srivastava</sub>
 </div>
-
