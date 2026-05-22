@@ -5,7 +5,7 @@ export const basicDetails = {
   role: "Cross-Platform Software Developer",
   metaDescription: "Explore the professional portfolio of Animesh Srivastava, a passionate Software Developer specializing in building high-performance cross-platform applications.",
   shortDescription: "Delivering pixel-perfect, scalable architectures using React, React Native & modern serverless paradigms.",
-  longDescription: "Software Developer with 2+ years of experience building and maintaining high-quality web and mobile applications for web, iOS and Android platforms. Proficient in MERN, Java, Python, and modern tech paradigms.",
+  longDescription: "Software Developer with 2.5+ years of experience building and maintaining high-quality web and mobile applications for web, iOS and Android platforms. Proficient in MERN, Java, Python, and modern tech paradigms.",
   heroDescription: "Architecting elegance. \nEngineering scale.",
   aboutDescription: "I craft high-performance digital ecosystems where robust engineering meets intuitive design, transforming complex problems into seamless user experiences.",
   location: "Lucknow, India",
@@ -13,7 +13,7 @@ export const basicDetails = {
   email: "animeshsrivastava246246@gmail.com",
   phone: "918299224409",
   availability: "Available for new opportunities",
-  experienceYears: "2+",
+  experienceYears: "2.5+",
   education: {
     degree: "Bachelor of Technology",
     university: "Madan Mohan Malaviya University of Technology, Gorakhpur",

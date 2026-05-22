@@ -5,6 +5,7 @@ import { useFrame } from "@react-three/fiber";
 import { useTexture } from "@react-three/drei";
 import * as THREE from "three";
 import { LocationMarker } from "./LocationMarker";
+import { IndiaBorder } from "./IndiaBorder";
 
 const TEXTURES = {
   map: "https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/earth_atmos_2048.jpg",
@@ -44,6 +45,7 @@ export const Earth = ({ radius }: { radius: number }) => {
           />
           <LocationMarker radius={radius} />
         </mesh>
+        <IndiaBorder radius={radius} />
       </group>
 
       <mesh ref={cloudsRef}>
