@@ -48,18 +48,19 @@ export default function StatsSection() {
     const fetchData = async () => {
       try {
         const [leetRes, blogRes] = await Promise.all([
-          fetch("/api/leetcode").then(r => r.json()).catch(() => ({ count: 632 })),
-          fetch("/api/blogs").then(r => r.json()).catch(() => ({ totalBlogs: 2 }))
+          fetch("/api/leetcode").then(r => r.json()).catch(() => ({ count: 0 })),
+          // fetch("/api/blogs").then(r => r.json()).catch(() => ({ totalBlogs: 0 }))
+          Promise.resolve({ totalBlogs: 2 })
         ]);
 
         setStatsData({
-          leetcode: leetRes.count || 632,
-          blogs: blogRes.totalBlogs || blogRes.posts?.length || 2
+          leetcode: leetRes.count || 0,
+          blogs: blogRes.totalBlogs || 0
         });
         setDataLoaded(true);
       } catch (error) {
         console.error("Stats fetch error:", error);
-        setStatsData({ leetcode: 632, blogs: 2 });
+        setStatsData({ leetcode: 0, blogs: 0 });
         setDataLoaded(true);
       }
     };

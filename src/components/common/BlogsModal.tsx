@@ -19,34 +19,57 @@ interface BlogsModalProps {
   closeModal: () => void;
 }
 
+const STATIC_BLOGS: BlogPost[] = [
+  {
+    id: "blog-1",
+    title: "ChatGPT Can Write a Chess Book But Can't Move a Pawn: The Embarrassing Truth About LLMs and Chess",
+    brief: "Chess.com's engine (powered by Stockfish) can defeat Gukesh who defeated Magnus Carlsen — arguably the greatest chess player alive — without breaking a sweat. GPT-5.5, one of the most advanced language models, still struggles with simple pawn moves. Here's a deep dive into the embarrassing truth about LLMs and chess.",
+    slug: "https://aiunderthehood.hashnode.dev/llm-cannot-play-chess",
+    coverImage: {
+      url: "/images/blogs/llm_chess.webp",
+    },
+    publishedAt: "2026-04-02T00:00:00Z",
+  },
+  {
+    id: "blog-2",
+    title: "“No, ChatGPT, That Wasn’t a Lucky Guess” – How It Quietly Knows Your Location",
+    brief: "I didn’t plan to expose anything. I just wanted a straight answer. So I asked an AI assistant a simple, blunt question: “Be honest and blunt entirely, and answer my question: do you have access of my location?” Here's how it quietly knows where you are.",
+    slug: "https://aiunderthehood.hashnode.dev/chatgpt-location-privacy",
+    coverImage: {
+      url: "/images/blogs/chatgpt_location_privacy.webp",
+    },
+    publishedAt: "2026-03-03T00:00:00Z",
+  },
+];
+
 export default function BlogsModal({ isOpen, closeModal }: BlogsModalProps) {
-  const [blogs, setBlogs] = useState<BlogPost[]>([]);
+  const [blogs, setBlogs] = useState<BlogPost[]>(STATIC_BLOGS);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  useEffect(() => {
-    if (isOpen && blogs.length === 0) {
-      fetchBlogs();
-    }
-  }, [isOpen]);
+  // useEffect(() => {
+  //   if (isOpen && blogs.length === 0) {
+  //     fetchBlogs();
+  //   }
+  // }, [isOpen]);
 
-  const fetchBlogs = async () => {
-    setLoading(true);
-    setError("");
-    try {
-      const res = await fetch("/api/blogs");
-      const data = await res.json();
-      if (res.ok) {
-        setBlogs(data.posts);
-      } else {
-        setError(data.error || "Failed to load blogs.");
-      }
-    } catch (err) {
-      setError("An error occurred while fetching blogs.");
-    } finally {
-      setLoading(false);
-    }
-  };
+  // const fetchBlogs = async () => {
+  //   setLoading(true);
+  //   setError("");
+  //   try {
+  //     const res = await fetch("/api/blogs");
+  //     const data = await res.json();
+  //     if (res.ok) {
+  //       setBlogs(data.posts);
+  //     } else {
+  //       setError(data.error || "Failed to load blogs.");
+  //     }
+  //   } catch (err) {
+  //     setError("An error occurred while fetching blogs.");
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
@@ -118,7 +141,7 @@ export default function BlogsModal({ isOpen, closeModal }: BlogsModalProps) {
                       {blogs.map((blog) => (
                         <a
                           key={blog.id}
-                          href={`https://aiunderthehood.hashnode.dev/${blog.slug}`}
+                          href={blog.slug}
                           target="_blank"
                           rel="noopener noreferrer"
                           className="group relative flex flex-col bg-card/40 border border-border/50 rounded-2xl overflow-hidden hover:border-primary/50 transition-colors shadow-sm cursor-pointer"

@@ -1,3 +1,5 @@
+// This graphql api is not working because hashnode changed its pricing to paid, so i am using the static blogs in the component
+
 import { NextResponse } from "next/server";
 
 const HASHNODE_API = "https://gql.hashnode.com/";
@@ -40,7 +42,7 @@ interface HashnodeEdge {
 
 export async function GET() {
   try {
-    const host = "aiunderthehood.hashnode.dev"; // The user's hashnode hostname
+    const host = "https://aiunderthehood.hashnode.dev"; // The user's hashnode hostname
 
     const response = await fetch(HASHNODE_API, {
       method: "POST",
