@@ -2,9 +2,10 @@
 
 import { motion } from "framer-motion";
 import { FaGithub, FaLinkedinIn, FaWhatsapp, FaYoutube, FaDiscord, FaRedditAlien } from "react-icons/fa";
-import { HiOutlineMail } from "react-icons/hi";
 import { SiZoho } from "react-icons/si";
 import { SiHashnode } from "react-icons/si";
+import Image from "next/image";
+import gmailIcon from "../../assets/icons/gmail.svg";
 import { basicDetails, LeetcodeSvg } from "../../data/basic";
 
 const navItems = [
@@ -30,7 +31,7 @@ const navItems = [
     link: basicDetails.socials.whatsapp,
   },
   {
-    icon: <HiOutlineMail size={22} />,
+    icon: <Image src={gmailIcon} alt="Gmail" width={22} height={22} />,
     label: "Gmail",
     color: "text-[#EA4335]",
 
