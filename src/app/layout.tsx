@@ -72,7 +72,7 @@ const jsonLd = {
   telephone: basicDetails.phone,
   address: {
     "@type": "PostalAddress",
-    addressLocality: "Lucknow",
+    addressLocality: "Bengaluru",
     addressCountry: "India",
   },
   alumniOf: {

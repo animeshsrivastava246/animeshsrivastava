@@ -5,7 +5,7 @@ import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 import { Sphere, Cone } from "@react-three/drei";
 
-const LUCKNOW = { lat: 26.8467, lon: 80.9462 };
+const BENGALURU = { lat: 12.9716, lon: 77.5946 };
 
 function latLonToVec3(lat: number, lon: number, r: number) {
   const phi = (90 - lat) * (Math.PI / 180);
@@ -21,9 +21,9 @@ export const LocationMarker = ({ radius }: { radius: number }) => {
   const groupRef = useRef<THREE.Group>(null);
   const pinRef = useRef<THREE.Group>(null);
   const materialRef = useRef<THREE.MeshStandardMaterial>(null);
-  const pinColor = "#ef4444";
+  const pinColor = "#22c55e";
 
-  const pos = useMemo(() => latLonToVec3(LUCKNOW.lat, LUCKNOW.lon, radius), [radius]);
+  const pos = useMemo(() => latLonToVec3(BENGALURU.lat, BENGALURU.lon, radius), [radius]);
   const quaternion = useMemo(() => {
     const q = new THREE.Quaternion();
     q.setFromUnitVectors(new THREE.Vector3(0, 1, 0), pos.clone().normalize());

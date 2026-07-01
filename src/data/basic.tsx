@@ -8,7 +8,7 @@ export const basicDetails = {
   longDescription: "Software Developer with ~3 years of experience building and maintaining high-quality web and mobile applications for web, iOS and Android platforms. Proficient in MERN, Java, Python, and modern tech paradigms.",
   heroDescription: "Architecting elegance. \nEngineering scale.",
   aboutDescription: "I craft high-performance digital ecosystems where robust engineering meets intuitive design, transforming complex problems into seamless user experiences.",
-  location: "Lucknow, India",
+  location: "Bengaluru, India",
   url: "https://animeshsrivastava.vercel.app",
   email: "animeshsrivastava246246@gmail.com",
   phone: "918299224409",
