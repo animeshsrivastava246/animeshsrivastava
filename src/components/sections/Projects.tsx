@@ -88,10 +88,16 @@ const Projects = ({ onSelectProject }: { onSelectProject: (id: string) => void }
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6 w-full auto-rows-[350px] lg:auto-rows-[380px]">
           {projects.map((project, index) => {
             const isPortrait = project.layout === "portrait";
+            const isFull = project.layout === "full";
 
-            // Landscape spans 7 columns, portrait spans 5 columns and 2 rows
-            const colSpan = isPortrait ? 'md:col-span-5' : 'md:col-span-7';
+            // Landscape spans 7 columns, portrait spans 5 columns and 2 rows, full spans 12 columns
+            const colSpan = isPortrait
+              ? 'md:col-span-5'
+              : isFull
+                ? 'md:col-span-12'
+                : 'md:col-span-7';
             const rowSpan = isPortrait ? 'md:row-span-2' : '';
+            const flexDir = isFull ? 'flex-col md:flex-row' : 'flex-col';
 
             return (
               <motion.div
@@ -100,7 +106,7 @@ const Projects = ({ onSelectProject }: { onSelectProject: (id: string) => void }
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: "-50px" }}
                 transition={{ delay: index * 0.1, duration: 0.5 }}
-                className={`group relative flex flex-col glass neumorphic border border-border/50 rounded-3xl overflow-hidden cursor-pointer hover:-translate-y-2 hover:shadow-xl hover:shadow-primary/5 transition-all duration-500 z-0 ${colSpan} ${rowSpan}`}
+                className={`group relative flex ${flexDir} glass neumorphic border border-border/50 rounded-3xl overflow-hidden cursor-pointer hover:-translate-y-2 hover:shadow-xl hover:shadow-primary/5 transition-all duration-500 z-0 ${colSpan} ${rowSpan}`}
                 onClick={() => onSelectProject(project.id)}
                 data-cursor={project.title}
               >
@@ -144,7 +150,7 @@ const Projects = ({ onSelectProject }: { onSelectProject: (id: string) => void }
                         <h3 className="font-heading font-bold text-2xl text-white mb-2 group-hover:text-primary transition-colors drop-shadow-md">
                           {project.title}
                         </h3>
-                        <p className="text-sm font-body text-white/90 mb-6 line-clamp-2 drop-shadow-sm font-medium">
+                        <p className="text-sm font-body text-white/90 mb-6 line-clamp-4 drop-shadow-sm font-medium">
                           {project.description}
                         </p>
                       </div>
@@ -164,13 +170,13 @@ const Projects = ({ onSelectProject }: { onSelectProject: (id: string) => void }
                 ) : (
                   // Landscape standard layout
                   <>
-                    <div className="relative w-full h-32 sm:h-48 overflow-hidden bg-muted/50 border-b border-border/50 shrink-0">
+                    <div className={`relative overflow-hidden bg-muted/50 shrink-0 ${isFull ? 'w-full md:w-1/2 h-32 md:h-full border-b md:border-b-0 md:border-r border-border/50' : 'w-full h-32 sm:h-48 border-b border-border/50'}`}>
                       <Image
                         src={project.image}
                         alt={project.title}
                         fill
                         className="object-cover transition-transform duration-700 group-hover:scale-105"
-                        sizes="(max-width: 768px) 100vw, 400px"
+                        sizes={isFull ? "(max-width: 768px) 100vw, 600px" : "(max-width: 768px) 100vw, 400px"}
                       />
                       <div className="absolute inset-0 bg-background/0 group-hover:bg-background/10 transition-colors duration-500" />
 
@@ -179,12 +185,12 @@ const Projects = ({ onSelectProject }: { onSelectProject: (id: string) => void }
                       </div>
                     </div>
 
-                    <div className="p-6 flex flex-col grow justify-between bg-card/40 relative z-10 w-full">
+                    <div className={`p-6 flex flex-col grow justify-between bg-card/40 relative z-10 w-full ${isFull ? 'md:w-1/2' : ''}`}>
                       <div>
                         <h3 className="font-heading font-bold text-xl text-foreground mb-2 group-hover:text-primary transition-colors">
                           {project.title}
                         </h3>
-                        <p className="text-sm font-body text-muted-foreground mb-6 line-clamp-2">
+                        <p className={`text-sm font-body text-muted-foreground mb-6 ${isFull ? 'line-clamp-6' : 'line-clamp-2'}`}>
                           {project.description}
                         </p>
                       </div>
