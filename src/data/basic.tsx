@@ -32,10 +32,15 @@ export const basicDetails = {
     reddit: "https://www.reddit.com/user/Longjumping-Rain-210/",
   },
   experience: [
+    // {
+    //   role: "Full Stack Developer",
+    //   company: "Privacy Pillar",
+    //   duration: "July 2026 – Present",
+    // },
     {
       role: "React Native Developer",
       company: "VicDigit",
-      duration: "Jan 2024 – Present",
+      duration: "Jan 2024 – June 2026",
     },
     {
       role: "React Developer",

@@ -10,11 +10,27 @@ export interface Experience {
 }
 
 export const experiences: Experience[] = [
+  // {
+  //   id: "exp-0",
+  //   role: "Full Stack Developer",
+  //   company: "Privacy Pillar",
+  //   period: "07/2026 - Present | Bangalore, India",
+  //   type: "Full-Time",
+  //   link: "https://www.linkedin.com/company/privacypillar",
+  //   description: [
+  //     "App Development & Optimization: Developed cross-platform apps (iOS/Android) using React Native, enhancing performance and UX.",
+  //     "Collaboration: Worked with Product, Design, and Backend teams to implement features.",
+  //     "Code Quality: Wrote maintainable code, followed best practices, and conducted code reviews.",
+  //     "CI/CD: Contributed to pipeline improvements for faster deployment.",
+  //     "Continuous Learning: Stayed updated on new tools and libraries."
+  //   ],
+  //   skills: ["MERN Stack", "React Native", "TypeScript", "iOS/Android"],
+  // },
   {
     id: "exp-1",
     role: "React Native Developer",
     company: "Vicdigit Technologies Pvt Ltd",
-    period: "01/2024 - Present | Lucknow, India",
+    period: "01/2024 - 06/2026 | Lucknow, India",
     type: "Full-Time",
     link: "https://www.linkedin.com/company/vicdigit",
     description: [
