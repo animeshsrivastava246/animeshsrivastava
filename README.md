@@ -1,8 +1,4 @@
-# Blog Integration needs to be changed!
-
-# Animesh Srivastava | Cross-Platform Software Developer Portfolio
-
-[![Portfolio Preview](./public/og-image.webp)](https://animeshsrivastava.vercel.app)
+# Animesh Srivastava | Software Developer Portfolio
 
 A high-performance, **futuristic digital ecosystem** built with the latest React 19 and Next.js 16 metadata patterns. This portfolio represents the intersection of robust engineering and avant-garde design, featuring liquid glassmorphism, seamless transitions,real-time data integration, and immersive 3D interactions.
 
