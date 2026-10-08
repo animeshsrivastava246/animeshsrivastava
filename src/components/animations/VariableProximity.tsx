@@ -63,12 +63,10 @@ function useMousePositionRef(
       updatePosition(touch.clientX, touch.clientY);
     };
 
-    window.addEventListener("mousemove", handleMouseMove);
-    window.addEventListener("touchmove", handleTouchMove);
+    window.addEventListener("mousemove", handleMouseMove, { passive: true });
 
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
-      window.removeEventListener("touchmove", handleTouchMove);
     };
   }, [containerRef]);
 

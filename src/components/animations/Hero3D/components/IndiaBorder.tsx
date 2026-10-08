@@ -1971,7 +1971,7 @@ export const IndiaBorder = ({ radius }: IndiaBorderProps) => {
         anchorX="center"
         anchorY="middle"
         renderOrder={996}
-        font="https://fonts.gstatic.com/s/yatraone/v16/C8ch4copsHzj8p7NaF0xww.ttf"
+        font="/fonts/yatraone.ttf"
         outlineWidth={0.05}
         outlineColor="#111827"
         outlineOpacity={0.25}

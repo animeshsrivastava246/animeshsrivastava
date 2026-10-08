@@ -8,10 +8,10 @@ import { LocationMarker } from "./LocationMarker";
 import { IndiaBorder } from "./IndiaBorder";
 
 const TEXTURES = {
-  map: "https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/earth_atmos_2048.jpg",
-  normal: "https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/earth_normal_2048.jpg",
-  specular: "https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/earth_specular_2048.jpg",
-  clouds: "https://raw.githubusercontent.com/mrdoob/three.js/master/examples/textures/planets/earth_clouds_1024.png",
+  map: "/textures/earth/earth_atmos.jpg",
+  normal: "/textures/earth/earth_normal.jpg",
+  specular: "/textures/earth/earth_specular.jpg",
+  clouds: "/textures/earth/earth_clouds.png",
 };
 
 export const Earth = ({ radius }: { radius: number }) => {
@@ -34,7 +34,7 @@ export const Earth = ({ radius }: { radius: number }) => {
     <group>
       <group ref={earthRef}>
         <mesh castShadow receiveShadow>
-          <sphereGeometry args={[radius, 80, 80]} />
+          <sphereGeometry args={[radius, 48, 48]} />
           <meshPhongMaterial
             map={map}
             normalMap={normal}
@@ -49,7 +49,7 @@ export const Earth = ({ radius }: { radius: number }) => {
       </group>
 
       <mesh ref={cloudsRef}>
-        <sphereGeometry args={[radius + 0.01, 64, 64]} />
+        <sphereGeometry args={[radius + 0.01, 36, 36]} />
         <meshStandardMaterial
           map={clouds}
           transparent
@@ -59,7 +59,7 @@ export const Earth = ({ radius }: { radius: number }) => {
       </mesh>
 
       <mesh scale={1.05}>
-        <sphereGeometry args={[radius, 64, 64]} />
+        <sphereGeometry args={[radius, 36, 36]} />
         <meshBasicMaterial
           color="#60a5fa"
           wireframe

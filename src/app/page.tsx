@@ -29,11 +29,6 @@ function HomeContent() {
   );
 
   const [prevProject, setPrevProject] = useState<string | null>(null);
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
 
   useEffect(() => {
     if (selectedProject !== "none") {
@@ -97,22 +92,12 @@ function HomeContent() {
     return <ProjectsSection onSelectProject={openProject} />;
   };
 
-  if (!mounted) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-background">
-        <div className="flex flex-col items-center gap-4">
-          <div className="w-12 h-12 border-4 border-primary/30 border-t-primary rounded-full animate-spin" />
-          <p className="text-muted-foreground font-mono text-sm animate-pulse">Initializing HUD...</p>
-        </div>
-      </div>
-    );
-  }
 
   return (
     <>
       <DeviceNotice />
 
-      <div className="w-full h-full flex flex-col transition-colors duration-500">
+      <div className="w-full h-full flex flex-col transition-colors duration-500 overflow-x-clip">
         <Navbar
           isProjectOpen={selectedProject !== "none"}
           onCloseProject={closeProject}
@@ -125,7 +110,7 @@ function HomeContent() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -50 }}
             transition={{ duration: 0.4 }}
-            className="grow flex flex-col"
+            className="grow flex flex-col overflow-x-clip"
           >
             {selectedProject === "none" && (
               <>

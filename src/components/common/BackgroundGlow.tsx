@@ -45,8 +45,8 @@ export function BackgroundGlow() {
         </>
       ) : (
         <>
-          <div className="absolute top-[10%] left-[5%] w-96 h-96 bg-primary/5 rounded-full blur-[100px]" />
-          <div className="absolute bottom-[10%] right-[5%] w-96 h-96 bg-indigo-500/5 rounded-full blur-[120px]" />
+          <div className="absolute top-[10%] left-[5%] w-72 h-72 rounded-full bg-[radial-gradient(circle,rgba(59,130,246,0.08)_0%,transparent_70%)]" />
+          <div className="absolute bottom-[10%] right-[5%] w-72 h-72 rounded-full bg-[radial-gradient(circle,rgba(99,102,241,0.08)_0%,transparent_70%)]" />
         </>
       )}
 

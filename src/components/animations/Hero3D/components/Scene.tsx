@@ -3,12 +3,10 @@
 import { Suspense } from "react";
 import {
   PerspectiveCamera,
-  Environment,
   ContactShadows,
   OrbitControls,
-  Preload
+  Preload,
 } from "@react-three/drei";
-import { Bloom, EffectComposer } from "@react-three/postprocessing";
 import { Earth } from "./Earth";
 import { Starfield } from "./Starfield";
 
@@ -21,31 +19,25 @@ export const Scene = () => {
 
       <color attach="background" args={["#030712"]} />
 
-      <ambientLight intensity={0.5} />
-      <pointLight position={[10, 10, 10]} intensity={1000} color="#fff4e6" />
-      <pointLight position={[-10, -10, -5]} intensity={500} color="#1e40af" />
+      {/* High-fidelity offline lighting without external HDR download */}
+      <ambientLight intensity={0.7} />
+      <directionalLight position={[12, 10, 8]} intensity={2.2} color="#fff7ed" />
+      <directionalLight position={[-12, -8, -6]} intensity={1.2} color="#1e40af" />
+      <pointLight position={[0, 4, 10]} intensity={120} color="#60a5fa" />
 
       <Suspense fallback={null}>
         <Earth radius={EARTH_RADIUS} />
-        <Starfield />
-        <Environment preset="night" />
+        <Starfield count={2000} />
 
+        {/* Baked shadow: frames=1 computes once on mount instead of 60fps */}
         <ContactShadows
           position={[0, -3, 0]}
-          opacity={0.4}
-          scale={10}
-          blur={2}
-          far={4.5}
+          opacity={0.35}
+          scale={9}
+          blur={1.5}
+          far={4}
+          frames={1}
         />
-
-        <EffectComposer>
-          <Bloom
-            luminanceThreshold={0.2}
-            mipmapBlur
-            intensity={1.2}
-            radius={0.4}
-          />
-        </EffectComposer>
 
         <OrbitControls
           enableZoom={false}

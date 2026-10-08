@@ -3,17 +3,32 @@
 import { Suspense, Component, type ReactNode } from "react";
 import { Canvas } from "@react-three/fiber";
 import { Scene } from "./components/Scene";
+import HeroHUDFallback from "../HeroHUD/HeroHUDFallback";
 
-// --- Error Boundary ---
-class ErrorBoundary extends Component<{ children: ReactNode }, { hasError: boolean }> {
-  state = { hasError: false };
-  static getDerivedStateFromError() { return { hasError: true }; }
+// --- Robust Error Boundary with Seamless Fallback ---
+interface ErrorBoundaryProps {
+  children: ReactNode;
+}
+
+interface ErrorBoundaryState {
+  hasError: boolean;
+}
+
+class ErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
+  state: ErrorBoundaryState = { hasError: false };
+
+  static getDerivedStateFromError(): ErrorBoundaryState {
+    return { hasError: true };
+  }
+
+  componentDidCatch(error: unknown) {
+    console.warn("3D Render encountered error, falling back to HUD mode:", error);
+  }
+
   render() {
-    if (this.state.hasError) return (
-      <div className="absolute inset-0 flex items-center justify-center text-white/20">
-        3D Render Failed
-      </div>
-    );
+    if (this.state.hasError) {
+      return <HeroHUDFallback />;
+    }
     return this.props.children;
   }
 }
@@ -23,13 +38,15 @@ const Hero3D = () => {
     <div className="absolute inset-0 w-full h-full z-0 pointer-events-none overflow-hidden">
       <div className="absolute inset-0 pointer-events-auto">
         <ErrorBoundary>
-          <Suspense fallback={null}>
+          <Suspense fallback={<HeroHUDFallback />}>
             <Canvas
-              shadows
+              dpr={[1, 1.5]}
               gl={{
-                antialias: true,
+                antialias: false,
                 alpha: true,
-                powerPreference: "high-performance"
+                powerPreference: "high-performance",
+                stencil: false,
+                depth: true,
               }}
             >
               <Scene />
@@ -41,7 +58,7 @@ const Hero3D = () => {
       {/* Cinematic Gradient Overlay */}
       <div
         className="absolute inset-x-0 bottom-0 h-1/3 pointer-events-none"
-        style={{ background: 'linear-gradient(to top, #030712 0%, transparent 50%)' }}
+        style={{ background: "linear-gradient(to top, #030712 0%, transparent 50%)" }}
       />
     </div>
   );

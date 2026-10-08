@@ -1,12 +1,33 @@
+import React from "react";
 import { StaticImageData } from "next/image";
-import NameTheGame from "./NameTheGame";
-import DisneyUI from "./DisneyUI";
-import Storyteller from "./Storyteller";
-import NetflixYT from "./NetflixYT";
+import dynamic from "next/dynamic";
 import NameTheGameCover from "../../assets/images/projects/NameTheGame.webp";
 import DisneyUICover from "../../assets/images/projects/DisneyUIclone.webp";
 import StorytellerCover from "../../assets/images/projects/storyteller/landingScreen.webp";
 import NetflixYTCover from "../../assets/images/projects/NetflixYTclone.webp";
+
+const LoadingProjectFallback = () => (
+  <div className="min-h-[60vh] flex flex-col items-center justify-center gap-3">
+    <div className="w-8 h-8 border-2 border-primary/30 border-t-primary rounded-full animate-spin" />
+    <span className="text-xs font-mono text-muted-foreground animate-pulse">Loading Mission Data...</span>
+  </div>
+);
+
+const NetflixYT = dynamic(() => import("./NetflixYT"), {
+  loading: LoadingProjectFallback,
+});
+
+const NameTheGame = dynamic(() => import("./NameTheGame"), {
+  loading: LoadingProjectFallback,
+});
+
+const Storyteller = dynamic(() => import("./Storyteller"), {
+  loading: LoadingProjectFallback,
+});
+
+const DisneyUI = dynamic(() => import("./DisneyUI"), {
+  loading: LoadingProjectFallback,
+});
 
 export interface ProjectMetadata {
   id: string;

@@ -7,7 +7,7 @@
     "start": "next dev --turbopack",
     "build": "next build",
     "start2": "next start",
-    "lint": "next lint",
+    "lint": "eslint .",
     "type-check": "tsc --noEmit",
     "clean": "rm -rf .next node_modules"
   },
@@ -16,7 +16,6 @@
     "@next/third-parties": "^16.2.6",
     "@react-three/drei": "^10.7.7",
     "@react-three/fiber": "^9.6.1",
-    "@react-three/postprocessing": "^3.0.4",
     "@types/three": "^0.184.1",
     "@vercel/analytics": "^2.0.1",
     "framer-motion": "^12.40.0",
@@ -38,7 +37,8 @@
     "@types/node": "^25.9.1",
     "@types/react": "^19.2.15",
     "@types/react-dom": "^19.2.3",
-    "eslint": "^10.4.0",
+    "eslint": "^9.20.0",
+    "eslint-config-next": "^16.4.0",
     "postcss": "^8.5.15",
     "typescript": "^6.0.3"
   }

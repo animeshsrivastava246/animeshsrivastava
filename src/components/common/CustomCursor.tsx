@@ -30,6 +30,9 @@ export default function CustomCursor() {
   const hoveredElementRef = useRef<HTMLElement | null>(null);
 
   useEffect(() => {
+    if (window.matchMedia("(pointer: coarse)").matches || window.innerWidth < 768) {
+      return;
+    }
     setMounted(true);
 
     const onMove = (e: MouseEvent) => {

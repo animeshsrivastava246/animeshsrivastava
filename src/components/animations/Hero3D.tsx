@@ -1,5 +1,5 @@
 "use client";
 
-import Hero3D from "./Hero3D/Hero3D";
+import HeroBackground from "./HeroBackground";
 
-export default Hero3D;
+export default HeroBackground;
