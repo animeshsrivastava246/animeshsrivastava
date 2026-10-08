@@ -157,12 +157,12 @@ export default function HeroHUDFallback() {
       const latCount = 6;
       for (let i = 1; i < latCount; i++) {
         const phi = (i / latCount) * Math.PI - Math.PI / 2;
-        const rLat = radius * Math.cos(phi);
+        const rLat = Math.max(0.1, radius * Math.cos(phi));
         const yLat = centerY - radius * Math.sin(phi);
 
         ctx.strokeStyle = "rgba(59, 130, 246, 0.18)";
         ctx.beginPath();
-        ctx.ellipse(centerX, yLat, rLat, rLat * 0.28, 0, 0, Math.PI * 2);
+        ctx.ellipse(centerX, yLat, rLat, Math.max(0.1, rLat * 0.28), 0, 0, Math.PI * 2);
         ctx.stroke();
       }
 
