@@ -4,18 +4,9 @@ import React, { useRef, useMemo } from "react";
 import { useFrame } from "@react-three/fiber";
 import * as THREE from "three";
 import { Sphere, Cone } from "@react-three/drei";
+import { latLonToVec3 } from "../../../../lib/geo";
 
 const BENGALURU = { lat: 12.9716, lon: 77.5946 };
-
-function latLonToVec3(lat: number, lon: number, r: number) {
-  const phi = (90 - lat) * (Math.PI / 180);
-  const theta = (lon + 180) * (Math.PI / 180);
-  return new THREE.Vector3(
-    -r * Math.sin(phi) * Math.cos(theta),
-    r * Math.cos(phi),
-    r * Math.sin(phi) * Math.sin(theta)
-  );
-}
 
 export const LocationMarker = ({ radius }: { radius: number }) => {
   const groupRef = useRef<THREE.Group>(null);

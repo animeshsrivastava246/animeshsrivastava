@@ -71,3 +71,4 @@ Icon
 Todo.md
 *.bak
 *.orig
+.fallow/

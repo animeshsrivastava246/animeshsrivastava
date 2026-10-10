@@ -1,0 +1,29 @@
+{
+  "$schema": "https://raw.githubusercontent.com/fallow-rs/fallow/main/schema.json",
+  "entry": [
+    "src/app/**/page.{ts,tsx,js,jsx}",
+    "src/app/**/layout.{ts,tsx,js,jsx}",
+    "src/app/**/route.{ts,tsx,js,jsx}",
+    "src/app/**/not-found.{ts,tsx,js,jsx}",
+    "src/app/**/sitemap.{ts,tsx,js,jsx}",
+    "next.config.ts",
+    "eslint.config.mjs",
+    "postcss.config.mjs",
+    "tailwind.config.js"
+  ],
+  "ignorePatterns": [
+    "src/components/sections/Life/**",
+    "src/components/sections/Life.tsx",
+    "src/assets/images/life/**",
+    "src/components/animations/ImageGallery.tsx",
+    "src/lib/colors.ts"
+  ],
+  "duplicates": {
+    "minOccurrences": 3
+  },
+  "rules": {
+    "complexity-cyclomatic": "warn",
+    "complexity-cognitive": "warn",
+    "complexity-crap": "warn"
+  }
+}

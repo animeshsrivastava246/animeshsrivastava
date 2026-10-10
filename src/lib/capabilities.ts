@@ -12,22 +12,12 @@ export function checkWebGLSupport(): boolean {
 
   try {
     const canvas = document.createElement("canvas");
-    const gl =
-      canvas.getContext("webgl2", { powerPreference: "default" }) ||
-      canvas.getContext("webgl", { powerPreference: "default" }) ||
-      canvas.getContext("experimental-webgl");
-
-    // Verify context can actually create shaders
-    if (gl && gl instanceof WebGLRenderingContext || (typeof WebGL2RenderingContext !== "undefined" && gl instanceof WebGL2RenderingContext)) {
-      cachedWebGLSupport = true;
-      return true;
-    }
+    const gl = canvas.getContext("webgl2") || canvas.getContext("webgl");
+    cachedWebGLSupport = Boolean(gl);
   } catch {
-    // WebGL unsupported or disabled
+    cachedWebGLSupport = false;
   }
-
-  cachedWebGLSupport = false;
-  return false;
+  return cachedWebGLSupport;
 }
 
 export function checkIsLowEndDevice(): boolean {
@@ -35,51 +25,20 @@ export function checkIsLowEndDevice(): boolean {
   if (cachedLowEnd !== null) return cachedLowEnd;
 
   try {
-    // 1. Reduced motion preference
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
-      cachedLowEnd = true;
-      return true;
-    }
-
-    // 2. CPU Core Count (<= 4 cores is typical of budget / older devices)
-    if (navigator.hardwareConcurrency && navigator.hardwareConcurrency <= 4) {
-      cachedLowEnd = true;
-      return true;
-    }
-
-    // 3. Device Memory (<= 4GB RAM)
     const nav = navigator as Navigator & {
       deviceMemory?: number;
       connection?: { saveData?: boolean; effectiveType?: string };
     };
-    if (nav.deviceMemory && nav.deviceMemory <= 4) {
-      cachedLowEnd = true;
-      return true;
-    }
 
-    // 4. Save-Data mode or slow network
-    if (
-      nav.connection?.saveData ||
-      nav.connection?.effectiveType === "2g" ||
-      nav.connection?.effectiveType === "slow-2g"
-    ) {
-      cachedLowEnd = true;
-      return true;
-    }
+    const isReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const isWeakCpu = (navigator.hardwareConcurrency ?? 8) <= 4;
+    const isLowRam = (nav.deviceMemory ?? 8) <= 4;
+    const isSlowNet = Boolean(nav.connection?.saveData || nav.connection?.effectiveType?.includes("2g"));
+    const isOldOs = /android [4-8]|iphone os [8-9]|iphone os 1[0-2]/i.test(navigator.userAgent);
 
-    // 5. Older mobile / tablet user agents with weak GPUs
-    const ua = navigator.userAgent.toLowerCase();
-    const isOldDevice =
-      /android [4-8]/i.test(ua) ||
-      /iphone os [8-9]|iphone os 1[0-2]/i.test(ua);
-    if (isOldDevice) {
-      cachedLowEnd = true;
-      return true;
-    }
+    cachedLowEnd = isReduced || isWeakCpu || isLowRam || isSlowNet || isOldOs;
   } catch {
-    // Fallback safe default
+    cachedLowEnd = false;
   }
-
-  cachedLowEnd = false;
-  return false;
+  return cachedLowEnd;
 }
