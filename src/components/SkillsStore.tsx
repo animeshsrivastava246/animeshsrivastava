@@ -56,7 +56,7 @@ export default function SkillsStore() {
   const filteredData = getCombinedData();
 
   return (
-    <div className="flex flex-col md:flex-row glass neumorphic rounded-4xl w-full max-w-6xl h-[700px] overflow-hidden border border-border/50 relative z-0 shadow-2xl">
+    <div className="flex flex-col md:flex-row glass neumorphic rounded-4xl w-full max-w-6xl h-175 overflow-hidden border border-border/50 relative z-0 shadow-2xl">
       <SkillsMobileDropdown
         categories={categories}
         selectedCategory={selectedCategory}
